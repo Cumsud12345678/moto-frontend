@@ -1,0 +1,48 @@
+/* CSS */
+.btn {
+  display: flex;
+  align-items: center;
+  position: relative;
+  border: none;
+  cursor: pointer;
+  padding: 6px 14px;
+  border-radius: 6px;
+  overflow: hidden;
+  z-index: 0;
+  gap: 5px
+}
+
+/* hover arxa planı ::before ilə */
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.075); /* bootstrap table hover */
+  border-radius: 6px;
+  transform: scale(0); /* başda kiçik */
+  transition: transform 0.2s ease;
+  z-index: -1;
+}
+
+.btn:hover::before {
+  transform: scale(1); /* böyüyür */
+}
+
+.btnText {
+  max-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: all 0.6s ease;
+}
+
+.btn:hover .btnText {
+  max-width: 100px; /* uyğun ölçü ver */
+  opacity: 1;
+}
+
+.activeBtn{
+  color: white;
+  font-weight: bold;
+  font-size: 17px
+}

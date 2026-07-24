@@ -1,0 +1,78 @@
+import { useNavigate, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import ProductList from './list/ProductList';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProducts } from '../../redux/slices/admin/adminProductSlice';
+import { Nav } from './customs/Nav';
+
+export default function Products() {
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const [id, setId] = useState('')
+  
+  useEffect(() => {
+    dispatch(getProducts())
+  }, [])
+
+  const handleSearch = () => {
+    const params = new URLSearchParams()
+    if(id) params.set('id', id);
+
+    navigate(`/admin/products/search?${params.toString()}`)
+  }
+
+  const { products } = useSelector(s => s.adminProducts)
+
+  return(
+    <div className='flex flex-row'>
+      <Nav />
+      <div className="container mx-auto max-w-[1000px]">
+        
+        <div className='mt-20'>
+          <h1 className='text-2xl font-bold'>Axdaris</h1>
+          <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-3 gap-4'>
+            <input 
+              value={id}
+              onChange={(e) => setId(e.target.value)}
+              type="text" 
+              className='p-3 rounded-xl border bg-white focus:outline-sky-500' 
+              placeholder='ID yazin' 
+            />
+            <button
+              onClick={handleSearch}
+              className='bg-blue-500 text-white rounded-xl w-1/3 cursor-pointer'
+            >
+              Axdar
+            </button>
+          </div>
+        </div>
+        
+        <table className="w-full table-fixed border border-collapse bg-white mt-10">
+          <thead>
+            <tr className="border-b">
+              <th className="w-[225px] border-r p-2 text-left font-medium">ID</th>
+              <th className="w-[120px] border-r p-2 text-left font-medium">Created</th>
+              <th className="w-[70px] border-r p-2 text-center font-medium">Price</th>
+              <th className="w-[60px] border-r p-2 text-center font-medium">Volume</th>
+              <th className="w-[60px] border-r p-2 text-center font-medium">Active</th>
+              <th className="w-[80px] border-r p-2 text-center font-medium">Number</th>
+              <th className="w-[100px] p-2 text-center font-medium">Functions</th>
+            </tr>
+          </thead>
+
+          {
+            products.map(product => (
+              <ProductList key={product._id} product={product} />
+            ))
+          }
+          
+        </table>
+        
+
+      </div>
+
+    </div>
+  )
+}

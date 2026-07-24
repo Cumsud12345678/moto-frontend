@@ -1,0 +1,26 @@
+.card{
+    border: none;
+    cursor: pointer;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.card:hover{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.likeDiv{
+    position: absolute;
+    margin: 10px 15px;
+    right: 0;
+    z-index: 1000;
+}
+.cardBody{
+    padding: 6px 10px;
+}
+.priceText{
+    font-size: 20px; 
+    font-weight: bold;
+    display: block;
+}
+.time{
+    font-size: 15px; 
+    font-weight: 500;
+}

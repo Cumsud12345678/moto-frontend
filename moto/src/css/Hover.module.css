@@ -1,0 +1,10 @@
+.cardImg{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.cardImg:hover{
+    transform: scale(1.1);
+    transition: all 0.5s ease;
+    cursor: pointer;
+}
