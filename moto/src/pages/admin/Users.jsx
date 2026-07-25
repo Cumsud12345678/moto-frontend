@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { deleteUser, getUsers } from '../../redux/slices/admin/adminUserSlice';
 import { Nav } from './customs/Nav';
 import { useLocation, useNavigate } from 'react-router-dom';
-import Pagination from './customs/Pagination';
+import PaginationComponent from './customs/Pagination';
 
 export default function Users() {
 
@@ -109,7 +109,7 @@ export default function Users() {
           
         </table>
 
-        <Pagination page={page} setPage={manageUrlAndPage} totalPages={total} />
+        <PaginationComponent page={page} setPage={manageUrlAndPage} totalPages={total} />
         
 
       </div>

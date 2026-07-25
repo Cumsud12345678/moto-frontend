@@ -5,9 +5,10 @@ const API = import.meta.env.VITE_API_URL
 const initialState = {
   user: [],
   users: [],
-  total: 1,
+  total: 0,
   stats: [],
   deletedUsers: [],
+  totalDeletedUsers: 0,
   warningCount: null
 }
 
@@ -149,10 +150,10 @@ export const resetWarning = createAsyncThunk(
 
 export const getDeletedUsers = createAsyncThunk(
   'admin/getDeletedUsers',
-  async (_, thunkAPI) => {
+  async (page, thunkAPI) => {
     try{
       const res = await axios.get(
-        `${API}/api/admin/users/deleted`,
+        `${API}/api/admin/users/deleted?page=${page}`,
         { withCredentials: true }
       )
 
@@ -207,8 +208,8 @@ export const adminUserSlice = createSlice({
       })
 
       .addCase(getDeletedUsers.fulfilled, (state, action) => {
-        console.log(action.payload.data)
-        state.deletedUsers = action.payload.data
+        state.deletedUsers = action.payload.data.users
+        state.totalDeletedUsers = action.payload.data.total
       })
 
       .addCase(deleteDeletedUser.fulfilled, (state, action) => {

@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import ProductList from './list/ProductList';
 import { useDispatch, useSelector } from 'react-redux';
@@ -6,16 +6,33 @@ import { getProducts } from '../../redux/slices/admin/adminProductSlice';
 import { Nav } from './customs/Nav';
 import { getDeletedUsers } from '../../redux/slices/admin/adminUserSlice';
 import DeletedUserList from './list/DeletedUserList';
+import PaginationComponent from './customs/Pagination';
 
 export default function DeletedUsers() {
 
+  const [page, setPage] = useState(1)
+
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const location = useLocation()
 
   useEffect(() => {
-    dispatch(getDeletedUsers())
-  }, [])
+    dispatch(getDeletedUsers(page))
+  }, [page])
 
-  const { deletedUsers } = useSelector(s => s.adminUsers)
+  const manageUrlAndPage = (newPage) => {
+    const params = new URLSearchParams()
+    params.set('page', newPage)
+    navigate(`/admin/deleted/users?${params.toString()}`)
+  }
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search)
+    const urlPage = Number(params.get('page')) || 1
+    setPage(urlPage)
+  }, [location.search])
+
+  const { deletedUsers, totalDeletedUsers } = useSelector(s => s.adminUsers)
 
   return(
     <div className='flex flex-row'>
@@ -53,6 +70,8 @@ export default function DeletedUsers() {
           }
           
         </table>
+
+        <PaginationComponent page={page} setPage={manageUrlAndPage} totalPages={totalDeletedUsers} />
         
 
       </div>

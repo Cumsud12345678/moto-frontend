@@ -1,20 +1,36 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import ProductList from './list/ProductList';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from '../../redux/slices/admin/adminProductSlice';
 import { Nav } from './customs/Nav';
+import PaginationComponent from './customs/Pagination';
 
 export default function Products() {
 
+  const [page, setPage] = useState(1)
+
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const location = useLocation()
 
   const [id, setId] = useState('')
   
   useEffect(() => {
-    dispatch(getProducts())
-  }, [])
+    dispatch(getProducts(page))
+  }, [page])
+
+  const manageUrlAndPage = (newPage) => {
+    const params = new URLSearchParams()
+    params.set('page', newPage)
+    navigate(`/admin/products?${params.toString()}`)
+  }
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search)
+    const urlPage = Number(params.get('page')) || 1
+    setPage(urlPage)
+  }, [location.search])
 
   const handleSearch = () => {
     const params = new URLSearchParams()
@@ -23,7 +39,7 @@ export default function Products() {
     navigate(`/admin/products/search?${params.toString()}`)
   }
 
-  const { products } = useSelector(s => s.adminProducts)
+  const { products, total } = useSelector(s => s.adminProducts)
 
   return(
     <div className='flex flex-row'>
@@ -69,6 +85,8 @@ export default function Products() {
           }
           
         </table>
+
+        <PaginationComponent page={page} setPage={manageUrlAndPage} totalPages={total} />
         
 
       </div>

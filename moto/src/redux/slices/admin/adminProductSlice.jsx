@@ -6,7 +6,9 @@ const initialState = {
   product: [],
   userProducts: [],
   products: [],
+  total: 0,
   deletedProducts: [],
+  totalDeletedProducts: 0,
   productStats: [],
 }
 
@@ -28,10 +30,10 @@ export const getProductStats = createAsyncThunk(
 
 export const getProducts = createAsyncThunk(
   'admin/getProducts',
-  async (_, thunkAPI) => {
+  async (page, thunkAPI) => {
     try{
       const res = await axios.get(
-        `${API}/api/admin/products`,
+        `${API}/api/admin/products?page=${page}`,
         { withCredentials: true }
       )
 
@@ -130,10 +132,10 @@ export const activeProduct = createAsyncThunk(
 
 export const getDeletedProducts = createAsyncThunk(
   'admin/getDeletedProducts',
-  async (_, thunkAPI) => {
+  async (page, thunkAPI) => {
     try{
       const res = await axios.get(
-        `${API}/api/admin/products/deleted`,
+        `${API}/api/admin/products/deleted?page=${page}`,
         { withCredentials: true }
       )
 
@@ -171,7 +173,8 @@ export const adminProductSlice = createSlice({
     builder
 
       .addCase(getProducts.fulfilled, (state, action) => {
-        state.products = action.payload.data
+        state.products = action.payload.data.products
+        state.total = action.payload.data.total
       })
 
       .addCase(getUserProducts.fulfilled, (state, action) => {
@@ -195,7 +198,8 @@ export const adminProductSlice = createSlice({
       })
 
       .addCase(getDeletedProducts.fulfilled, (state, action) => {
-        state.deletedProducts = action.payload.data
+        state.deletedProducts = action.payload.data.products
+        state.totalDeletedProducts = action.payload.data.total
       })
 
       .addCase(deleteDeletedProduct.fulfilled, (state, action) => {

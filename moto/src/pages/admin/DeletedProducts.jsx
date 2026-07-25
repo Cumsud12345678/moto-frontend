@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import ProductList from './list/ProductList';
 import { useDispatch, useSelector } from 'react-redux';
@@ -6,16 +6,32 @@ import { getDeletedProducts, getProducts } from '../../redux/slices/admin/adminP
 import { Nav } from './customs/Nav';
 import DeletedUserList from './list/DeletedUserList';
 import DeletedProductList from './list/DeletedProductList';
+import PaginationComponent from './customs/Pagination';
 
 export default function DeletedProducts() {
 
+  const [page, setPage] = useState(1)
+
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const location = useLocation()
 
   useEffect(() => {
-    dispatch(getDeletedProducts())
-  }, [])
+    dispatch(getDeletedProducts(page))
+  }, [page])
 
-  const { deletedProducts } = useSelector(s => s.adminProducts)
+  const manageUrlAndPage = (newPage) => {
+    const params = new URLSearchParams()
+    params.set('page', newPage)
+    navigate(`/admin/deleted/products?${params.toString()}`)
+  }
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search)
+    setPage(Number(params.get('page')) || 1)
+  }, [location.search])
+
+  const { deletedProducts, totalDeletedProducts } = useSelector(s => s.adminProducts)
 
   console.log(deletedProducts)
 
@@ -55,6 +71,8 @@ export default function DeletedProducts() {
           }
           
         </table>
+
+        <PaginationComponent page={page} setPage={manageUrlAndPage} totalPages={totalDeletedProducts} />
         
 
       </div>

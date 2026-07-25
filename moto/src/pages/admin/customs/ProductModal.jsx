@@ -141,7 +141,7 @@ export function ProductModal({openModal, setOpenModal, images, product}) {
                           </span>
                           <span>
                             Mraka, Model:
-                            <span className="text-red-500 font-bold"> {product.make.label}, {product.model.label}</span>
+                            <span className="text-red-500 font-bold"> {product.make?.label}, {product.model?.label}</span>
                           </span>
                           <span>
                             Qiymet:
