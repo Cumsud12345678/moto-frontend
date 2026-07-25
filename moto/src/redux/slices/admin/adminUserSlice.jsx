@@ -9,6 +9,7 @@ const initialState = {
   stats: [],
   deletedUsers: [],
   totalDeletedUsers: 0,
+  deletedUser: [],
   warningCount: null
 }
 
@@ -180,6 +181,22 @@ export const deleteDeletedUser = createAsyncThunk(
   }
 )
 
+export const getDeletedUser = createAsyncThunk(
+  'admin/getDeletedUser',
+  async (query, thunkAPI) => {
+    try{
+      const res = await axios.get(
+        `${API}/api/admin/users/deleted/search${query}`,
+        { withCredentials: true }
+      )
+
+      return res.data
+    }catch(err){
+      return thunkAPI.rejectWithValue(err.response?.data)
+    }
+  }
+)
+
 export const adminUserSlice = createSlice({
   name: 'admin/userSlice',
   initialState,
@@ -214,6 +231,10 @@ export const adminUserSlice = createSlice({
 
       .addCase(deleteDeletedUser.fulfilled, (state, action) => {
         state.deletedUsers = state.deletedUsers.filter(u => u._id !== action.payload)
+      })
+
+      .addCase(getDeletedUser.fulfilled, (state, action) => {
+        state.deletedUser = action.payload.data
       })
   }
 })
