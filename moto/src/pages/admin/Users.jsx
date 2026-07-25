@@ -8,22 +8,39 @@ import { toast } from "@heroui/react";
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteUser, getUsers } from '../../redux/slices/admin/adminUserSlice';
 import { Nav } from './customs/Nav';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import Pagination from './customs/Pagination';
 
 export default function Users() {
 
+  const [page, setPage] = useState(1)
+
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const location = useLocation()
 
   const [userId, setUserId] = useState('')
   const [phone, setPhone] = useState('')
   
   useEffect(() => {
-    dispatch(getUsers())
-  }, [])
+    dispatch(getUsers(page))
+  }, [page])
+
+  const manageUrlAndPage = (newPage) => {
+    const params = new URLSearchParams()
+    params.set('page', newPage)
+    navigate(`/admin/users?${params.toString()}`)
+  }
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search)
+    const urlPage = Number(params.get('page')) || 1
+    setPage(urlPage)
+  }, [location.search])
 
   const {
     users,
+    total
   } = useSelector(s => s.adminUsers)
 
   const handleSearch = () => {
@@ -91,6 +108,8 @@ export default function Users() {
           }
           
         </table>
+
+        <Pagination page={page} setPage={manageUrlAndPage} totalPages={total} />
         
 
       </div>
