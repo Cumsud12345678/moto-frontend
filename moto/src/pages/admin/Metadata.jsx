@@ -20,7 +20,14 @@ export default function Metadata() {
   const location = useLocation()
 
   useEffect(() => {
-    dispatch(getMetadata())
+    toast.promise(
+      dispatch(getMetadata()).unwrap(),
+      {
+        loading: 'Yuklenir...',
+        success: 'Yuklendi',
+        error: (err) => err.message || 'Bir xeta oldu!'
+      }
+    )
   }, [])
 
   const {

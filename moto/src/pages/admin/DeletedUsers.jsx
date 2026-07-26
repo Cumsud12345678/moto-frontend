@@ -7,6 +7,7 @@ import { Nav } from './customs/Nav';
 import { getDeletedUser, getDeletedUsers } from '../../redux/slices/admin/adminUserSlice';
 import DeletedUserList from './list/DeletedUserList';
 import PaginationComponent from './customs/Pagination';
+import { toast } from '@heroui/react';
 
 export default function DeletedUsers() {
 
@@ -22,7 +23,14 @@ export default function DeletedUsers() {
   const location = useLocation()
 
   useEffect(() => {
-    dispatch(getDeletedUsers(page))
+    toast.promise(
+      dispatch(getDeletedUsers(page)).unwrap(),
+      {
+        loading: 'Yuklenir...',
+        success: 'Yuklendi',
+        error: (err) => err.message || 'Bir xeta oldu!'
+      }
+    )
   }, [page])
 
   const manageUrlAndPage = (newPage) => {
@@ -39,7 +47,14 @@ export default function DeletedUsers() {
       setPage(urlPage)
     }else if(params.get('id') || params.get('phone') || params.get('userId')) {
       setIsSearch(true)
-      dispatch(getDeletedUser(location.search))
+      toast.promise(
+        dispatch(getDeletedUser(location.search)).unwrap(),
+        {
+          loading: 'Yuklenir...',
+          success: 'Yuklendi',
+          error: (err) => err.message || 'Bir xeta oldu!'
+        }
+      )
     }
   }, [location.search])
 

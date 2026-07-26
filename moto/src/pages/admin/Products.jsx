@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from '../../redux/slices/admin/adminProductSlice';
 import { Nav } from './customs/Nav';
 import PaginationComponent from './customs/Pagination';
+import { toast } from '@heroui/react';
 
 export default function Products() {
 
@@ -17,7 +18,14 @@ export default function Products() {
   const [id, setId] = useState('')
   
   useEffect(() => {
-    dispatch(getProducts(page))
+    toast.promise(
+      dispatch(getProducts(page)).unwrap(),
+      {
+        loading: 'Yuklenir...',
+        success: 'Yuklendi',
+        error: (err) => err.message || 'Bir xeta oldu!'
+      }
+    )
   }, [page])
 
   const manageUrlAndPage = (newPage) => {

@@ -7,6 +7,7 @@ import { Nav } from './customs/Nav';
 import DeletedUserList from './list/DeletedUserList';
 import DeletedProductList from './list/DeletedProductList';
 import PaginationComponent from './customs/Pagination';
+import { toast } from '@heroui/react';
 
 export default function DeletedProducts() {
 
@@ -22,7 +23,14 @@ export default function DeletedProducts() {
   const [userPhone, setUserPhone] = useState('')
 
   useEffect(() => {
-    dispatch(getDeletedProducts(page))
+    toast.promise(
+      dispatch(getDeletedProducts(page)).unwrap(),
+      {
+        loading: 'Yuklenir...',
+        success: 'Yuklendi',
+        error: (err) => err.message || 'Bir xeta oldu!'
+      }
+    )
   }, [page])
 
   const manageUrlAndPage = (newPage) => {
@@ -38,7 +46,14 @@ export default function DeletedProducts() {
       setPage(Number(params.get('page')) || 1)
     }else if(params.get('productID') || params.get('userID') || params.get('userPhone')) {
       setIsSearch(true)
-      dispatch(getDeletedProduct(location.search))
+      toast.promise(
+        dispatch(getDeletedProduct(location.search)).unwrap(),
+        {
+          loading: 'Yuklenir...',
+          success: 'Yuklendi',
+          error: (err) => err.message || 'Bir xeta oldu!'
+        }
+      )
     }
   }, [location.search])
 

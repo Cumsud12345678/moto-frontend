@@ -44,20 +44,6 @@ export default function Home() {
   const dispatch = useDispatch()
 
   React.useEffect(() => {
-    // toast.promise(
-    //   dispatch(getUserStats()).unwrap(),
-    //   {
-    //     error: (err) => err.message || 'Xeta oldu'
-    //   }
-    // )
-
-    // toast.promise(
-    //   dispatch(getProductStats()).unwrap(),
-    //   {
-    //     error: (err) => err.message || 'Xeta oldu'
-    //   }
-    // )
-
     dispatch(getUserStats())
     dispatch(getProductStats())
   }, [])

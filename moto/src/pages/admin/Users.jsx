@@ -23,7 +23,14 @@ export default function Users() {
   const [phone, setPhone] = useState('')
   
   useEffect(() => {
-    dispatch(getUsers(page))
+    toast.promise(
+      dispatch(getUsers(page)).unwrap(),
+      {
+        loading: 'Yuklenir...',
+        success: 'Yuklendi',
+        error: (err) => err.message || 'Bir xeta oldu!'
+      }
+    )
   }, [page])
 
   const manageUrlAndPage = (newPage) => {
@@ -106,7 +113,7 @@ export default function Users() {
               <UserList key={user._id} user={user} />
             ))
           }
-          
+
         </table>
 
         <PaginationComponent page={page} setPage={manageUrlAndPage} totalPages={total} />
