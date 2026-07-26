@@ -13,13 +13,11 @@ const initialState = {
   registerMessage: null,
   loginMessage: null,
   logoutMessage: null,
-  updateMessage: null,
 
   authStatus: 'idle',
   registerStatus: 'idle',
   loginStatus: 'idle',
   logoutStatus: 'idle',
-  updateStatus: 'idle',
 
   stepRegister: 'register',
   stepLogin: 'login'
@@ -260,16 +258,9 @@ export const userSlice = createSlice({
 
       // UPDATE
       .addCase(updatedUser.fulfilled, (state, action) => {
-        console.log(action.payload)
         state.name = action.payload.data.name
         state.profile = action.payload.data.profile
-        state.updateStatus = 'success'
       })
-      .addCase(updatedUser.rejected, (state, action) => {
-        state.updateStatus = 'error'
-        state.updateMessage = action.payload?.message
-      })
-
   }
 })
 

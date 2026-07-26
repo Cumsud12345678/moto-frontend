@@ -5,11 +5,9 @@ import { Avatar, IconButton } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import { useDispatch, useSelector } from "react-redux";
-// import { updatedUser } from "../../redux/slices/profileSlice";
 import CircularProgress from '@mui/material/CircularProgress';
 import { useNavigate } from "react-router-dom";
 import { updatedUser } from "../../redux/slices/user/userSlice";
-// import { updateUserData } from "../../redux/slices/authSlice";
 
 export default function Dialog ({open, value, img, onClose}) {
 
@@ -24,8 +22,6 @@ export default function Dialog ({open, value, img, onClose}) {
   const [loading, setLoading] = useState(false)
 
   const fileRef = useRef(null);
-
-  // const { updateUser } = useSelector(s => s.profile)
   
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -38,26 +34,38 @@ export default function Dialog ({open, value, img, onClose}) {
   };
 
   const handleSetForm = async () => {
-    setLoading(true)
+    
     const formData = new FormData()
 
-    formData.append('profile', file)
-    formData.append('name', name)
-
-    const result = await dispatch(updatedUser(formData))
-    
-    if (updatedUser.fulfilled.match(result)) {
-      // dispatch(updateUserData(result.payload.data)) // ✅ auth slice yenilənir
-      toast.success('Profil güncellendi')
-      setTimeout(() => {
-        onClose()          // dialog-u bağla
-        navigate('/profile')
-      }, 1500)
-    } else {
-      toast.error('Xəta baş verdi')
+    if((!file && !name) || (name == value && !file)){
+      return toast.warning('Deyisiklik olunmayib')
     }
 
-    setLoading(false)
+    if(file){
+      formData.append('profile', file)
+    }
+
+    if(name){
+      formData.append('name', name)
+    }
+
+    setLoading(true)
+
+    toast.promise(
+      dispatch(updatedUser(formData)).unwrap(),
+      {
+        loading: 'Guncellenir...',
+        success: () => {
+          setTimeout(() => {
+            onClose()          // dialog-u bağla
+            setLoading(false)
+            navigate('/profile')
+          }, 1500)
+          return 'Guncellendi'
+        },
+        error: (err) => err.message || 'Bir xeta oldu'
+      }
+    )
   }
 
   return(
@@ -115,13 +123,15 @@ export default function Dialog ({open, value, img, onClose}) {
             </div> 
           </div>
           <div className="mt-2 fixed bottom-0 w-full p-4 left-0 md:relative md:p-0">
-            <button onClick={handleSetForm} type="submit" className="p-3 w-full bg-blue-500 text-white cursor-pointer rounded-xl">
+            <button
+              onClick={handleSetForm} 
+              disabled={loading}
+              type="submit" 
+              className="p-3 w-full bg-blue-500 text-white cursor-pointer rounded-xl"
+            >
               {
-                loading && (
-                  <CircularProgress aria-label="Loading…" />
-                )
+                loading ? 'Guncellenir...' : 'Yadda saxla'
               }
-              Tesdiqle
             </button>
           </div>
         </div>
