@@ -82,7 +82,7 @@ export default function DeletedUsers() {
               onChange={(e) => setUserId(e.target.value)}
               type="text" 
               className='p-3 rounded-xl border bg-white focus:outline-sky-500' 
-              placeholder='Nomre yazin' 
+              placeholder='userID yazin' 
             />
             <button 
               onClick={setFilter}
@@ -119,9 +119,12 @@ export default function DeletedUsers() {
           
         </table>
 
-        <PaginationComponent page={page} setPage={manageUrlAndPage} totalPages={totalDeletedUsers} />
-        
+        {
+          !isSearch
+            && <PaginationComponent page={page} setPage={manageUrlAndPage} totalPages={totalDeletedUsers} />
+        }
 
+        
       </div>
 
     </div>

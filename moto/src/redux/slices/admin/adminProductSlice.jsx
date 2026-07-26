@@ -9,6 +9,7 @@ const initialState = {
   total: 0,
   deletedProducts: [],
   totalDeletedProducts: 0,
+  deletedProduct: [],
   productStats: [],
 }
 
@@ -146,6 +147,22 @@ export const getDeletedProducts = createAsyncThunk(
   }
 )
 
+export const getDeletedProduct = createAsyncThunk(
+  'admin/getDeletedProduct',
+  async (query, thunkAPI) => {
+    try{
+      const res = await axios.get(
+        `${API}/api/admin/products/deleted/search${query}`,
+        { withCredentials: true }
+      )
+
+      return res.data
+    }catch(err){
+      return thunkAPI.rejectWithValue(err.response?.data)
+    }
+  }
+)
+
 export const deleteDeletedProduct = createAsyncThunk(
   'admin/deleteDeletedProduct',
   async (id, thunkAPI) => {
@@ -200,6 +217,10 @@ export const adminProductSlice = createSlice({
       .addCase(getDeletedProducts.fulfilled, (state, action) => {
         state.deletedProducts = action.payload.data.products
         state.totalDeletedProducts = action.payload.data.total
+      })
+
+      .addCase(getDeletedProduct.fulfilled, (state, action) => {
+        state.deletedProduct = action.payload.data
       })
 
       .addCase(deleteDeletedProduct.fulfilled, (state, action) => {

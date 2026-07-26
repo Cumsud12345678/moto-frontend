@@ -31,7 +31,7 @@ export default function DeletedProductList({product}) {
       <tbody>
         <tr className="border-b hover:bg-gray-50">
           <td className="border-r p-2 truncate">
-            {product._id}
+            {product.product_id}
           </td>
 
           <td className="border-r p-2 truncate">
