@@ -10,16 +10,14 @@ const initialState = {
   colors: [],
   categories: [],
   statuses: [],
-  equipments: [],
-
-  success: true,
-  message: null
+  equipments: []
 }
 
 export const getMetadata = createAsyncThunk(
   'metadata/getMetadata', 
   async (_, thunkAPI) => {
     try {
+      await new Promise(resolve => setTimeout(resolve, 2000))
       const response = await axios.get(
         `${import.meta.env.VITE_API_URL}/api/products/metadata`,
         { withCredentials: true }
@@ -52,11 +50,6 @@ export const metadataSlice = createSlice({
         state.categories = action.payload.data.categories
         state.statuses = action.payload.data.statuses
         state.equipments = action.payload.data.equipments
-        state.success = true
-      })
-      .addCase(getMetadata.rejected, (state, action) => {
-        state.success = false,
-        state.message = action.payload?.message 
       })
   }
 })

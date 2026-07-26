@@ -10,6 +10,8 @@ export const useProduct = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
+  const [loading, setLoading] = useState(false)
+
   useEffect(() => {
     dispatch(getMetadata())
   }, [])
@@ -23,15 +25,8 @@ export const useProduct = () => {
     colors,
     categories,
     statuses,
-    equipments,
-
-    success,
-    loading,
+    equipments
   } = useSelector(s => s.metadata)
-
-  const {
-    message
-  } = useSelector(s => s.product)
 
   // STEP1 components
 
@@ -252,8 +247,38 @@ export const useProduct = () => {
   const selectedCityLabel = cities.find(c => c._id == selectedCity)
   const [price, setPrice] = useState('')
 
-  const dataa = () => {
-    const pr = {
+  const addProduct = () => {
+    // Marka/Model/il/hecm
+    if (!stateMakeValue) return toast.danger('Marka seçin')
+    if (!stateModelValue) return toast.danger('Model seçin')
+    if (!stateYearValue) return toast.danger('İl seçin')
+    if (!stateVolumeValue) return toast.danger('Mühərrikin həcmini seçin')
+
+    // Kateqoriya/veziyyet/reng/yanacaq/suretler qutusu
+    if (!stateCategoryValue) return toast.danger('Kateqoriya seçin')
+    if (!activeStatus) return toast.danger('Vəziyyəti seçin')
+    if (!activeColor) return toast.danger('Rəng seçin')
+    if (!activeFuelType) return toast.danger('Yanacaq növünü seçin')
+    if (!activeSpeedBox) return toast.danger('Sürətlər qutusunu seçin')
+
+    // Guc / yurush
+    if (!engine || Number(engine) <= 0) return toast.danger('Mühərrikin gücünü düzgün daxil edin')
+    if (!distance && distance !== 0) return toast.danger('Yürüşü daxil edin')
+
+    // Aciqlama
+    if (!description || description.trim().length === 0) return toast.danger('Açıqlama yazın')
+
+    // Sekiller
+    if (!images || images.length === 0) return toast.danger('Ən azı 1 şəkil əlavə edin')
+
+    // Weher
+    if (!selectedCity) return toast.danger('Şəhər seçin')
+
+    // Qiymet
+    if (!price || Number(price) <= 0) return toast.danger('Qiyməti düzgün daxil edin')
+
+    setLoading(true)
+    const form = {
       price: price,
       year: stateYearValue,
       mileage: distance,
@@ -272,25 +297,19 @@ export const useProduct = () => {
       equipments: selectedEquipments,
     }
 
-    toast.promise(dispatch(createProduct(pr)).unwrap(), 
+    toast.promise(dispatch(createProduct(form)).unwrap(),
       {
         loading: "Məhsul elave olunur...",
         success: () => {
           setTimeout(() => {
             navigate('/profile')
-          }, 3000)
+          }, 1000)
           return "Məhsul əlavə olundu!"
         },
         error: (err) => err.message || "Xəta baş verdi.",
       }
-    )
+    ).finally(() => setLoading(false))
   }
-
-  useEffect(() => {
-    if(message) {
-      toast.danger(message)
-    }
-  }, [message])
 
   return({
     // Make
@@ -384,7 +403,8 @@ export const useProduct = () => {
     setPrice,
 
 
-    dataa
+    addProduct,
+    loading
 
   })
 

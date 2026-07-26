@@ -11,6 +11,7 @@ import Checkbox from "../customs/Checkbox"
 import LibDropzone from "../customs/libs/LibDropzone"
 import LibDrawer from "../customs/libs/LibDrawer"
 import { toast } from "@heroui/react";
+import {Spinner} from "@heroui/react";
 
 export default function ProductForm({ productData }) {
 
@@ -110,11 +111,13 @@ export default function ProductForm({ productData }) {
     setPrice,
 
     // SET FUNC
-    dataa,
+    addProduct,
 
     loc,
     inputChange,
     listChange,
+
+    loading
     
   } = productData
 
@@ -146,6 +149,13 @@ export default function ProductForm({ productData }) {
             label={'Make'} 
           />
         </div>
+
+        {
+          makes.length == 0 &&
+          <div className="flex items-center justify-center w-full mt-6">
+            <Spinner />
+          </div>
+        }
 
         {
           loc.length > 0 && loc.includes('make') &&
@@ -322,7 +332,13 @@ export default function ProductForm({ productData }) {
             </div>
 
             <div>
-              <button onClick={dataa} className="w-full p-4 rounded-xl bg-blue-500 text-white cursor-pointer">Gonder</button>
+              <button 
+                onClick={addProduct}
+                disabled={loading}
+                className="w-full p-4 rounded-xl bg-blue-500 text-white cursor-pointer"
+              >
+                {loading ? "Göndərilir..." : "Göndər"}
+              </button>
             </div>
 
           </div>
