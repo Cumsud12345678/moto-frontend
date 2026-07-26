@@ -64,7 +64,8 @@ export default function Form({ product }) {
     setPrice,
 
     // SET FUNC
-    dataa,
+    updateProductData,
+    loading
 
   } = product
 
@@ -77,6 +78,12 @@ export default function Form({ product }) {
   }
 
   const isDesktop = useMediaQuery('(min-width: 1024px)', { noSsr: true })
+
+  if(colors.length == 0){
+    return (
+      <div className='fixed top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2'><span>Loading...</span></div>
+    )
+  }
 
   return(
     <div className="card my-6 lg:p-20 bg-white">
@@ -186,13 +193,16 @@ export default function Form({ product }) {
             </div>
 
             <div>
-              <button onClick={dataa} className="w-full p-4 rounded-xl bg-blue-500 text-white cursor-pointer">Gonder</button>
+              <button 
+                onClick={updateProductData} 
+                disabled={loading}
+                className="w-full p-4 rounded-xl bg-blue-500 text-white cursor-pointer"
+              >
+                {loading ? "Göndərilir..." : "Göndər"}
+              </button>
             </div>
 
           </div>
-          
-          
-        {/* } */}
 
       </div>
 
