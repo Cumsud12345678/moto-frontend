@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Header from "../components/header/Header";
 import ProductList from "../components/ProductList";
 import Footer from "../components/Footer";
@@ -14,6 +14,7 @@ export default function Home(){
 
   const dispatch = useDispatch()
   const [loading, setLoading] = useState(true)
+  const [loadingMore, setLoadingMore] = useState(false)
   const [updatedProducts, setUpdatedProducts] = useState([])
 
   const filterState = useFilter()
@@ -21,6 +22,8 @@ export default function Home(){
 
   const {
     products,
+    productsPage,
+    productsHasMore,
     message,
     productsStatus
   } = useSelector((state) => state.product)
@@ -39,6 +42,24 @@ export default function Home(){
       setLoading(false)
     }
   }, [])
+
+
+  // Sonsuz scroll - müşahidə edilən sonuncu element
+  const observerRef = useRef(null)
+  const lastProductRef = useCallback((node) => {
+    if(loading || loadingMore) return
+    if(observerRef.current) observerRef.current.disconnect()
+
+    observerRef.current = new IntersectionObserver((entries) => {
+      if(entries[0].isIntersecting && productsHasMore){
+        setLoadingMore(true)
+        dispatch(getAllProducts(productsPage + 1)).finally(() => setLoadingMore(false))
+      }
+    })
+
+    if(node) observerRef.current.observe(node)
+  }, [loading, loadingMore, productsHasMore, productsPage])
+
 
   useEffect(() => {
     if(message) toast.danger(message)
@@ -66,6 +87,8 @@ export default function Home(){
     }
   }, [isAuth, products])
 
+  const displayProducts = isAuth ? products : updatedProducts
+
   const isDesktop = useMediaQuery('(min-width: 1024px)', { noSsr: true })
 
   return(
@@ -75,22 +98,26 @@ export default function Home(){
         <span className='text-2xl font-semibold'>Butun elanlar</span>
         {
           loading
-            ?
+            ? (
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-2 lg:mt-3">
-                {
-                  [...Array(8)].map((_, index) => (
-                    <HomeSkeleton key={index} />
-                  ))
-                }
+                {[...Array(8)].map((_, index) => <HomeSkeleton key={index} />)}
               </div>
-            :
-              products.length == 0 
-                ? 'Urun tapilmadi'
-                : isAuth
-                  ?  <ProductList products={products} topMob={'0px'} topDes={'0px'} />
-                  :  <ProductList products={updatedProducts} topMob={'0px'} topDes={'0px'} />
+            )
+            : displayProducts.length == 0 
+              ? 'Urun tapilmadi'
+              : (
+                <>
+                  <ProductList products={displayProducts} topMob={'0px'} topDes={'0px'} />
+                  {/* Sonuncu elementin görünüşünü izləmək üçün trigger */}
+                  <div ref={lastProductRef} style={{ height: '1px' }} />
+                  {loadingMore && (
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-2 lg:mt-3">
+                      {[...Array(4)].map((_, index) => <HomeSkeleton key={`more-${index}`} />)}
+                    </div>
+                  )}
+                </>
+              )
         }
-        
       </div>
       <Footer />
     </div>

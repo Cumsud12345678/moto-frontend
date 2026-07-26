@@ -4,6 +4,8 @@ const API = import.meta.env.VITE_API_URL
 
 const initialState = {
   products: [],
+  productsPage: 1,
+  productsHasMore: true,
   selectedProduct: [],
   similarProducts: [],
   filteredProducts: [],
@@ -13,7 +15,6 @@ const initialState = {
   detailsStatus: 'idle',
   similarStatus: 'idle',
   filteredStatus: 'idle',
-  // createStatus: 'idle',
   userStatus: 'idle',
   deleteStatus: 'idle',
   updateStatus: 'idle',
@@ -24,14 +25,14 @@ const initialState = {
 // GET ALL PRODUCTS
 export const getAllProducts = createAsyncThunk(
   'product/getAllProducts', 
-  async (_, thunkAPI) => {
+  async (page = 1, thunkAPI) => {
     try{
       const response = await axios.get(
-        `${API}/api/products/`, 
+        `${API}/api/products/?page=${page}&limit=8`, 
         { withCredentials: true }
       )
     
-      return response.data
+      return { ...response.data, page }
     }catch(err){
       return thunkAPI.rejectWithValue(err.response?.data)
     }
@@ -213,9 +214,16 @@ export const productSlice = createSlice({
     builder
       // ALL PRODUCTS
       .addCase(getAllProducts.fulfilled, (state, action) => {
-        state.products = action.payload.data
+        if(action.payload.page === 1){
+          state.products = action.payload.data
+        } else {
+          state.products = [...state.products, ...action.payload.data]
+        }
+        state.productsHasMore = action.payload.hasMore
+        state.productsPage = action.payload.page
         state.productsStatus = 'success'
       })
+
       .addCase(getAllProducts.rejected, (state, action) => {
         state.message = action.payload?.message
         state.productsStatus = 'error'

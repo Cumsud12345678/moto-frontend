@@ -278,7 +278,7 @@ export const useProduct = () => {
         success: () => {
           setTimeout(() => {
             navigate('/profile')
-          }, 1000)
+          }, 3000)
           return "Məhsul əlavə olundu!"
         },
         error: (err) => err.message || "Xəta baş verdi.",
