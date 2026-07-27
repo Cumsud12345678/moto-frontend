@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
 import { updateProduct } from "../../../redux/slices/product/productSlice"
 import { toast } from "@heroui/react"
+import imageCompression from 'browser-image-compression'
 
 export const useProduct = () => {
 
@@ -54,15 +55,34 @@ export const useProduct = () => {
         ? crypto.randomUUID()
         : `${Date.now()}-${Math.random().toString(36).slice(2)}`
 
-    const handleDrop = (files) => {
-      const newImages = files.map((file) => ({
-        id: generateId(),
-        url: URL.createObjectURL(file),
-        file: file,
-        isNew: true
-      }))
+    const handleDrop = async (files) => {
+      const options = {
+        maxSizeMB: 1,
+        maxWidthOrHeight: 1600,
+        useWebWorker: true
+      }
 
-      setImages((prev) => [...prev, ...newImages]);
+      const compressedImages = await Promise.all(
+        files.map(async (file) => {
+          const compressedBlob = await imageCompression(file, options)
+
+          // ✅ orijinal adı və tipi qoruyaraq real File obyekti yarat
+          const compressedFile = new File(
+            [compressedBlob],
+            file.name,              // orijinal ad (uzantı daxil) saxlanılır
+            { type: compressedBlob.type || file.type }
+          )
+
+          return {
+            id: crypto.randomUUID(),
+            url: URL.createObjectURL(compressedFile),
+            file: compressedFile,
+            isNew: true
+          }
+        })
+      )
+
+      setImages((prev) => [...prev, ...compressedImages]);
     }
 
     const removeImage = (id) => {

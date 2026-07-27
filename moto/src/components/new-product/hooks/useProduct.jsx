@@ -4,6 +4,7 @@ import { getMetadata } from "../../../redux/slices/metadata/metadataSlice"
 import { createProduct } from "../../../redux/slices/product/productSlice"
 import { useNavigate } from 'react-router-dom';
 import { toast } from "@heroui/react";
+import imageCompression from 'browser-image-compression'
 
 export const useProduct = () => {
 
@@ -225,14 +226,34 @@ export const useProduct = () => {
 
   // STEP4
   const [images, setImages] = useState([]);
-  const handleDrop = (files) => {
-    const newImages = files.map((file) => ({
-      id: generateId(),
-      url: URL.createObjectURL(file),
-      file: file
-    }))
+  
+  const handleDrop = async (files) => {
+    const options = {
+      maxSizeMB: 1,
+      maxWidthOrHeight: 1600,
+      useWebWorker: true
+    }
 
-    setImages((prev) => [...prev, ...newImages]);
+    const compressedImages = await Promise.all(
+      files.map(async (file) => {
+        const compressedBlob = await imageCompression(file, options)
+
+        // ✅ orijinal adı və tipi qoruyaraq real File obyekti yarat
+        const compressedFile = new File(
+          [compressedBlob],
+          file.name,              // orijinal ad (uzantı daxil) saxlanılır
+          { type: compressedBlob.type || file.type }
+        )
+
+        return {
+          id: crypto.randomUUID(),
+          url: URL.createObjectURL(compressedFile),
+          file: compressedFile
+        }
+      })
+    )
+
+    setImages((prev) => [...prev, ...compressedImages])
   }
 
   const removeImage = (id) => {
@@ -302,13 +323,17 @@ export const useProduct = () => {
         loading: "Məhsul elave olunur...",
         success: () => {
           setTimeout(() => {
+            setLoading(false)
             navigate('/profile')
           }, 1000)
           return "Məhsul əlavə olundu!"
         },
-        error: (err) => err.message || "Xəta baş verdi.",
+        error: (err) => {
+          setLoading(false)
+          return err.message || "Xəta baş verdi."
+        },
       }
-    ).finally(() => setLoading(false))
+    )
   }
 
   return({

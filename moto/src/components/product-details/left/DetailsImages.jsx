@@ -39,7 +39,7 @@ export default function DetailsImages({ images }) {
         >
           {images.map((img, index) => (
             <SwiperSlide key={index}>
-              <div className="relative w-full h-[320px] lg:h-[400px] overflow-hidden rounded-md">
+              <div className="relative w-full h-[340px] lg:h-[500px] overflow-hidden rounded-md">
                 {/* Arxa fon - bulanıq */}
                 <img
                   src={`${BASE_URL}/uploads/${img}`}
