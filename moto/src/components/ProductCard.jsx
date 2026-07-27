@@ -8,7 +8,7 @@ import Cookies from "js-cookie";
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteFavorites, setFavorites } from '../redux/slices/favorite/favoritesSlice';
 import { toggleProductLike } from '../redux/slices/product/productSlice';
-import { toast } from "@heroui/react";
+import { toast, useMediaQuery } from "@heroui/react";
 
 export default function ProductCard({ product }) {
 
@@ -77,10 +77,13 @@ export default function ProductCard({ product }) {
       setIsLiked(true)
     }
   }, [location.pathname])
+
+  const isDesktop = useMediaQuery('(min-width: 1024px)', { noSsr: true })
   
   return (
-    <div
-      onClick={() => navigate(`/elanlar/${_id}`)}
+    <a
+      href={`/elanlar/${_id}`}
+      target={`${isDesktop ? '_blank' : ''}`}
       className="rounded-xl overflow-hidden cursor-pointer relative border border-gray-100 bg-white hover:shadow-lg transition-shadow duration-200"
     >
       
@@ -113,6 +116,6 @@ export default function ProductCard({ product }) {
         <p className="text-sm text-gray-400 mt-0.5">{city?.label}, bugun 16:10</p>
       </div>
 
-    </div>
+    </a>
   )
 }

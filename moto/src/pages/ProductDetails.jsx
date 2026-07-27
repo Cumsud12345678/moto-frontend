@@ -17,25 +17,25 @@ export default function ProductDetails(){
   const { id } = useParams()
   const dispatch = useDispatch()
 
-  // hansi id ucun similar mehsullarin artiq cekildiyini izleyirik
-  const [similarsLoadedFor, setSimilarsLoadedFor] = useState('')
-
   const {
     selectedProduct,
     detailsStatus,
     message,
     similarProducts,
-    similarStatus
+    similarStatus,
+    productsCache,
+    similarCache
   } = useSelector(s => s.product)
 
   // DETAYLARI VE SIMILARS I CAQIR
   useEffect(() => {
-    if(!(selectedProduct && selectedProduct._id == id)){
+    if(!productsCache[id]){
+      console.log('detaylari getir...')
       dispatch(getProductDetails(id))
     }
-    if(similarsLoadedFor !== id){
+    if(!similarCache[id]){
+      console.log('similari getir...')
       dispatch(getSimilarProducts(id))
-      setSimilarsLoadedFor(id)
     }
   }, [id])
 
@@ -44,10 +44,12 @@ export default function ProductDetails(){
     if(message) toast.danger(message)
   }, [message])
 
-  // loading-i state-den deyil, birbasa id ile selectedProduct-un uygunlugundan
-  // hesabliyiriq ki, id deyisende kohne mehsul bir an ekranda qalmasin
-  const loadingDetails = detailsStatus === 'loading' || !selectedProduct || selectedProduct._id != id
-  const loadingSimilars = similarStatus === 'loading' || similarsLoadedFor !== id
+  // Göstəriləcək datanı keşdən, yoxdursa Redux state-dən götür
+  const currentProduct = productsCache[id] || selectedProduct
+  const currentSimilar = similarCache[id] || similarProducts
+
+  const loadingDetails = detailsStatus === 'loading' || !currentProduct || currentProduct._id != id
+  const loadingSimilars = similarStatus === 'loading' || !similarCache[id]
     
   return (
     <div className="container mx-auto max-w-[1000px]">
@@ -56,7 +58,7 @@ export default function ProductDetails(){
       {
         loadingDetails
           ? <DetailsSkeleton /> 
-          : <Details details={selectedProduct} />
+          : <Details details={currentProduct} />
       }
 
       <div className="mt-5 px-4">
@@ -72,9 +74,9 @@ export default function ProductDetails(){
               }
             </div>
             :
-            similarProducts.length == 0
+            currentSimilar.length == 0
               ? 'Urun tapilmadi'
-              : <ProductList products={similarProducts} topMob={'0px'} topDes={'0px'} />
+              : <ProductList products={currentSimilar} topMob={'0px'} topDes={'0px'} />
         }
       </div>
 

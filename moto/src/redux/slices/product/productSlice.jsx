@@ -19,6 +19,9 @@ const initialState = {
   deleteStatus: 'idle',
   updateStatus: 'idle',
 
+  productsCache: {},
+  similarCache: {},
+
   message: null
 }
 
@@ -232,6 +235,7 @@ export const productSlice = createSlice({
       // PRODUCT DETAILS
       .addCase(getProductDetails.fulfilled, (state, action) => {
         state.selectedProduct = action.payload.data
+        state.productsCache[action.payload.data._id] = action.payload.data
         state.detailsStatus = 'success'
       })
       .addCase(getProductDetails.rejected, (state, action) => {
@@ -242,6 +246,7 @@ export const productSlice = createSlice({
       // PRODUCT SIMILARS
       .addCase(getSimilarProducts.fulfilled, (state, action) => {
         state.similarProducts = action.payload.data
+        state.similarCache[action.meta.arg] = action.payload.data
         state.similarStatus = 'success'
       })
       .addCase(getSimilarProducts.rejected, (state, action) => {
