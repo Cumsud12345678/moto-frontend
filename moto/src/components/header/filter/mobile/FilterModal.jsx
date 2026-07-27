@@ -107,11 +107,11 @@ export default function FilterModal({open, onClose, useFilter}){
   
   const changeDrawer = (type, active, label) => {
     if(type == 'minYear' || type == 'maxYear'){
-      setDrawerArr(yearArr)
+      setDrawerArr(years)
     }else if(type == 'minVolume' || type == 'maxVolume'){
-      setDrawerArr(volumeArr)
+      setDrawerArr(volumes)
     }else if(type == 'selectedCity'){
-      setDrawerArr(cityArr)
+      setDrawerArr(cities)
     }
 
     setDrawerLabel(label)
@@ -121,7 +121,17 @@ export default function FilterModal({open, onClose, useFilter}){
   }
 
   const selectedDrawer = (value) => {
-    setState(value, drawerType)
+    if(drawerType == 'minYear') {
+      setMinYear(value)
+    }else if(drawerType == 'maxYear') {
+      setMaxYear(value)
+    }else if(drawerType == 'minVolume') {
+      setMinVolume(value)
+    }else if(drawerType == 'maxVolume') {
+      setMaxVolume(value)
+    }else if (drawerType == 'selectedCity') {
+      setCity(value)
+    }
     setOpenDrawer(false)
   }
 
