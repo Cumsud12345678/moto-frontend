@@ -78,7 +78,7 @@ export const getFilteredProducts = createAsyncThunk(
   'product/getFilteredProducts',
   async (query, thunkAPI) => {
     try{
-      console.log(API)
+      await new Promise(resolve => setTimeout(resolve, 2000))
       const res = await axios.get(
         `${API}/api/products/autos${query}`
       )
@@ -250,6 +250,9 @@ export const productSlice = createSlice({
       })
 
       // FILTERLENMIS ELANLAR
+      .addCase(getFilteredProducts.pending, (state) => {
+        state.filteredStatus = 'idle'
+      })
       .addCase(getFilteredProducts.fulfilled, (state, action) => {
         state.filteredProducts = action.payload.data
         state.filteredStatus = 'success'

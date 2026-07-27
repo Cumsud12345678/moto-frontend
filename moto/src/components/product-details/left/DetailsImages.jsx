@@ -39,11 +39,22 @@ export default function DetailsImages({ images }) {
         >
           {images.map((img, index) => (
             <SwiperSlide key={index}>
-              <img
-                onClick={() => setImageDialogOpen(true)}
-                src={`${BASE_URL}/uploads/${img}`}
-                className="w-full h-[320px] lg:h-[400px] object-fit cursor-pointer rounded-md"
-              />
+              <div className="relative w-full h-[320px] lg:h-[400px] overflow-hidden rounded-md">
+                {/* Arxa fon - bulanıq */}
+                <img
+                  src={`${BASE_URL}/uploads/${img}`}
+                  className="absolute inset-0 w-full h-full object-cover blur-xl scale-110 opacity-70"
+                  aria-hidden="true"
+                />
+
+                {/* Ön plan - əsl şəkil, tam görünən */}
+                <img
+                  onClick={() => setImageDialogOpen(true)}
+                  src={`${BASE_URL}/uploads/${img}`}
+                  alt={`Elan şəkli ${index + 1}`}
+                  className="relative w-full h-full object-contain cursor-pointer"
+                />
+              </div>
             </SwiperSlide>
           ))}
         </Swiper>

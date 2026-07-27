@@ -18,8 +18,6 @@ export default function Header({dur, filter}){
 
   const [openModal, setOpenModal] = useState(false)
 
-  console.log(openModal)
-
   let isScroll = useScrollTrigger()
  
   return(

@@ -82,6 +82,8 @@ export default function FilterModal({open, onClose, useFilter}){
     stateEquipment,
     setEquipments,
 
+    applyFilter
+
   } = useFilter
 
   const [openMake, setOpenMake] = useState(false)
@@ -342,7 +344,10 @@ export default function FilterModal({open, onClose, useFilter}){
 
 
       <div className="fixed bottom-0 w-full p-3">
-        <button className="cursor-pointer bg-green-500 text-white py-3 rounded-lg w-full">
+        <button 
+          onClick={applyFilter}
+          className="cursor-pointer bg-green-500 text-white py-3 rounded-lg w-full"
+        >
           Axdar
         </button>
       </div>

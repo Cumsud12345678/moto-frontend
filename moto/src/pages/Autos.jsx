@@ -26,7 +26,9 @@ export default function Autos(){
   } = useSelector(s => s.product)
 
   useEffect(() => {
+    setLoading(true)
     dispatch(getFilteredProducts(location.search))
+
   }, [location.search])
 
   useEffect(() => {

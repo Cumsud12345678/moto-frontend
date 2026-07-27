@@ -18,7 +18,8 @@ export default function Details({details}){
     user,
     make,
     model,
-    city
+    city,
+    color
   } = details
 
   return (

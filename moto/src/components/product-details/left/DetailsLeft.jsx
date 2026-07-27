@@ -85,6 +85,20 @@ export default function DetailsLeft({ product }){
           </div>
           <div className="flex flex-col gap-2 w-full">
             <div className="grid grid-cols-2">
+              <span className="text-gray-500">Suretler qutusu</span>
+              <span>{speed.label}</span>
+            </div>
+            <div className="grid grid-cols-2">
+              <span className="text-gray-500">Reng</span>
+              <span>{color.label}</span>
+            </div>
+            <div className="grid grid-cols-2">
+              <span className="text-gray-500">Qiymet</span>
+              <span>{price}</span>
+            </div>
+          </div>
+          <div className="flex flex-col gap-2 w-full">
+            <div className="grid grid-cols-2">
               <span className="text-gray-500">Buraxilis ili</span>
               <span>{year}</span>
             </div>
@@ -104,7 +118,7 @@ export default function DetailsLeft({ product }){
             </div>
             <div className="grid grid-cols-2">
               <span className="text-gray-500">Yeni?</span>
-              <span>{mileage <= 1000 ? 'Beli' : 'Xeyr'}</span>
+              <span>{status.label}</span>
             </div>
             <div className="grid grid-cols-2">
               <span className="text-gray-500">Techizat</span>
