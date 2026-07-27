@@ -11,6 +11,7 @@ import Details from "../components/product-details/Details";
 import { toast } from "@heroui/react";
 import { getProductDetails, getSimilarProducts } from "../redux/slices/product/productSlice";
 import { HomeSkeleton } from "../components/skeletons/HomeSkeleton";
+import { Helmet } from 'react-helmet-async'
 
 export default function ProductDetails(){
 
@@ -53,6 +54,32 @@ export default function ProductDetails(){
     
   return (
     <div className="container mx-auto max-w-[1000px]">
+
+      {currentProduct && !loadingDetails && (
+        <Helmet>
+          <title>{`${currentProduct.make?.label} ${currentProduct.model?.label} ${currentProduct.year} - ${currentProduct.price} ₼`}</title>
+          <meta name="description" content={`${currentProduct.make?.label} ${currentProduct.model?.label}, ${currentProduct.year}, ${currentProduct.mileage} km. ${currentProduct.city?.label}-də satılır.`} />
+          <meta property="og:title" content={`${currentProduct.make?.label} ${currentProduct.model?.label}`} />
+          <meta property="og:image" content={`${import.meta.env.VITE_API_URL}/uploads/${currentProduct.images?.[0]}`} />
+          <meta property="og:type" content="product" />
+
+          <script type="application/ld+json">
+            {JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Product",
+              "name": `${currentProduct.make?.label} ${currentProduct.model?.label}`,
+              "image": `${import.meta.env.VITE_API_URL}/uploads/${currentProduct.images?.[0]}`,
+              "offers": {
+                "@type": "Offer",
+                "price": currentProduct.price,
+                "priceCurrency": "AZN",
+                "availability": "https://schema.org/InStock"
+              }
+            })}
+          </script>
+        </Helmet>
+      )}
+      
       <Header dur={true} />
 
       {
@@ -79,6 +106,9 @@ export default function ProductDetails(){
               : <ProductList products={currentSimilar} topMob={'0px'} topDes={'0px'} />
         }
       </div>
+
+
+      
 
     </div>
   )

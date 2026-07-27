@@ -9,6 +9,7 @@ import { useMediaQuery } from "@heroui/react";
 import { toast } from "@heroui/react";
 import { useFilter } from '../components/header/filter/hooks/useFilter'
 import Cookies from "js-cookie";
+import { Helmet } from "react-helmet-async";
 
 export default function Home(){
 
@@ -93,6 +94,16 @@ export default function Home(){
 
   return(
     <div>
+
+      <Helmet>
+        <title>Moto — Motosiklet Elanları | Al, Sat</title>
+        <meta name="description" content="Azərbaycanda ən böyük motosiklet elanları platforması. Motosiklet al, sat, elan yerləşdir." />
+        <meta property="og:title" content="Moto — Motosiklet Elanları" />
+        <meta property="og:description" content="Azərbaycanda motosiklet al-sat platforması" />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://dir-indexed-five-prep.trycloudflare.com/" />
+      </Helmet>
+      
       <Header filter={filterState} />
       <div className="mt-40 lg:mt-6 px-4 container mx-auto max-w-[1000px] flex flex-col mb-25 z-[100]">
         <span className='text-2xl font-semibold'>Butun elanlar</span>

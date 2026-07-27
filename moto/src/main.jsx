@@ -5,6 +5,7 @@ import { Provider } from 'react-redux'
 import { store } from './redux/store.jsx'
 import { ToastProvider } from '@heroui/react';
 import { createTheme, ThemeProvider } from '@mui/material'
+import { HelmetProvider } from 'react-helmet-async'
 
 const theme = createTheme({
   breakpoints: {
@@ -19,14 +20,16 @@ const theme = createTheme({
 });
 
 createRoot(document.getElementById('root')).render(
-  <Provider store={store}>
-    <BrowserRouter>
+  <HelmetProvider>
+    <Provider store={store}>
+      <BrowserRouter>
 
-      <ThemeProvider theme={theme}>
-        <ToastProvider className="z-[9999]" />
+        <ThemeProvider theme={theme}>
+          <ToastProvider className="z-[9999]" />
           <App />
-      </ThemeProvider>    
-      
-    </BrowserRouter>
-  </Provider>
+        </ThemeProvider>
+
+      </BrowserRouter>
+    </Provider>
+  </HelmetProvider>
 )

@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /profile
+Disallow: /new
+Disallow: /edit
+Disallow: /bookmarks
+
+Sitemap: https://sənin-domenin.com/sitemap.xml
