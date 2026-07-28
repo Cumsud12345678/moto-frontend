@@ -21,11 +21,11 @@ export function Nav() {
       path: 'category'
     },
     {
-      label: 'Weher',
+      label: 'Şəhər',
       path: 'city'
     },
     {
-      label: 'Reng',
+      label: 'Rəng',
       path: 'color'
     },
     {
@@ -33,15 +33,15 @@ export function Nav() {
       path: 'fuel'
     },
     {
-      label: 'Suretler qutusu',
+      label: 'Sürətlər qutusu',
       path: 'speed'
     },
     {
-      label: 'Veziyyeti',
+      label: 'Vəziyyəti',
       path: 'status'
     },
     {
-      label: 'Techizat',
+      label: 'Təchizat',
       path: 'equipment'
     }
   ]
@@ -106,7 +106,7 @@ export function Nav() {
         ${location.pathname == '/admin/deleted/users' && 'border border-green-500 bg-green-200'}`}
       >
         <Cube className='text-muted' />
-        <span>Silinen isdifadeciler</span>
+        <span>Silinen isdifadəçilər</span>
       </div>
       <div
         onClick={() => navigate('/admin/deleted/products')}
@@ -115,7 +115,7 @@ export function Nav() {
         ${location.pathname == '/admin/deleted/products' && 'border border-green-500 bg-green-200'}`}
       >
         <Cube className='text-muted' />
-        <span>Silinen elanlar</span>
+        <span>Silinən elanlar</span>
       </div>
 
       <Accordion className="w-full max-w-md" variant="surface">

@@ -88,49 +88,49 @@ export default function Form({ product }) {
   return(
     <div className="card my-6 lg:p-20 bg-white">
       <div className="flex items-center justify-between p-6">
-        <span>close</span>
-        <span className="text-lg font-bold">Mehsul guncelle</span>
-        <span>close</span>
+        {/* <span>close</span> */}
+        <span className="text-lg font-bold">Elanı güncəllə</span>
+        {/* <span>close</span> */}
       </div>
 
       <div className="lg:p-10 lg:border rounded-3xl">
           <div className="flex flex-col gap-4">
             
             <div className="flex flex-col gap-1">
-              <Label>Reng</Label>
+              <Label>Rəng</Label>
               <ButtonGroup data={colors} id={activeColor} onClick={setActiveColor} />
             </div>
 
             <div className="flex flex-col gap-1">
-              <Label>Muherrik</Label>
+              <Label>Mühərrik</Label>
               <ButtonGroup data={fuels} id={activeFuelType} onClick={setActiveFuelType} />
             </div>
 
             <div className="flex flex-col gap-1">
-              <Label>Suretler qutusu</Label>
+              <Label>Sürətlər qutusu</Label>
               <ButtonGroup data={speeds} id={activeSpeedBox} onClick={setActiveSpeedBox} />
             </div>
 
             <div className="flex flex-col gap-1">
-              <Label>Techizat</Label>
+              <Label>Təchizat</Label>
               <Checkbox data={equipments} ids={selectedEquipments} onClick={setEquipments} />
             </div>
 
             <div>
-              <DefaultInput value={distance} onChange={setDistance} label={'Yurush km.'} />
+              <DefaultInput value={distance} onChange={setDistance} label={'Yürüş km.'} />
             </div>
 
             <div>
               <textarea 
                 className="border focus:outline-sky-500 w-full rounded-xl px-3 py-2" 
-                placeholder="Aciqlama yazin"
+                placeholder="Açıqlama yazın"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               ></textarea>
             </div>
 
             <div>
-              <Label>Sekil elave et</Label>
+              <Label>Şəkil əlavə et</Label>
 
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
 
@@ -164,7 +164,7 @@ export default function Form({ product }) {
             </div>
 
             <div>
-              <DefaultInput value={price} onChange={setPrice} label={'Qiymet'} />
+              <DefaultInput value={price} onChange={setPrice} label={'Qiymət'} />
             </div>
 
             <div>
@@ -175,17 +175,17 @@ export default function Form({ product }) {
                     id={selectedCity} 
                     onClick={setSelectedCity} 
                     onChange={() => setSelectedCity('')} 
-                    label={'Seher'}
+                    label={'Şəhər'}
                     variant={'floating'}
                   />
                 :
                 <div>
-                  <Label>Seher</Label>
+                  <Label>Şəhər</Label>
                   <div onClick={() => setOpen(true)} className="w-full p-3 border rounded-xl mt-2">
                     {
                       selectedCityLabel 
                       ? selectedCityLabel.label
-                      : 'Seher sec'
+                      : 'Şəhər sec'
                     }
                   </div>
                 </div>

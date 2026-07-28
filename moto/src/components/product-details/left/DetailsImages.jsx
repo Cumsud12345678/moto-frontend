@@ -8,7 +8,7 @@ import "swiper/css";
 
 const BASE_URL = import.meta.env.VITE_API_URL;
 
-export default function DetailsImages({ images }) {
+export default function DetailsImages({ images, make }) {
   const dispatch = useDispatch();
   const swiperRef = useRef(null);
 
@@ -51,7 +51,7 @@ export default function DetailsImages({ images }) {
                 <img
                   onClick={() => setImageDialogOpen(true)}
                   src={`${BASE_URL}/uploads/${img}`}
-                  alt={`Elan şəkli ${index + 1}`}
+                  alt={`${make.label}`}
                   className="relative w-full h-full object-contain cursor-pointer"
                 />
               </div>
@@ -86,7 +86,9 @@ export default function DetailsImages({ images }) {
       <div className="flex gap-2 mt-2 overflow-x-auto px-1">
         {
           images.map((img, index) => (
-            <img key={index} src={`${BASE_URL}/uploads/${img}`} alt="" 
+            <img 
+              key={index} src={`${BASE_URL}/uploads/${img}`} 
+              alt={make.label}
               className={`w-[70px] h-[60px] object-cover cursor-pointer rounded
               ${activeImage === index ? "opacity-100 ring-2 ring-black" : "opacity-60"}`}
               onMouseEnter={() => swiperRef.current?.slideTo(index)}

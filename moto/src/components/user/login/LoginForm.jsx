@@ -27,13 +27,13 @@ export default function LoginForm({formatPhone}) {
 
   const handleLogin = () => {
     if(!phoneValue){
-      return toast.danger('Nomreni girin');
+      return toast.danger('Nömrəni girin');
     }
 
     const cleanPhone = phoneValue.replace(/\s/g, "")
 
     if(cleanPhone.length !== 9){
-      return toast.danger('Nomreni duzgun girin');
+      return toast.danger('Nömrəni düzgün girin');
     }
 
     // dispatch(setPhone({type: 'loginPhone', phone: cleanPhone}))
@@ -47,7 +47,7 @@ export default function LoginForm({formatPhone}) {
 
   const handleVerify = () => {
     if(!otp || otp.length !== 6){
-      return toast.danger('Melumatlari doldurun');
+      return toast.danger('Məlumatları doldurun');
     }
 
     dispatch(loginVerify({otp: otp, phone: phoneValue.replace(/\s/g, "")}))
@@ -86,7 +86,7 @@ export default function LoginForm({formatPhone}) {
     <div>
       {stepLogin == 'login' && (
         <div>
-          <label htmlFor="number">Nomreni yazin</label>
+          <label htmlFor="number">Nömrəni yazın</label>
           <input
             onChange={(e) => inputChange(e.target.value)}
             id='number'
@@ -126,7 +126,7 @@ export default function LoginForm({formatPhone}) {
             onClick={handleVerify}
             className='w-full bg-blue-500 text-white p-2.5 rounded-xl cursor-pointer mt-6'
           >
-            Dogrula
+            Doğrula
           </button>
         </div>
       )}

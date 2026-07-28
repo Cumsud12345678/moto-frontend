@@ -14,17 +14,16 @@ export default function AlertDialog({openAlert, setOpenAlert, deleteId}) {
             <HeroAlertDialog.CloseTrigger />
             <HeroAlertDialog.Header>
               <HeroAlertDialog.Icon status="danger" />
-              <HeroAlertDialog.Heading>Delete project permanently?</HeroAlertDialog.Heading>
+              <HeroAlertDialog.Heading>Silmək isdədiyinizə əminsiniz?</HeroAlertDialog.Heading>
             </HeroAlertDialog.Header>
             <HeroAlertDialog.Body>
               <p>
-                This will permanently delete <strong>My Awesome Project</strong> and all of its
-                data. This action cannot be undone.
+                Silinən elan birdaha bərpa olunmur.
               </p>
             </HeroAlertDialog.Body>
             <HeroAlertDialog.Footer>
               <Button slot="close" variant="tertiary">
-                Cancel
+                Geri
               </Button>
               <Button
                 slot="close"

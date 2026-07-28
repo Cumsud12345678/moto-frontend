@@ -21,9 +21,9 @@ export default function Products() {
     toast.promise(
       dispatch(getProducts(page)).unwrap(),
       {
-        loading: 'Yuklenir...',
-        success: 'Yuklendi',
-        error: (err) => err.message || 'Bir xeta oldu!'
+        loading: 'Yüklənir...',
+        success: 'Yükləndi',
+        error: (err) => err.message || 'Bir xəta oldu!'
       }
     )
   }, [page])
@@ -55,7 +55,7 @@ export default function Products() {
       <div className="container mx-auto max-w-[1000px]">
         
         <div className='mt-20'>
-          <h1 className='text-2xl font-bold'>Axdaris</h1>
+          <h1 className='text-2xl font-bold'>Axtarış</h1>
           <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-3 gap-4'>
             <input 
               value={id}
@@ -68,7 +68,7 @@ export default function Products() {
               onClick={handleSearch}
               className='bg-blue-500 text-white rounded-xl w-1/3 cursor-pointer'
             >
-              Axdar
+              Axtar
             </button>
           </div>
         </div>

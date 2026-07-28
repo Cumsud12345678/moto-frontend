@@ -62,20 +62,12 @@ export default function Bookmarks(){
     }
     setProducts(newProducts)
   }, [isAuth, favoritesNotLogin, favorites, favoritesStatus])
-
-  // useEffect(() => {
-  //   if(message){
-  //     toast.danger(message)
-  //   }
-  // }, [message])
-
-  console.log(products)
   
   return(
     <div>
       <Header />
       <div className="mt-17 px-4 container mx-auto max-w-[1000px]">
-        <span className='text-2xl font-semibold'>Butun elanlar</span>
+        <span className='text-2xl font-semibold'>Bütün elanlar</span>
         {
           loading
             ?

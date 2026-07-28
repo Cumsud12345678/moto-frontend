@@ -62,14 +62,14 @@ export default function DetailsLeft({ product }){
 
 
         <div className="mt-7 lg:mt-0">
-          <DetailsImages images={images} />
+          <DetailsImages images={images} make={make} />
         </div>
         
 
         <div className="border-y py-3 my-1 flex flex-col lg:gap-2 text-lg px-3">
           <div className="flex flex-col gap-2 w-full">
             <div className="grid grid-cols-2">
-              <span className="text-gray-500">Seher</span>
+              <span className="text-gray-500">Şəhər</span>
               <span>{city.label}</span>
             </div>
 
@@ -85,35 +85,35 @@ export default function DetailsLeft({ product }){
           </div>
           <div className="flex flex-col gap-2 w-full">
             <div className="grid grid-cols-2">
-              <span className="text-gray-500">Suretler qutusu</span>
+              <span className="text-gray-500">Sürətlər qutusu</span>
               <span>{speed.label}</span>
             </div>
             <div className="grid grid-cols-2">
-              <span className="text-gray-500">Reng</span>
+              <span className="text-gray-500">Rəng</span>
               <span>{color.label}</span>
             </div>
             <div className="grid grid-cols-2">
-              <span className="text-gray-500">Qiymet</span>
+              <span className="text-gray-500">Qiymət</span>
               <span>{price}</span>
             </div>
           </div>
           <div className="flex flex-col gap-2 w-full">
             <div className="grid grid-cols-2">
-              <span className="text-gray-500">Buraxilis ili</span>
+              <span className="text-gray-500">Buraxılış ili</span>
               <span>{year}</span>
             </div>
             <div className="grid grid-cols-2">
-              <span className="text-gray-500">Ban novu</span>
+              <span className="text-gray-500">Ban növü</span>
               <span>{category.label}</span>
             </div>
             <div className="grid grid-cols-2">
-              <span className="text-gray-500">Muherrik</span>
+              <span className="text-gray-500">Muhərrik</span>
               <span>{volume} sm / {power} a.g. / {fuel.label}</span>
             </div>
           </div>
           <div className="flex flex-col gap-2 w-full">
             <div className="grid grid-cols-2">
-              <span className="text-gray-500">Yurush</span>
+              <span className="text-gray-500">Yürüş</span>
               <span>{mileage} km</span>
             </div>
             <div className="grid grid-cols-2">
@@ -121,7 +121,7 @@ export default function DetailsLeft({ product }){
               <span>{status.label}</span>
             </div>
             <div className="grid grid-cols-2">
-              <span className="text-gray-500">Techizat</span>
+              <span className="text-gray-500">Təchizat</span>
               <div className="flex flex-wrap gap-2">
                 {
                   equipments.map(equipment => (
@@ -135,7 +135,7 @@ export default function DetailsLeft({ product }){
         </div>
 
         <div className="border-b p-3">
-          <p>{description}</p>
+          <p className="text-lg">{description}</p>
         </div>
 
         <div className="lg:hidden border-y p-3">
@@ -152,16 +152,12 @@ export default function DetailsLeft({ product }){
               <LocalPhoneIcon sx={{ mx: 1 }} />
               <h5 className="p-0 m-0">{phone}</h5>
             </div>
-            <h5 className="m-0">Zeng et</h5>
+            <h5 className="m-0">Zəng et</h5>
           </div>
 
           <Alert severity="warning">Motosikletə baxış keçirmədən öncə beh göndərməyin.</Alert>
         </div>
 
-
-        {/* <div style={{ height: '100vh' }}>
-
-      </div> */}
       </div>
     )
   }

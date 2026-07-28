@@ -28,7 +28,7 @@ export default function MenuModal({open, setOpen, isMobile}){
             <Drawer.Header>
               <Drawer.Heading className='px-3 pt-3'>
                 <div className='w-[120px]'>
-                  <img src="/logo.png" className='w-full' alt="" />
+                  <img src="/logo.png" className='w-full' alt="logo" />
                 </div>
               </Drawer.Heading>
             </Drawer.Header>
@@ -36,23 +36,23 @@ export default function MenuModal({open, setOpen, isMobile}){
               <div className='container mx-auto max-w-[1000px] p-2'>
                 <div className='flex flex-col'>
                   <span className="p-3 active:bg-gray-300 hover:bg-gray-300 cursor-pointer">
-                    Butun elanlar
+                    Bütün elanlar
                   </span>
                   <div className='flex justify-between p-3 active:bg-gray-300 hover:bg-gray-300 cursor-pointer'>
                     <span>
-                      Diller
+                      Dillər
                     </span>
                     <span className='text-gray-400'>Azerbaycan</span>
                   </div>
                   <span className="p-3 active:bg-gray-300 hover:bg-gray-300 cursor-pointer">
-                    Razilsma
+                    Razılşma
                   </span>
                   {
                     isAuth
                     ?
                     (
                       <div onClick={handleLogout} className="p-3 active:bg-gray-300 cursor-pointer hover:bg-gray-300">
-                        <span className='text-red'>Logout</span>
+                        <span className='text-red'>Çıxış</span>
                       </div>
                     ) : (
                       <div className='flex items-center justify-between p-3 gap-2'>
@@ -62,7 +62,7 @@ export default function MenuModal({open, setOpen, isMobile}){
                         </button>
                         <button className='active:scale-105 transition-all flex items-center w-full border p-2 rounded-xl justify-center gap-1 bg-blue-500 text-white cursor-pointer'>
                           <PersonAddIcon />
-                          <span style={{ fontSize: '16px' }} className='font-bold'>Uzv ol</span>
+                          <span style={{ fontSize: '16px' }} className='font-bold'>Üzv ol</span>
                         </button>
                       </div>
                     )

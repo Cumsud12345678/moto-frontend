@@ -89,7 +89,7 @@ export default function ProductDetails(){
       }
 
       <div className="mt-5 px-4">
-        <h4>Oxsar mehsullar</h4>
+        <h4>Oxşar məhsullar</h4>
         {
           loadingSimilars
             ?
@@ -106,9 +106,6 @@ export default function ProductDetails(){
               : <ProductList products={currentSimilar} topMob={'0px'} topDes={'0px'} />
         }
       </div>
-
-
-      
 
     </div>
   )

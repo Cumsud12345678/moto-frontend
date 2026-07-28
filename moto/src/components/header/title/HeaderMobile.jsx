@@ -37,7 +37,7 @@ export default function HeaderMobile({openModal, open, isMobile, filter}){
             </IconButton>
         }
         <div className='w-[120px]'>
-          <img src="/logo.png" className='w-full' alt="" />
+          <img src="/logo.png" className='w-full' alt="logo" />
         </div>
         <span></span>
       </div>

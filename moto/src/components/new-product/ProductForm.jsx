@@ -135,10 +135,10 @@ export default function ProductForm({ productData }) {
 
   return(
     <div className="p-5 lg:rounded-3xl lg:p-20 bg-white">
-      <div className="flex items-center justify-between p-6">
-        <span>close</span>
-        <span className="text-lg font-bold">Yeni mehsul</span>
-        <span>close</span>
+      <div className="flex items-center justify-center p-6">
+        {/* <span>close</span> */}
+        <span className="text-lg font-bold">Yeni məhsul</span>
+        {/* <span>close</span> */}
       </div>
 
       <div className="lg:p-10 lg:border rounded-3xl">
@@ -183,7 +183,7 @@ export default function ProductForm({ productData }) {
             <DefaultInput 
               value={stateVolumeLabel} 
               onChange={((value) => inputChange(setStateVolumeLabel, value, setStateVolumeValue, 'volume', volumeOriginal, setFilteredVolume))} 
-              label={'Hecm'} 
+              label={'Həcm'} 
             />
           </div>
         }
@@ -227,27 +227,27 @@ export default function ProductForm({ productData }) {
             </div>
 
             <div className="flex flex-col gap-1">
-              <Label>Veziyyeti</Label>
+              <Label>Vəziyyət</Label>
               <ButtonGroup data={statuses} id={activeStatus} onClick={setActiveStatus} />
             </div>
 
             <div className="flex flex-col gap-1">
-              <Label>Reng</Label>
+              <Label>Rəng</Label>
               <ButtonGroup data={colors} id={activeColor} onClick={setActiveColor} />
             </div>
 
             <div className="flex flex-col gap-1">
-              <Label>Muherrik</Label>
+              <Label>Mühərrik</Label>
               <ButtonGroup data={fuels} id={activeFuelType} onClick={setActiveFuelType} />
             </div>
 
             <div className="flex flex-col gap-1">
-              <Label>Suretler qutusu</Label>
+              <Label>Sürətlər qutusu</Label>
               <ButtonGroup data={speeds} id={activeSpeedBox} onClick={setActiveSpeedBox} />
             </div>
 
             <div className="flex flex-col gap-1">
-              <Label>Techizat</Label>
+              <Label>Təchizat</Label>
               <Checkbox data={equipments} ids={selectedEquipments} onClick={setEquipments} />
             </div>
 
@@ -256,20 +256,20 @@ export default function ProductForm({ productData }) {
             </div>
 
             <div>
-              <DefaultInput value={distance} onChange={setDistance} label={'Yurush km.'} />
+              <DefaultInput value={distance} onChange={setDistance} label={'Yürüş km.'} />
             </div>
 
             <div>
               <textarea 
                 className="border focus:outline-sky-500 w-full rounded-xl px-3 py-2" 
-                placeholder="Aciqlama yazin"
+                placeholder="Açıqlama yazın"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               ></textarea>
             </div>
 
             <div>
-              <Label>Sekil elave et</Label>
+              <Label>Şəkil əlavə et</Label>
 
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
 
@@ -314,17 +314,17 @@ export default function ProductForm({ productData }) {
                     id={selectedCity} 
                     onClick={setSelectedCity} 
                     onChange={() => setSelectedCity('')} 
-                    label={'Seher'}
+                    label={'Şəhər'}
                     variant={'floating'}
                   />
                 :
                 <div>
-                  <Label>Seher</Label>
+                  <Label>Şəhər</Label>
                   <div onClick={() => setOpen(true)} className="w-full p-3 border rounded-xl mt-2">
                     {
                       selectedCityLabel 
                       ? selectedCityLabel.label
-                      : 'Seher sec'
+                      : 'Şəhər seç'
                     }
                   </div>
                 </div>

@@ -47,7 +47,7 @@ import CheckIcon from "@mui/icons-material/Check";
                 <input 
                   type="text" 
                   className="w-full my-2 border-2 p-3 rounded-xl focus:outline-sky-500" 
-                  placeholder="Axdar..."
+                  placeholder="Axtar..."
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                 />

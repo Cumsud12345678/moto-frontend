@@ -165,7 +165,7 @@ export default function FilterModal({open, onClose, useFilter}){
       <div className='flex flex-col pb-5 mt-[80px] px-[15px] pb-20'>
     
         <div className="border rounded-lg my-3 mb-1 p-3 pt-2">
-          <span>Esas</span>
+          <span>Əsas</span>
           <div className="flex flex-row mt-2 gap-3">
             <div onClick={() => setOpenMake(true)} className='border rounded-lg p-2 w-full cursor-pointer hover:bg-gray-200'>
               {make
@@ -186,7 +186,7 @@ export default function FilterModal({open, onClose, useFilter}){
         
 
         <div className="border rounded-lg my-3 mb-1 p-3 pt-2">
-          <span>Veziyyeti</span>
+          <span>Vəziyyəti</span>
           <div className='flex gap-2 mt-2'>
 
             <ButtonGroup 
@@ -199,7 +199,7 @@ export default function FilterModal({open, onClose, useFilter}){
         </div>
         
         <div className="border rounded-lg my-3 mb-1 p-3 pt-2">
-          <span>Surush</span>
+          <span>Yürüyüş</span>
           <div className='flex gap-3 mt-2'>
 
             <SoloLabelinput
@@ -236,7 +236,7 @@ export default function FilterModal({open, onClose, useFilter}){
         </div>
 
         <div className="border rounded-lg my-3 mb-1 p-3 pt-2">
-          <span>Muherrikin hecmi (sm)</span>
+          <span>Mühərrikin həcmi (sm)</span>
           <div className='flex gap-3 mt-2'>
             <div onClick={() => changeDrawer('minVolume', minVolume, 'Hecm min.')} className="border-2 rounded-xl w-full p-2 py-2.5">
               {
@@ -252,18 +252,18 @@ export default function FilterModal({open, onClose, useFilter}){
         </div>
 
         <div className="border rounded-lg my-3 mb-1 p-3 pt-2">
-          <span>Seher</span>
+          <span>Şəhər</span>
           <div className='flex gap-3 mt-2'>
             <div onClick={() => changeDrawer('selectedCity', city, 'Weher')} className="border-2 rounded-xl w-full p-2 py-2.5">
               {
-                city ? cities.find(x => x._id == city)?.label : 'Seher sec'
+                city ? cities.find(x => x._id == city)?.label : 'Şəhər seç'
               }
             </div>
           </div>
         </div>
 
         <div className="border rounded-lg my-3 mb-1 p-3 pt-2">
-          <span>Muherrikin gucu a.g.</span>
+          <span>Mühərrikin gücü a.g.</span>
           <div className='flex gap-3 mt-2'>
 
             <SoloLabelinput
@@ -284,7 +284,7 @@ export default function FilterModal({open, onClose, useFilter}){
         </div>
 
         <div className="border rounded-lg my-3 mb-1 p-3 pt-2">
-          <span>Reng</span>
+          <span>Rəng</span>
           <div className='flex gap-2 mt-2'>
             <ButtonGroup 
               data={colors}
@@ -295,7 +295,7 @@ export default function FilterModal({open, onClose, useFilter}){
         </div>
 
         <div className="border rounded-lg my-3 mb-1 p-3 pt-2">
-          <span>Qiymet</span>
+          <span>Qiymət</span>
           <div className='flex gap-3 mt-2'>
 
             <SoloLabelinput
@@ -316,7 +316,7 @@ export default function FilterModal({open, onClose, useFilter}){
         </div>
 
         <div className="border rounded-lg my-3 mb-1 p-3 pt-2">
-          <span>Yanacaq novu</span>
+          <span>Yanacaq növü</span>
           <div className='flex gap-2 mt-2'>
 
             <ButtonGroup 
@@ -329,7 +329,7 @@ export default function FilterModal({open, onClose, useFilter}){
         </div>
 
         <div className="border rounded-lg my-3 p-3 pt-2">
-          <span>Suretler qutusu</span>
+          <span>Sürətlər qutusu</span>
           <div className='flex flex-wrap gap-2 mt-2'>
 
             <ButtonGroup 
@@ -342,7 +342,7 @@ export default function FilterModal({open, onClose, useFilter}){
         </div>
 
         <div className="border rounded-lg my-3 p-3 pt-2">
-          <span>Techizat</span>
+          <span>Təchizat</span>
           <div className='flex flex-wrap gap-2 mt-2'>
             
             <Checkbox data={equipments} ids={stateEquipment} onClick={setEquipments} />

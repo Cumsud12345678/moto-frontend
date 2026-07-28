@@ -84,12 +84,14 @@ export default function ProductCard({ product }) {
     <a
       href={`/elanlar/${_id}`}
       target={`${isDesktop ? '_blank' : ''}`}
-      className="rounded-xl overflow-hidden cursor-pointer relative border border-gray-100 bg-white hover:shadow-lg transition-shadow duration-200"
+      className="rounded-xl overflow-hidden cursor-pointer relative border 
+      border-gray-100 bg-white hover:shadow-lg transition-shadow duration-200"
     >
       
       <div className="relative w-full aspect-[4/3] overflow-hidden">
         <img
           src={`${import.meta.env.VITE_API_URL}/uploads/${images?.[0]}`}
+          alt={`${make.label} ${model.label} ${year}`}
           className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
         />
 

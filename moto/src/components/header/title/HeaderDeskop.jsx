@@ -62,7 +62,7 @@ export default function({ openModal, open, isMobile }){
       }
   
       <div className='w-[120px]'>
-        <img src="/logo.png" className='w-full' alt="" />
+        <img src="/logo.png" className='w-full' alt="logo" />
       </div>
 
       {
@@ -70,9 +70,9 @@ export default function({ openModal, open, isMobile }){
           const active = location.pathname == item.path
           const Icon = item.icon
           return(
-            <button 
+            <a 
               key={index}
-              onClick={() => navigate(item.path)} 
+              href={item.path}
               className={`${item.classes} ${BtnStyles.btn}`} 
               style={{
                 margin: '0px 15px',
@@ -102,7 +102,7 @@ export default function({ openModal, open, isMobile }){
                 > 
                   {item.label} 
                 </span>
-            </button>
+            </a>
           )
         })
       }

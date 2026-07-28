@@ -84,7 +84,7 @@ export default function MakeModel({makes, models}) {
                 image &&
                 (
                   <div>
-                    <img src={image.url} alt="" className='w-[200px] border-2 rounded-xl cover' />
+                    <img src={image.url} alt="Moto marka" className='w-[200px] border-2 rounded-xl cover' />
 
                     <button
                       onClick={() => setImage(null)}

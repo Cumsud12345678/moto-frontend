@@ -59,7 +59,7 @@ export default function Autos(){
 
       <Header filter={filterState} />
       <div className="mt-43 lg:mt-6 px-4 container mx-auto max-w-[1000px] flex flex-col mb-20">
-        <span className='text-2xl font-semibold'>Butun elanlar</span>
+        <span className='text-2xl font-semibold'>Bütün elanlar</span>
         {
           loading
             ?

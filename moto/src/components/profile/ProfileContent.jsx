@@ -64,15 +64,15 @@ export default function ProfileContent({products}) {
         <Tabs.ListContainer>
           <Tabs.List className="w-full lg:w-1/2" aria-label="Options">
             <Tabs.Tab id="overview">
-              Aktif ({activeProducts.length})
+              Aktiv ({activeProducts.length})
               <Tabs.Indicator />
             </Tabs.Tab>
             <Tabs.Tab id="reports">
-              Imtina ({deactiveProducts.length})
+              İmtina ({deactiveProducts.length})
               <Tabs.Indicator />
             </Tabs.Tab>
             <Tabs.Tab id="all">
-              Hamisi ({products.length})
+              Hamısı ({products.length})
               <Tabs.Indicator />
             </Tabs.Tab>
           </Tabs.List>

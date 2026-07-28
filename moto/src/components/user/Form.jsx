@@ -34,11 +34,11 @@ export default function Form () {
           <Tabs.ListContainer>
             <Tabs.List aria-label="Options">
               <Tabs.Tab id="overview">
-                Giris et
+                Daxil ol
                 <Tabs.Indicator />
               </Tabs.Tab>
               <Tabs.Tab id="analytics">
-                Kayit ol
+                Üzv ol
                 <Tabs.Indicator />
               </Tabs.Tab>
             </Tabs.List>

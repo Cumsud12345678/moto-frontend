@@ -132,7 +132,7 @@ export function ProductModal({openModal, setOpenModal, images, product}) {
                             <span className="text-red-500 font-bold"> {product._id}</span>
                           </span>
                           <span>
-                            Olusturulma tarixi:
+                            Oluşturulma tarixi:
                             <span className="text-red-500 font-bold"> {product.createdAt}</span>
                           </span>
                           <span>
@@ -140,27 +140,27 @@ export function ProductModal({openModal, setOpenModal, images, product}) {
                             <span className="text-red-500 font-bold"> {updatedActive}</span>
                           </span>
                           <span>
-                            Mraka, Model:
+                            Marka, Model:
                             <span className="text-red-500 font-bold"> {product.make?.label}, {product.model?.label}</span>
                           </span>
                           <span>
-                            Qiymet:
+                            Qiymət:
                             <span className="text-red-500 font-bold"> {product.price}</span>
                           </span>
                           <span>
-                            Kateqoriyasi:
+                            Kateqoriyası:
                             <span className="text-red-500 font-bold"> {product.category.label}</span>
                           </span>
                           <span>
-                            Suretler qutusu, Muherrik, il:
+                            Sürətlər qutusu, Mühərrik, il:
                             <span className="text-red-500 font-bold"> {product.speed.labe}, {product.fuel.label}, {product.year}</span>
                           </span>
                           <span>
-                            Seher, Reng:
+                            Şəhər, Rəng:
                             <span className="text-red-500 font-bold"> {product.city.label}, {product.color.label}</span>
                           </span>
                           <span>
-                            Techizat:
+                            Təchizat:
                             <span className="text-red-500 font-bold">
                               {
                                 product.equipments.map(eq => (
@@ -170,11 +170,11 @@ export function ProductModal({openModal, setOpenModal, images, product}) {
                             </span>
                           </span>
                           <span>
-                            Guc, Hecm, Yurush:
+                            Güc, Həcm, Yürüş:
                             <span className="text-red-500 font-bold"> {product.engine}, {product.volume}, {product.mileage}</span>
                           </span>
                           <p className="mt-4">
-                            Aciqlama <br />
+                            Açıqlama <br />
                             <span className="font-bold">{product.description}</span>
                           </p>
 
@@ -199,7 +199,7 @@ export function ProductModal({openModal, setOpenModal, images, product}) {
                             </button>
                             <button 
                               onClick={() => {
-                                updatedActive == 'Beli'
+                                updatedActive == 'Bəli'
                                   ? toast.danger('Elan onsuzda aktivdi')
                                   : handleActiveAlert()
                               }}

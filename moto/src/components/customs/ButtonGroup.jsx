@@ -4,12 +4,7 @@ import { useLocation } from "react-router-dom";
 export default function ButtonGroup ({data, id, onClick, flex=null}) {
 
   const location = useLocation()
-  // const [newData, setNewData] = useState([])
-
-  // useEffect(() => {
-  //   setNewData([{label: 'Hamisi'}, ...data])
-  // }, [])
-
+  
   return(
     <div className={`flex gap-2 ${flex ? 'flex-nowrap' : 'flex-wrap'}`}>
 
@@ -24,7 +19,7 @@ export default function ButtonGroup ({data, id, onClick, flex=null}) {
               `}
               onClick={() => onClick(null)}
             >
-              Hamisi
+              Hamısı
             </button>
           )
       }

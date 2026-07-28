@@ -14,7 +14,7 @@ export default function Home() {
   const chartSetting = {
     yAxis: [
       {
-        label: "Isdifadeci artisi",
+        label: "İsdifadəçi artışı",
         width: 60,
       },
     ],
@@ -66,8 +66,8 @@ export default function Home() {
           <div className="p-4 rounded-2xl bg-white flex flex-col border">
             <div>
               <span className='text-sm text-gray-500'>
-                isdifadeci sayi
-                <span className='text-sm text-black'> (Hamisi)</span>
+                İsdifadəçi sayı
+                <span className='text-sm text-black'> (Hamısı)</span>
               </span>
             </div>
             <div className='flex flex-row items-center pt-2 gap-3'>
@@ -83,8 +83,8 @@ export default function Home() {
           <div className="p-4 rounded-2xl bg-white flex flex-col border">
             <div>
               <span className='text-sm text-gray-500'>
-                isdifadeci sayi
-                <span className='text-sm text-black'> (1 gun)</span>
+                İsdifadəçi sayı
+                <span className='text-sm text-black'> (1 gün)</span>
               </span>
             </div>
             <div className='flex flex-row items-center pt-2 gap-3'>
@@ -100,8 +100,8 @@ export default function Home() {
           <div className="p-4 rounded-2xl bg-white flex flex-col border">
             <div>
               <span className='text-sm text-gray-500'>
-                isdifadeci sayi
-                <span className='text-sm text-black'> (7 gun)</span>
+                İsdifadəçi sayı
+                <span className='text-sm text-black'> (7 gün)</span>
               </span>
             </div>
             <div className='flex flex-row items-center pt-2 gap-3'>
@@ -117,8 +117,8 @@ export default function Home() {
           <div className="p-4 rounded-2xl bg-white flex flex-col border">
             <div>
               <span className='text-sm text-gray-500'>
-                isdifadeci sayi
-                <span className='text-sm text-black'> (30 gun)</span>
+                İsdifadəçi sayı
+                <span className='text-sm text-black'> (30 gün)</span>
               </span>
             </div>
             <div className='flex flex-row items-center pt-2 gap-3'>
@@ -135,8 +135,8 @@ export default function Home() {
           <div className="p-4 rounded-2xl bg-white flex flex-col border">
             <div>
               <span className='text-sm text-gray-500'>
-                Elan sayi
-                <span className='text-sm text-black'> (Hamisi)</span>
+                Elan sayı
+                <span className='text-sm text-black'> (Hamısı)</span>
               </span>
             </div>
             <div className='flex flex-row items-center pt-2 gap-3'>
@@ -152,8 +152,8 @@ export default function Home() {
           <div className="p-4 rounded-2xl bg-white flex flex-col border">
             <div>
               <span className='text-sm text-gray-500'>
-                Elan sayi
-                <span className='text-sm text-black'> (1 gun)</span>
+                Elan sayı
+                <span className='text-sm text-black'> (1 gün)</span>
               </span>
             </div>
             <div className='flex flex-row items-center pt-2 gap-3'>
@@ -169,8 +169,8 @@ export default function Home() {
           <div className="p-4 rounded-2xl bg-white flex flex-col border">
             <div>
               <span className='text-sm text-gray-500'>
-                Elan sayi
-                <span className='text-sm text-black'> (7 gun)</span>
+                Elan sayı
+                <span className='text-sm text-black'> (7 gün)</span>
               </span>
             </div>
             <div className='flex flex-row items-center pt-2 gap-3'>
@@ -186,8 +186,8 @@ export default function Home() {
           <div className="p-4 rounded-2xl bg-white flex flex-col border">
             <div>
               <span className='text-sm text-gray-500'>
-                Elan sayi
-                <span className='text-sm text-black'> (30 gun)</span>
+                Elan sayı
+                <span className='text-sm text-black'> (30 gün)</span>
               </span>
             </div>
             <div className='flex flex-row items-center pt-2 gap-3'>

@@ -54,16 +54,16 @@ export default function Dialog ({open, value, img, onClose}) {
     toast.promise(
       dispatch(updatedUser(formData)).unwrap(),
       {
-        loading: 'Guncellenir...',
+        loading: 'Güncəllənir...',
         success: () => {
           setTimeout(() => {
             onClose()          // dialog-u bağla
             setLoading(false)
             navigate('/profile')
           }, 1500)
-          return 'Guncellendi'
+          return 'Güncəlləndi'
         },
-        error: (err) => err.message || 'Bir xeta oldu'
+        error: (err) => err.message || 'Bir xəta oldu'
       }
     )
   }
@@ -110,16 +110,16 @@ export default function Dialog ({open, value, img, onClose}) {
           />
 
           <div className="my-3">
-            <Label>Adinizi deyisin</Label>
+            <Label>Adınızı dəyişin</Label>
             <input 
               type="text" 
               className="w-full p-3 border-2 rounded-xl focus:outline-sky-500"
-              placeholder="Adiniz"
+              placeholder="Adınız"
               onChange={(e) => setName(e.target.value)}
               value={name}
             />
             <div className="p-2">
-              <span className="text-[14px] text-red-400">*** Adinizi 3 defe deyisme sansiniz var. Ona gore adinizin duzgun yazilmaqina fikir verin</span>
+              <span className="text-[14px] text-red-400">*** Adınızı 3 dəfə dəyişmə şansınız var. Ona görə adınızın düzgün yazıldığına fikir verin</span>
             </div> 
           </div>
           <div className="mt-2 fixed bottom-0 w-full p-4 left-0 md:relative md:p-0">
@@ -130,7 +130,7 @@ export default function Dialog ({open, value, img, onClose}) {
               className="p-3 w-full bg-blue-500 text-white cursor-pointer rounded-xl"
             >
               {
-                loading ? 'Guncellenir...' : 'Yadda saxla'
+                loading ? 'Güncəllənir...' : 'Yadda saxla'
               }
             </button>
           </div>

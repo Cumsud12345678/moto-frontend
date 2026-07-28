@@ -61,9 +61,9 @@ export default function Footer() {
               : 'bg-transparent text-gray-500';
 
             return (
-              <div
+              <a
                 key={item.path}
-                onClick={() => navigate(item.path)}
+                href={item.path}
                 className="flex flex-1 cursor-pointer flex-col items-center gap-1"
               >
                 <div
@@ -84,7 +84,7 @@ export default function Footer() {
                 >
                   {item.label}
                 </span>
-              </div>
+              </a>
             );
           })}
         </div>

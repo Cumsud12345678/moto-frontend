@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { InputOTP, Label, toast } from '@heroui/react'
-// import { register, registerVerify, setPhone } from '../../../redux/slices/userSlice'
-// import { setAuth } from '../../../redux/slices/authSlice'
 import { useNavigate } from 'react-router-dom'
 import { register, registerVerify } from '../../../redux/slices/user/userSlice'
 
@@ -31,7 +29,7 @@ export default function RegisterForm({ formatPhone }) {
   // REGISTER START
   const handleRegisterStart = () => {
     if (!nameValue || !phoneValue) {
-      return toast.danger("Name və phone boş ola bilməz")
+      return toast.danger("Ad və Nömrə boş ola bilməz")
     }
 
     const cleanPhone = phoneValue.replace(/\s/g, "")
@@ -73,7 +71,7 @@ export default function RegisterForm({ formatPhone }) {
     if(stepRegister == 'done'){
       setTimeout(() => {
         navigate('/')
-      }, 2000)
+      }, 1000)
     }
   }, [stepRegister])
 
@@ -105,7 +103,7 @@ export default function RegisterForm({ formatPhone }) {
           </div>
           
           <div className='my-3'>
-            <Label>Nomre</Label>
+            <Label>Nömrə</Label>
             <input
               className='border-2 w-full rounded-2xl p-3 bg-[#f5f5f5]' 
               placeholder='77 513 14 06'

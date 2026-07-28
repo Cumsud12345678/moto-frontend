@@ -65,7 +65,7 @@ export default function FilterDeskop({useFilter}){
         
         <div className="flex items-center justify-center w-full h-full gap-3">
           <button onClick={applyFilter} type="button" className="bg-blue-500 text-white h-[40px] px-8 rounded-lg cursor-pointer">
-            Axdar
+            Axtar
           </button>
           <button onClick={handleOpen} className="bg-blue-500 text-white h-[40px] px-2 rounded-lg cursor-pointer shrink-0">
             <FilterAltIcon sx={{ mb: '3px' }}></FilterAltIcon>

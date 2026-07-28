@@ -26,12 +26,12 @@ export default function LibAlert({openAlert, setOpenAlert, title, label = '', on
               {
                 type == 'delete' && (
                   <div className="mt-4">
-                    <span>Aciqlama</span>
+                    <span>Açıqlama</span>
                     <textarea 
                       className="border bg-white w-full rounded-xl p-4"
                       value={description} 
                       onChange={(e) => setDescription(e.target.value)}
-                      placeholder="Aciqlama yazin"
+                      placeholder="Açıqlama yazın"
                     ></textarea>
                   </div>
                 )
@@ -39,7 +39,7 @@ export default function LibAlert({openAlert, setOpenAlert, title, label = '', on
             </HeroAlertDialog.Body>
             <HeroAlertDialog.Footer>
               <Button slot="close" variant="tertiary">
-                Cancel
+                Geri
               </Button>
               <Button
                 slot="close"

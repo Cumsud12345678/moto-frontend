@@ -6,7 +6,7 @@ export default function SriButtonGroup ({data, id, onClick}) {
   const [newData, setNewData] = useState([])
 
   useEffect(() => {
-    setNewData([{id: null, label: 'Hamisi'}, ...data])
+    setNewData([{id: null, label: 'Hamısı'}, ...data])
   }, [data])
 
   return(

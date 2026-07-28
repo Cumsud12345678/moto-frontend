@@ -23,9 +23,9 @@ export default function Metadata() {
     toast.promise(
       dispatch(getMetadata()).unwrap(),
       {
-        loading: 'Yuklenir...',
-        success: 'Yuklendi',
-        error: (err) => err.message || 'Bir xeta oldu!'
+        loading: 'Yüklənir...',
+        success: 'Yükləndi',
+        error: (err) => err.message || 'Bir xəta oldu!'
       }
     )
   }, [])
@@ -47,15 +47,15 @@ export default function Metadata() {
     toast.promise(
       dispatch(createMetadata(data)).unwrap(),
       {
-        loading: 'Kayit etklenir',
+        loading: 'Kayıt eklənir',
         success: () => {
           dispatch(setData({
             type: type,
             label: firstValue
           }))
-          return 'Kayit eklendi.'
+          return 'Kayıt ekləndi.'
         },
-        error: (err) => err.message || 'Xeta bas verdi'
+        error: (err) => err.message || 'Xəta baş verdi'
       }
     )
   }

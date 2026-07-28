@@ -31,13 +31,13 @@ export default function ProductCardProfile({ product, deleteClick }){
         <p className="text-sm text-gray-600 truncate mt-0.5">
           {year} · {volume} sm · {mileage} km
         </p>
-        <p className="text-sm text-gray-400 mt-0.5">{city.label}, bugun 16:10</p>
+        <p className="text-sm text-gray-400 mt-0.5">{city.label}, bugün 16:10</p>
       </div>
 
       <div className="flex flex-col sm:flex-row gap-2 p-2 pt-0">
         <Button size='sm' className='w-full' onClick={() => navigate(`/edit/product/${_id}`)}>
           <PencilToSquare />
-          Duzelt
+          Düzəlt
         </Button>
 
         <Button size='sm' onClick={() => deleteClick(_id)} className='w-full' variant="danger">

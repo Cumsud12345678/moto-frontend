@@ -16,7 +16,6 @@ import { setFavorites } from '../redux/slices/favorite/favoritesSlice'
 import { checkMe } from '../redux/slices/user/userSlice'
 import Register from '../pages/Register'
 
-
 import AdminHome from '../pages/admin/Home'
 import Users from '../pages/admin/Users'
 import UserProducts from '../pages/admin/UserProducts'

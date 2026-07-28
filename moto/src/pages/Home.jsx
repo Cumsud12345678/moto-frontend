@@ -105,8 +105,9 @@ export default function Home(){
       </Helmet>
       
       <Header filter={filterState} />
+      
       <div className="mt-40 lg:mt-6 px-4 container mx-auto max-w-[1000px] flex flex-col mb-25 z-[100]">
-        <span className='text-2xl font-semibold'>Butun elanlar</span>
+        <span className='text-2xl font-semibold'>Bütün elanlar</span>
         {
           loading
             ? (
@@ -115,7 +116,7 @@ export default function Home(){
               </div>
             )
             : displayProducts.length == 0 
-              ? 'Urun tapilmadi'
+              ? 'Elan tapılmadı'
               : (
                 <>
                   <ProductList products={displayProducts} topMob={'0px'} topDes={'0px'} />

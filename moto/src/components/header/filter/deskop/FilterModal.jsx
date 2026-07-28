@@ -108,7 +108,7 @@ export default function FilterDialog({ open, onClose, useFilter }) {
         keepMounted
       >
         <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
-          Genish Axdarish
+          Geniş Axdarış
         </DialogTitle>
         <IconButton
           onClick={onClose}
@@ -142,7 +142,7 @@ export default function FilterDialog({ open, onClose, useFilter }) {
                   id={model || ''}
                   onClick={setModel}
                   onChange={() => setModel('')}
-                  label={'Marka'}
+                  label={'Model'}
                   variant={'floating'}
                 />
 
@@ -150,7 +150,7 @@ export default function FilterDialog({ open, onClose, useFilter }) {
             </div>
 
             <div className='flex gap-3 items-center justify-between'>
-              <span className='w-[180px] shrink-0'>Qiymet</span>
+              <span className='w-[180px] shrink-0'>Qiymət</span>
               <div className='flex w-full gap-3'>
                 <div className='flex w-[400px] gap-5 relative'>
                   
@@ -172,7 +172,7 @@ export default function FilterDialog({ open, onClose, useFilter }) {
             </div>
 
             <div className='flex gap-3 items-center justify-between'>
-              <span className='w-[180px] shrink-0'>Veziyyeti</span>
+              <span className='w-[180px] shrink-0'>Vəziyyəti</span>
               <div className='flex w-full gap-3'>
                 <div className="flex gap-2 h-full w-full">
                   
@@ -215,7 +215,7 @@ export default function FilterDialog({ open, onClose, useFilter }) {
             </div>
 
             <div className='flex gap-3 items-center justify-between'>
-              <span className='w-[180px] shrink-0'>Yanacaq novu</span>
+              <span className='w-[180px] shrink-0'>Yanacaq növü</span>
               <div className='flex w-full gap-3'>
                 <div className="flex gap-2 h-full w-full">
 
@@ -230,7 +230,7 @@ export default function FilterDialog({ open, onClose, useFilter }) {
             </div>
 
             <div className='flex gap-3 items-center justify-between'>
-              <span className='w-[180px] shrink-0'>Surush</span>
+              <span className='w-[180px] shrink-0'>Sürüş</span>
               <div className='flex w-full gap-3'>
                 <div className='flex w-[400px] gap-5 relative'>
 
@@ -253,7 +253,7 @@ export default function FilterDialog({ open, onClose, useFilter }) {
             </div>
 
             <div className='flex gap-3 items-center justify-between'>
-              <span className='w-[180px] shrink-0'>Reng</span>
+              <span className='w-[180px] shrink-0'>Rəng</span>
               <div className='flex w-full gap-3'>
 
                 <ButtonGroup 
@@ -267,7 +267,7 @@ export default function FilterDialog({ open, onClose, useFilter }) {
             
 
             <div className='flex gap-3 items-center justify-between'>
-              <span className='w-[180px] shrink-0'>Muherrikin hecmi</span>
+              <span className='w-[180px] shrink-0'>Mühərrikin həcmi</span>
               <div className='flex w-full gap-3'>
                 
                 <div className='flex w-full gap-5'>
@@ -295,7 +295,7 @@ export default function FilterDialog({ open, onClose, useFilter }) {
             </div>
 
             <div className='flex gap-3 items-center justify-between'>
-              <span className='w-[180px] shrink-0'>Suretler qutusu</span>
+              <span className='w-[180px] shrink-0'>Sürətler qutusu</span>
               <div className='flex w-full gap-3'>
 
                 <ButtonGroup 
@@ -308,14 +308,14 @@ export default function FilterDialog({ open, onClose, useFilter }) {
             </div>
 
             <div className='flex gap-3 items-center justify-between'>
-              <span className='w-[180px] shrink-0'>City</span>
+              <span className='w-[180px] shrink-0'>Şəhər</span>
               <div className='flex w-full gap-3'>
 
                 <SearchAndSelect 
                   data={cities}
                   id={city || ''}
                   onClick={setCity}
-                  label={'Seher'}
+                  label={'Şəhər'}
                   variant={'default'}
                 />
 
@@ -323,7 +323,7 @@ export default function FilterDialog({ open, onClose, useFilter }) {
             </div>
 
             <div className='flex gap-3 items-center justify-between'>
-              <span className='w-[180px] shrink-0'>Suretler qutusu</span>
+              <span className='w-[180px] shrink-0'>Təchizat</span>
               <div className='flex w-full gap-3'>
                 
                 <Checkbox 
@@ -336,7 +336,7 @@ export default function FilterDialog({ open, onClose, useFilter }) {
             </div>
 
             <div className='flex gap-3 items-center justify-between'>
-              <span className='w-[180px] shrink-0'>Muherrikin gucu</span>
+              <span className='w-[180px] shrink-0'>Mühərrikin gücü</span>
               <div className='flex w-full gap-3'>
 
                 <div className='flex w-[400px] gap-5'>
@@ -364,8 +364,8 @@ export default function FilterDialog({ open, onClose, useFilter }) {
           </div>
         </DialogContent>
         <DialogActions style={{padding: '15px'}}>
-          <button type="button" className="cursor-pointer p-2 px-4 bg-red-500 rounded-xl text-white">Sifirla</button>
-          <button onClick={applyFilter} type="button" className="cursor-pointer p-2 px-4 bg-blue-500 rounded-xl text-white">800 Elani gosder</button>
+          <button type="button" className="cursor-pointer p-2 px-4 bg-red-500 rounded-xl text-white">Sıfırla</button>
+          <button onClick={applyFilter} type="button" className="cursor-pointer p-2 px-4 bg-blue-500 rounded-xl text-white">800 Elanı gösdər</button>
         </DialogActions>
       </BootstrapDialog>
     </React.Fragment>
