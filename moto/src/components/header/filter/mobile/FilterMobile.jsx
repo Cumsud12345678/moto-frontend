@@ -33,31 +33,43 @@ export default function FilterMobile({useFilter}){
 
   } = useFilter
 
-  const openMake = location.hash == '#make'
-  const openModel = location.hash == '#model'
+  const [openMake, setOpenMake] = useState(false)
+  const [openModel, setOpenModel] = useState(false)
 
   const handleClose = () => {
-    navigate(-1)
+    setOpenMake(false)
   }
 
   const handleModelOpen = () => {
     if(!make) return toast.warning('Evvelce marka secin')
-    navigate(`${location.search}#model`)
+    setOpenModel(true)
   }
 
   useEffect(() => {
-    if((make || model) && navigationType !== 'POP' && location.hash !== '#filter'){
+    console.log(location.hash)
+    if((make || model || category) || (location.pathname == '/autos' && location.hash !== '#filter')){
       applyFilter()
     }
-  }, [make, model])
+  }, [make, model, category])
 
   const openFilter = location.hash == '#filter'
+
+  const handleMakeSelect = (value) => {
+    setOpenMake(false)
+    setMake(value)
+    setModel('')
+  }
+
+  const handleModelSelect = (value) => {
+    setOpenModel(false)
+    setModel(value)
+  }
 
   return(
     <div className='flex lg:hidden flex-col'>
       <div className='flex items-center justify-between w-full gap-3 mb-2'>
         <div className="w-full h-full flex align-center py-2 gap-3">
-          <div onClick={() => navigate(`${location.search}#make`)} className='border rounded-lg p-2 w-full'>
+          <div onClick={() => setOpenMake(true)} className='border rounded-lg p-2 w-full'>
             { make
                 ?
                 makes.find(x => x._id == make)?.label
@@ -89,8 +101,8 @@ export default function FilterMobile({useFilter}){
         />
       </div>
 
-      <LibDrawer open={openMake} onClose={handleClose} arr={makes} onClick={setMake} active={make} label={'Marka'} />
-      <LibDrawer open={openModel} onClose={handleClose} arr={filteredModel} onClick={setModel} active={model} label={'Model'} />
+      <LibDrawer open={openMake} onClose={handleClose} arr={makes} onClick={handleMakeSelect} active={make} label={'Marka'} />
+      <LibDrawer open={openModel} onClose={handleClose} arr={filteredModel} onClick={handleModelSelect} active={model} label={'Model'} />
 
       <MobileFilterModal open={openFilter} onClose={() => navigate(-1)} useFilter={useFilter} />
 

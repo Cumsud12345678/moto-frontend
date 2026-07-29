@@ -33,6 +33,11 @@ export default function FilterDeskop({useFilter}){
     navigate(`${location.search}#filter`)
   }
 
+  const handleMakeSelect = (value) => {
+    setModel('')
+    setMake(value)
+  }
+
   return(
     <div className="hidden lg:block container mt-20 mx-auto max-w-[1000px]">
       <div className="flex items-center justify-between gap-2">
@@ -41,8 +46,8 @@ export default function FilterDeskop({useFilter}){
           <SearchAndSelect 
             data={makes} 
             id={make || ''} 
-            onClick={setMake} 
-            onChange={setMake}
+            onClick={handleMakeSelect} 
+            onChange={handleMakeSelect}
             label={'Marka'}
             variant={'floating'}
           />

@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom";
 import {Button, InputOTP, Label, toast} from "@heroui/react";
 import { useDispatch, useSelector } from 'react-redux';
 import { login, loginVerify } from '../../../redux/slices/user/userSlice';
+import {SealCheck} from '@gravity-ui/icons';
 
 export default function LoginForm({formatPhone}) {
 
@@ -12,7 +13,6 @@ export default function LoginForm({formatPhone}) {
 
   const {
     stepLogin,
-
     loginMessage,
     loginStatus
   } = useSelector(s => s.user)
@@ -27,7 +27,7 @@ export default function LoginForm({formatPhone}) {
 
   const handleLogin = () => {
     if(!phoneValue){
-      return toast.danger('Nömrəni girin');
+      return toast.warning('Nömrəni girin');
     }
 
     const cleanPhone = phoneValue.replace(/\s/g, "")
@@ -69,7 +69,7 @@ export default function LoginForm({formatPhone}) {
       // dispatch(setAuth({isAuth: true, id: id, name: name, phone: phone}))
       setTimeout(() => {
         navigate('/')
-      }, 2000)
+      }, 1000)
     }
   }, [stepLogin])
 
@@ -105,9 +105,12 @@ export default function LoginForm({formatPhone}) {
         </div>
       )}
 
-      {stepLogin == 'verify' && (
+      {(stepLogin === 'verify' || stepLogin === 'done') && (
         <div>
-          <Label>Secondary variant</Label>
+
+          <h2 className="text-xl font-bold mb-2">OTP Verification</h2>
+          <span className='text-muted'>Telefon nömrənizə göndərilən doğrulama kodun daxil edin.</span>
+
           <InputOTP
             value={otp}
             onChange={handleOtpChange}
@@ -131,11 +134,13 @@ export default function LoginForm({formatPhone}) {
         </div>
       )}
 
-      {stepLogin == 'done' && (
-        <div className="text-center">
-          <h2 className="text-green-600 text-xl font-bold">
-            Qeydiyyat uğurludur 🎉
-          </h2>
+      {/* STEP 3: DONE */}
+      {stepLogin === 'done' && (
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2">
+          <div className="p-3 flex items-center bg-white/20 backdrop-blur-lg gap-2 rounded-xl">
+            <SealCheck className='size-8 text-green-500' />
+            <span className='text-lg font-bold'>Qeydiyyar uğurlu</span>
+          </div>  
         </div>
       )}
       

@@ -158,7 +158,15 @@ export const userSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    
+    resetForm : (state) => {
+      state.registerMessage = null
+      state.loginMessage = null
+      state.registerStatus = 'idle'
+      state.loginStatus = 'idle'
+
+      state.stepRegister = 'register'
+      state.stepLogin = 'login'
+    }
   },
 
   extraReducers: (builder) => {
@@ -196,6 +204,9 @@ export const userSlice = createSlice({
       })
 
       // REGISTER VERIFY
+      .addCase(registerVerify.pending, (state) => {
+        state.registerMessage = ''
+      })
       .addCase(registerVerify.fulfilled, (state, action) => {
         state.id = action.payload.id
         state.name = action.payload.name
@@ -223,6 +234,9 @@ export const userSlice = createSlice({
       })
 
       // LOGIN VERIFY
+      .addCase(loginVerify.pending, (state) => {
+        state.loginMessage = ''
+      })
       .addCase(loginVerify.fulfilled, (state, action) => {
         state.id = action.payload.id
         state.name = action.payload.name
@@ -265,6 +279,6 @@ export const userSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const {  } = userSlice.actions
+export const { resetForm } = userSlice.actions
 
 export default userSlice.reducer

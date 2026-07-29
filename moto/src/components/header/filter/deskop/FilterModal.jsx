@@ -89,7 +89,8 @@ export default function FilterDialog({ open, onClose, useFilter }) {
     stateEquipment,
     setEquipments,
 
-    applyFilter
+    applyFilter,
+    resetForm
 
   } = useFilter
 
@@ -230,7 +231,7 @@ export default function FilterDialog({ open, onClose, useFilter }) {
             </div>
 
             <div className='flex gap-3 items-center justify-between'>
-              <span className='w-[180px] shrink-0'>Sürüş</span>
+              <span className='w-[180px] shrink-0'>Yürüş</span>
               <div className='flex w-full gap-3'>
                 <div className='flex w-[400px] gap-5 relative'>
 
@@ -363,9 +364,22 @@ export default function FilterDialog({ open, onClose, useFilter }) {
 
           </div>
         </DialogContent>
-        <DialogActions style={{padding: '15px'}}>
-          <button type="button" className="cursor-pointer p-2 px-4 bg-red-500 rounded-xl text-white">Sıfırla</button>
-          <button onClick={applyFilter} type="button" className="cursor-pointer p-2 px-4 bg-blue-500 rounded-xl text-white">800 Elanı gösdər</button>
+        <DialogActions style={{padding: '15px', display: 'flex', gap: 6}}>
+          <button
+            onClick={resetForm} 
+            type="button" 
+            className="cursor-pointer p-2 px-6 bg-red-500 rounded-xl text-white"
+          >
+            Sıfırla
+          </button>
+
+          <button 
+            onClick={applyFilter} 
+            type="button" 
+            className="cursor-pointer p-2 px-10 bg-blue-500 rounded-xl text-white"
+          >
+            Axtar
+          </button>
         </DialogActions>
       </BootstrapDialog>
     </React.Fragment>

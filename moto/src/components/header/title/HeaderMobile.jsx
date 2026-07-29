@@ -5,7 +5,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import MenuIcon from '@mui/icons-material/Menu'
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModal, openModal } from '../../../redux/slices/silinecek/menuModalSlice';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import FilterMobile from '../filter/mobile/FilterMobile';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -19,6 +19,7 @@ const TransitionRight = React.forwardRef(function Transition(props, ref) {
 export default function HeaderMobile({openModal, open, isMobile, filter}){
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const location = useLocation()
 
@@ -36,7 +37,7 @@ export default function HeaderMobile({openModal, open, isMobile, filter}){
               <MenuIcon></MenuIcon>
             </IconButton>
         }
-        <div className='w-[120px]'>
+        <div onClick={() => navigate('/')} className='w-[120px]'>
           <img src="/logo.png" className='w-full' alt="logo" />
         </div>
         <span></span>

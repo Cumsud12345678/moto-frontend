@@ -25,17 +25,16 @@ export default function ProductDetails(){
     similarProducts,
     similarStatus,
     productsCache,
-    similarCache
+    similarCache,
+    ids
   } = useSelector(s => s.product)
 
   // DETAYLARI VE SIMILARS I CAQIR
   useEffect(() => {
     if(!productsCache[id]){
-      console.log('detaylari getir...')
       dispatch(getProductDetails(id))
     }
     if(!similarCache[id]){
-      console.log('similari getir...')
       dispatch(getSimilarProducts(id))
     }
   }, [id])
@@ -85,7 +84,7 @@ export default function ProductDetails(){
       {
         loadingDetails
           ? <DetailsSkeleton /> 
-          : <Details details={currentProduct} />
+          : <Details details={currentProduct} ids={ids} />
       }
 
       <div className="mt-5 px-4">

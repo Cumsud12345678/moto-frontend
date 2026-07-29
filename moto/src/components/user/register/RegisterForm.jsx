@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { InputOTP, Label, toast } from '@heroui/react'
 import { useNavigate } from 'react-router-dom'
 import { register, registerVerify } from '../../../redux/slices/user/userSlice'
+import {SealCheck} from '@gravity-ui/icons';
 
 export default function RegisterForm({ formatPhone }) {
 
@@ -29,10 +30,14 @@ export default function RegisterForm({ formatPhone }) {
   // REGISTER START
   const handleRegisterStart = () => {
     if (!nameValue || !phoneValue) {
-      return toast.danger("Ad və Nömrə boş ola bilməz")
+      return toast.warning("Ad və Nömrə boş ola bilməz")
     }
 
     const cleanPhone = phoneValue.replace(/\s/g, "")
+
+    if(cleanPhone.length !== 9) {
+      return toast.warning('Nömrəni düzgün girin')
+    }
 
     dispatch(register({
       name: nameValue,
@@ -126,9 +131,10 @@ export default function RegisterForm({ formatPhone }) {
 
 
       {/* STEP 2: VERIFY */}
-      {stepRegister === 'verify' && (
+      {(stepRegister === 'verify' || stepRegister === 'done') && (
         <div>
-          <h2 className="text-xl font-bold mb-4">Kodu daxil et</h2>
+          <h2 className="text-xl font-bold mb-2">OTP Verification</h2>
+          <span className='text-muted'>Telefon nömrənizə göndərilən doğrulama kodun daxil edin.</span>
 
           <InputOTP
             value={otp}
@@ -145,9 +151,17 @@ export default function RegisterForm({ formatPhone }) {
             <InputOTP.Slot index={5} />
           </InputOTP>
 
+          <div onClick={handleRegisterStart} className="mt-3">
+            <span className='cursor-pointer'>Tekrar göndər</span>
+          </div>
+
           <button
-            className="w-full bg-green-500 text-white p-3 rounded mt-4"
+            className={
+              `w-full p-3 rounded-lg mt-4 border 
+              ${otp.length == 6 ? 'bg-[#8b5cf6] cursor-pointer text-white font-bold' : 'bg-gray-200'}`
+            }
             onClick={handleVerify}
+            disabled={!otp.length == 6}
           >
             Təsdiqlə
           </button>
@@ -156,10 +170,11 @@ export default function RegisterForm({ formatPhone }) {
 
       {/* STEP 3: DONE */}
       {stepRegister === 'done' && (
-        <div className="text-center">
-          <h2 className="text-green-600 text-xl font-bold">
-            Qeydiyyat uğurludur 🎉
-          </h2>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2">
+          <div className="p-3 flex items-center bg-white/20 backdrop-blur-lg gap-2 rounded-xl">
+            <SealCheck className='size-8 text-green-500' />
+            <span className='text-lg font-bold'>Qeydiyyar uğurlu</span>
+          </div>  
         </div>
       )}
 

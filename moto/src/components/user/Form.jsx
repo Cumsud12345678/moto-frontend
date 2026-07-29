@@ -4,11 +4,14 @@ import { useLocation, useNavigate } from "react-router-dom"
 import {Tabs} from "@heroui/react";
 import LoginForm from './login/LoginForm';
 import RegisterForm from './register/RegisterForm';
+import { useDispatch } from 'react-redux';
+import { resetForm } from '../../redux/slices/user/userSlice';
 
 export default function Form () {
 
   const location = useLocation()
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const formatPhone = (value) => {
     const numbers = value.replace(/\D/g, "").slice(0, 9);
@@ -21,9 +24,10 @@ export default function Form () {
   };
 
   const handleTabChange = () => {
-    if(location.hash){
-      navigate(-1)
-    }
+    // if(location.hash){
+      dispatch(resetForm())
+      // navigate(-1)
+    // }
   }
   
   return(

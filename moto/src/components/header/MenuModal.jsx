@@ -35,7 +35,7 @@ export default function MenuModal({open, setOpen, isMobile}){
             <Drawer.Body>
               <div className='container mx-auto max-w-[1000px] p-2'>
                 <div className='flex flex-col'>
-                  <span className="p-3 active:bg-gray-300 hover:bg-gray-300 cursor-pointer">
+                  <span onClick={() => navigate('/')} className="p-3 active:bg-gray-300 hover:bg-gray-300 cursor-pointer">
                     Bütün elanlar
                   </span>
                   <div className='flex justify-between p-3 active:bg-gray-300 hover:bg-gray-300 cursor-pointer'>
@@ -44,9 +44,9 @@ export default function MenuModal({open, setOpen, isMobile}){
                     </span>
                     <span className='text-gray-400'>Azerbaycan</span>
                   </div>
-                  <span className="p-3 active:bg-gray-300 hover:bg-gray-300 cursor-pointer">
+                  {/* <span className="p-3 active:bg-gray-300 hover:bg-gray-300 cursor-pointer">
                     Razılşma
-                  </span>
+                  </span> */}
                   {
                     isAuth
                     ?
@@ -77,9 +77,11 @@ export default function MenuModal({open, setOpen, isMobile}){
                 <span>Bizimle elaqe</span>
                 <div className='flex items-center gap-1'>
                   <LocalPhoneIcon />
-                  <span className='font-bold text-lg'>(077)-513-14-06</span>
+                  <span className='font-bold text-lg'>
+                    {import.meta.env.VITE_PHONE}
+                  </span>
                 </div>
-                <span>isayevcumu@gmail.com</span>
+                <span>{import.meta.env.VITE_EMAIL}</span>
               </div>
             </Drawer.Footer>
           </Drawer.Dialog>

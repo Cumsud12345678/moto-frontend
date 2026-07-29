@@ -7,9 +7,10 @@ import ProductList from "../ProductList";
 import { DetailsSkeleton } from "../skeletons/DetailsSkeleton";
 import { HomeSkeleton } from "../skeletons/HomeSkeleton";
 
-export default function Details({details}){
+export default function Details({details, ids}){
 
   const {
+    _id,
     year,
     volume,
     mileage,
@@ -21,6 +22,8 @@ export default function Details({details}){
     city,
     color
   } = details
+
+  const {isAuth} = useSelector(s => s.user)
 
   return (
     <div>
@@ -37,7 +40,7 @@ export default function Details({details}){
       <div className="flex gap-3 flex-col lg:flex-row">
 
         <DetailsLeft product={details} />
-        <DetailsRight user={user} price={price} city={city.label} />
+        <DetailsRight user={user} price={price} city={city.label} id={_id} ids={ids} auth={isAuth} />
 
       </div>
 

@@ -42,11 +42,11 @@ import CheckIcon from "@mui/icons-material/Check";
             <Drawer.Header>
               <Drawer.Heading>{label}</Drawer.Heading>
             </Drawer.Header>
-            <Drawer.Body className="p-0">
+            <Drawer.Body className="p-0 flex flex-col gap-2">
               <div>
                 <input 
                   type="text" 
-                  className="w-full my-2 border-2 p-3 rounded-xl focus:outline-sky-500" 
+                  className="w-full my-2 border border-black p-3 rounded-xl focus:outline-sky-500 text-black" 
                   placeholder="Axtar..."
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
@@ -56,8 +56,8 @@ import CheckIcon from "@mui/icons-material/Check";
                 filteredData.map((item, index) => {
                   const selected = active == (item._id ?? item)
                   return (
-                    <div key={index} onClick={() => onClick(item._id ? item._id : item)} className={`cursor-pointer hover:bg-gray-200 p-3 rounded-xl flex justify-between ${selected && 'bg-green-300 text-black'}`}>
-                      <button className='list-group-item list-group-item-action'>
+                    <div key={index} onClick={() => onClick(item._id ? item._id : item)} className={`cursor-pointer hover:bg-gray-200 p-3 rounded-xl flex justify-between ${selected && 'border text-black'}`}>
+                      <button className='list-group-item list-group-item-action text-black text-md'>
                         {item.label ? item.label : item}
                       </button>
                       {selected && 
@@ -68,12 +68,13 @@ import CheckIcon from "@mui/icons-material/Check";
                 })
               }
             </Drawer.Body>
-            {/* <Drawer.Footer>
-              <Button slot="close" variant="secondary">
-                Decline
+            <Drawer.Footer>
+              <Button onPress={() => {
+                onClick('')
+              }} variant="secondary">
+                Sıfırla
               </Button>
-              <Button slot="close">Accept</Button>
-            </Drawer.Footer> */}
+            </Drawer.Footer>
           </Drawer.Dialog>
         </Drawer.Content>
       </Drawer.Backdrop>

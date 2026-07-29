@@ -28,6 +28,7 @@ export default function ProductCard({ product }) {
     price, 
     images, 
     city, 
+    createdAt,
     is_liked: initialIsLiked 
   } = location.pathname == '/bookmarks' ? isAuth ? product.product : product : product
 
@@ -115,7 +116,7 @@ export default function ProductCard({ product }) {
         <p className="text-sm text-gray-600 truncate mt-0.5">
           {year} · {volume} sm · {mileage} km
         </p>
-        <p className="text-sm text-gray-400 mt-0.5">{city?.label}, bugun 16:10</p>
+        <p className="text-sm text-gray-400 mt-0.5">{city?.label}, {createdAt}</p>
       </div>
 
     </a>

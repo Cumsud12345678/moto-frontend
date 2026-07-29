@@ -71,12 +71,12 @@ export const useFilter = () => {
 
     if(make) params.set('make', make)
     if(model) params.set('model', model || '')
-    if(category !== '6a41390bae0d7c2e537aa41d') params.set('category', category || '')
-    if(status !== '6a426f58031261513cde8f9c') params.set('status', status || '')
-    if(fuel !== '6a48ac1fef14ff38de16323a') params.set('fuel', fuel || '')
+    if(category) params.set('category', category || '')
+    if(status) params.set('status', status || '')
+    if(fuel) params.set('fuel', fuel || '')
     if(city) params.set('city', city || '')
-    if(color !== '6a48abf4ef14ff38de163237') params.set('color', color || '')
-    if(speed !== '6a48ad18ef14ff38de163253') params.set('speed', speed || '')
+    if(color) params.set('color', color || '')
+    if(speed) params.set('speed', speed || '')
     if(stateEquipment.length > 0) params.set('equipments', stateEquipment || [])
     if(minPrice) params.set('minPrice', minPrice || '')
     if(maxPrice) params.set('maxPrice', maxPrice || '')
@@ -88,6 +88,9 @@ export const useFilter = () => {
     if(maxVolume) params.set('maxVolume', maxVolume || '')
     if(minDistance) params.set('minDistance', minDistance || '')
     if(maxDistance) params.set('maxDistance', maxDistance || '')
+
+    console.log("make:", make);
+    console.log("params:", params.toString());
 
     navigate(`/autos?${params.toString()}`)
   }
@@ -129,6 +132,28 @@ export const useFilter = () => {
 
   }, [location.search])
 
+
+  const resetForm = () => {
+    setMake('')
+    setModel('')
+    setCategory('')
+    setStatus('')
+    setFuel('')
+    setCity('')
+    setColor('')
+    setSpeed('')
+    setStateEquipment([])
+    setMinPrice('')
+    setMaxPrice('')
+    setMinYear('')
+    setMaxYear('')
+    setMinEngine('')
+    setMaxEngine('')
+    setMinVolume('')
+    setMaxVolume('')
+    setMinDistance('')
+    setMaxDistance('')
+  }
 
 
   const years = Array.from({ length: 2026-1950 },(_, index) => 2026 - index)
@@ -196,6 +221,7 @@ export const useFilter = () => {
     setCategory,
 
     applyFilter,
+    resetForm,
 
     equipments,
     stateEquipment,
