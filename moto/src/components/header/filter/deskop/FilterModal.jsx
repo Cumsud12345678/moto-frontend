@@ -138,14 +138,33 @@ export default function FilterDialog({ open, onClose, useFilter }) {
                   variant={'floating'}
                 />
 
-                <SearchAndSelect 
-                  data={filteredModel}
-                  id={model || ''}
-                  onClick={setModel}
-                  onChange={() => setModel('')}
-                  label={'Model'}
-                  variant={'floating'}
-                />
+                {
+                  make
+                    ?
+                    <div className="w-full">
+                      <SearchAndSelect
+                        data={filteredModel}
+                        id={model || ''}
+                        onClick={setModel}
+                        onChange={() => setModel('')}
+                        label={'Model'}
+                        variant={'floating'}
+                      />
+                    </div>
+                    :
+                    <div className={`relative w-full`}>
+                      <div className="relative flex items-center">
+                        <input
+                          className="border rounded-lg peer w-full bg-white px-3 pt-5 pb-1 text-[16px] opacity-70"
+                          readOnly='true'
+                          placeholder=""
+                        />
+                        <label className="absolute left-3.5 top-3 text-gray-500 transition-all duration-200">
+                          Model
+                        </label>
+                      </div>
+                    </div>
+                }
 
               </div>
             </div>

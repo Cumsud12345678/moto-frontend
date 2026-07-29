@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import CheckIcon from "@mui/icons-material/Check";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import {Spinner} from "@heroui/react";
 
 export default function SearchAndSelect({ data = [], id, onClick, onChange, label, variant, pl=null}) {
   const [focus, setFocus] = useState(false);
@@ -136,8 +137,8 @@ export default function SearchAndSelect({ data = [], id, onClick, onChange, labe
       {focus && (
         <div className="absolute z-[1000] mt-2 max-h-[225px] w-full overflow-auto rounded-lg border-2 bg-white p-1 shadow-lg">
           {filteredData.length === 0 ? (
-            <div className="px-2">
-              Tapılmadı...
+            <div className="flex items-center justify-center p-1">
+              <Spinner />
             </div>
           ) : (
             filteredData.map((item) => (

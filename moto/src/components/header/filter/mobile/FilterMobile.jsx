@@ -38,6 +38,7 @@ export default function FilterMobile({useFilter}){
 
   const handleClose = () => {
     setOpenMake(false)
+    setOpenModel(false)
   }
 
   const handleModelOpen = () => {
@@ -98,6 +99,7 @@ export default function FilterMobile({useFilter}){
           id={category}
           onClick={setCategory}
           flex={'nowrap'}
+          isNew={location.pathname === '/new'}
         />
       </div>
 

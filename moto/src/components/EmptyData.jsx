@@ -4,7 +4,7 @@ import { Empty } from 'antd';
 function EmptyData() {
   return(
     <div className='m-10'>
-      <Empty description="Melumat tapilmadi" />
+      <Empty description="Məlumat tapılmadı" />
     </div>
   )
 }

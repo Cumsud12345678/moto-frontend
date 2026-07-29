@@ -12,6 +12,7 @@ import LibDrawer from '../../../customs/libs/LibDrawer'
 import ButtonGroup from '../../../customs/ButtonGroup'
 import SoloLabelinput from '../../../customs/SoloLabelinput'
 import Checkbox from '../../../customs/Checkbox'
+import { useLocation } from 'react-router-dom'
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -20,6 +21,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 export default function FilterModal({open, onClose, useFilter}){
 
   const dispatch = useDispatch()
+  const location = useLocation()
 
   const { 
     
@@ -193,6 +195,7 @@ export default function FilterModal({open, onClose, useFilter}){
               data={statuses}
               id={status}
               onClick={setStatus}
+              isNew={location.pathname === '/new'}
             />
 
           </div>
@@ -290,6 +293,7 @@ export default function FilterModal({open, onClose, useFilter}){
               data={colors}
               id={color}
               onClick={setColor}
+              isNew={location.pathname === '/new'}
             />
           </div>
         </div>
@@ -323,6 +327,7 @@ export default function FilterModal({open, onClose, useFilter}){
               data={fuels}
               id={fuel}
               onClick={setFuel}
+              isNew={location.pathname === '/new'}
             />
 
           </div>
@@ -336,6 +341,7 @@ export default function FilterModal({open, onClose, useFilter}){
               data={speeds}
               id={speed}
               onClick={setSpeed}
+              isNew={location.pathname === '/new'}
             />
 
           </div>

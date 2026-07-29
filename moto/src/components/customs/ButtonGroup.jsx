@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 
-export default function ButtonGroup ({data, id, onClick, flex=null}) {
+export default function ButtonGroup ({data, id, onClick, flex=null, isNew=false}) {
 
-  const location = useLocation()
+  // const location = useLocation()
   
   return(
     <div className={`flex gap-2 ${flex ? 'flex-nowrap' : 'flex-wrap'}`}>
@@ -26,7 +26,7 @@ export default function ButtonGroup ({data, id, onClick, flex=null}) {
 
       {
         data.map((item, index) => {
-          if(location.pathname == '/new' && item.label == 'Hamisi') return; 
+          if(isNew && item.label == 'Hamisi') return; 
           const active = item._id == id
           return (
             <button 
