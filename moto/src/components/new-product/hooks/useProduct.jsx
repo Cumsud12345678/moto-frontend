@@ -97,7 +97,7 @@ export const useProduct = () => {
     }
 
     window.scrollTo({
-      top: document.body.scrollHeight,
+      top: document.body.scrollHeight / 4,
       behavior: "smooth"
     });
   }

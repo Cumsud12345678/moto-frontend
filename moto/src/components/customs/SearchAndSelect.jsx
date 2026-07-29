@@ -74,8 +74,8 @@ export default function SearchAndSelect({ data = [], id, onClick, onChange, labe
     },
 
     default: {
-      width: 'w-3/4',
-      inputClass: 'w-full bg-white px-2 py-2.5 text-sm',
+      width: 'w-2/4',
+      inputClass: 'w-full bg-white p-3 text-md',
       placeholder: label,
       labelType: false
     }

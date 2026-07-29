@@ -12,6 +12,7 @@ import SearchAndSelect from '../../../customs/SearchAndSelect';
 import ButtonGroup from '../../../customs/ButtonGroup';
 import SoloLabelinput from '../../../customs/SoloLabelinput';
 import Checkbox from '../../../customs/Checkbox';
+import SriButtonGroup from '../../../customs/SriButtonGroup';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -84,6 +85,10 @@ export default function FilterDialog({ open, onClose, useFilter }) {
     speeds,
     speed,
     setSpeed,
+
+    categories,
+    category,
+    setCategory,
 
     equipments,
     stateEquipment,
@@ -168,7 +173,7 @@ export default function FilterDialog({ open, onClose, useFilter }) {
 
               </div>
             </div>
-
+          
             <div className='flex gap-3 items-center justify-between'>
               <span className='w-[180px] shrink-0'>Qiymət</span>
               <div className='flex w-full gap-3'>

@@ -320,11 +320,11 @@ export default function ProductForm({ productData }) {
                 :
                 <div>
                   <Label>Şəhər</Label>
-                  <div onClick={() => setOpen(true)} className="w-full p-3 border rounded-xl mt-2">
+                  <div onClick={() => setOpen(true)} className="w-full p-3 border rounded-xl mt-1.5">
                     {
                       selectedCityLabel 
                       ? selectedCityLabel.label
-                      : 'Şəhər seç'
+                      : <span className="text-muted">Şəhər seç</span>
                     }
                   </div>
                 </div>
