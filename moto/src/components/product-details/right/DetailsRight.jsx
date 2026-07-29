@@ -58,7 +58,7 @@ export default function DetailsRight({ user, price, city, isLiked, toggleLike, s
           <div className="my-3 flex items-center gap-2 rounded-lg bg-[#2da562] p-3 text-white cursor-pointer">
             <LocalPhoneIcon sx={{ mx: 1 }} />
             <h4 className="m-0 p-0 text-xl font-semibold">
-              <h5 className="p-0 m-0">+994 {String(phone).slice(0, 2)} {String(phone).slice(2, 5)} {String(phone).slice(5, 7)} {String(phone).slice(7, 9)}</h5>
+              +994 {String(phone).slice(0, 2)} {String(phone).slice(2, 5)} {String(phone).slice(5, 7)} {String(phone).slice(7, 9)}
             </h4>
           </div>
 

@@ -237,7 +237,7 @@ export const productSlice = createSlice({
       .addCase(getProductDetails.fulfilled, (state, action) => {
         state.selectedProduct = action.payload.data.product
         state.ids = action.payload.data.ids
-        state.productsCache[action.payload.data._id] = action.payload.data.product
+        state.productsCache[action.payload.data.product._id] = action.payload.data.product
         state.detailsStatus = 'success'
       })
       .addCase(getProductDetails.rejected, (state, action) => {

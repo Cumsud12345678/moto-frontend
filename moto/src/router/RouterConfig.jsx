@@ -33,6 +33,8 @@ export default function RouterConfig(){
   const { isAuth, authStatus, role } = useSelector(s => s.user)
 
   useEffect(() => {
+    if (authStatus !== 'success' || !isAuth) return
+
     const raw = Cookies.get('favorites')
     let favorites = []
     try {
@@ -41,17 +43,22 @@ export default function RouterConfig(){
       favorites = []
     }
 
-    if (authStatus === 'success' && isAuth) {
-      if (favorites.length > 0) {
-        dispatch(setFavorites(favorites))
+    if (favorites.length === 0) return
+
+    // setFavorites tək id qəbul edir, ona görə hər birini ayrıca göndəririk
+    // və YALNIZ hamısı uğurla köçürüləndən sonra cookie-ni siləcəyik
+    Promise.all(favorites.map(id => dispatch(setFavorites(id)).unwrap()))
+      .then(() => {
         Cookies.remove('favorites')
-      }
-    }
-  }, [authStatus])
+      })
+      .catch(() => {
+        // migrasiya uğursuzdursa cookie-ni saxlayırıq ki, itməsin
+      })
+  }, [authStatus, isAuth])
 
   useEffect(() => {
     dispatch(checkMe())
-  }, [isAuth])
+  }, [])
 
   useEffect(() => {
     if(authStatus !== 'idle'){

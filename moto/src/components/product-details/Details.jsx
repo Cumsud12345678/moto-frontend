@@ -34,21 +34,20 @@ export default function Details({details, ids}){
 
   useEffect(() => {
     if (isAuth) {
-      if (!ids || ids.length == 0) return;
-      for (const value of ids) {
-        value == _id && setIsLiked(true)
-      }
+      const liked = !!(ids && ids.length > 0 && ids.some(value => value == _id))
+      setIsLiked(liked)
     } else {
       const favorites = JSON.parse(Cookies.get("favorites") || "[]")
-      for (const favorite of favorites) {
-        favorite == _id && setIsLiked(false)
-      }
+      const liked = favorites.some(favorite => favorite == _id)
+      setIsLiked(liked)
     }
-  }, [])
+  }, [_id, isAuth, ids])
 
   const toggleLike = () => {
+    console.log('1')
     const favorites = JSON.parse(Cookies.get("favorites") || "[]")
     if (isLiked) {
+      console.log('2')
       if (isAuth) {
         toast.promise(
           dispatch(deleteFavorites(_id)).unwrap(),
@@ -59,6 +58,7 @@ export default function Details({details, ids}){
           }
         )
       } else {
+        console.log('3')
         const newFavorites = favorites.filter(id => id !== _id)
         Cookies.set("favorites", JSON.stringify(newFavorites))
       }
@@ -74,7 +74,9 @@ export default function Details({details, ids}){
         )
       } else {
         favorites.push(_id)
+        console.log(favorites)
         Cookies.set("favorites", JSON.stringify(favorites))
+
       }
     }
     setIsLiked(!isLiked)

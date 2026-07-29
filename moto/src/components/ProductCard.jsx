@@ -81,11 +81,20 @@ export default function ProductCard({ product }) {
   }, [location.pathname])
 
   const isDesktop = useMediaQuery('(min-width: 1024px)', { noSsr: true })
-  
+
+  const handleCardClick = (e) => {
+    // Desktopda yeni tab-da açılır (real navigasiya, problem yoxdur)
+    if (isDesktop) return
+    // Mobil/eyni tab-da tam reload yerine SPA (client-side) naviqasiya edirik
+    e.preventDefault()
+    navigate(`/elanlar/${_id}`)
+  }
+
   return (
     <a
       href={`/elanlar/${_id}`}
-      target={`${isDesktop ? '_blank' : ''}`}
+      target={isDesktop ? '_blank' : undefined}
+      onClick={handleCardClick}
       className="rounded-xl overflow-hidden cursor-pointer relative border 
       border-gray-100 bg-white hover:shadow-lg transition-shadow duration-200"
     >
