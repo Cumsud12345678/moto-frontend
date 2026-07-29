@@ -1,6 +1,7 @@
 import Stack from "@mui/material/Stack";
 import DetailsImages from "./DetailsImages";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import Alert from '@mui/material/Alert';
@@ -8,8 +9,9 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { useNavigate } from "react-router-dom";
 import IconButton from '@mui/material/IconButton'
 import { useEffect } from "react";
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 
-export default function DetailsLeft({ product }){
+export default function DetailsLeft({ product, isLiked, toggleLike, share }){
  
   const {
     make,
@@ -36,6 +38,9 @@ export default function DetailsLeft({ product }){
     const { name, profile, phone } = user
     const navigate = useNavigate()
 
+    const formattedPhone = `994${phone}`
+    const text = 'Salam'
+
     return (
       <div className="flex flex-col w-[100%] lg:w-[65%] min-w-0 mt-13">
         
@@ -50,11 +55,14 @@ export default function DetailsLeft({ product }){
               <span className="ml-2 font-bold text-green-400">{price} ₼</span>
             </div>
             <div>
-              <button className="p-2 cursor-pointer text-white">
+              <button onClick={share} className="p-2 cursor-pointer text-white">
                 <ShareIcon sx={{ fontSize: '22px', mx: 2 }} />
               </button>
-              <button className="p-2 cursor-pointer text-white">
-                <FavoriteBorderIcon sx={{ fontSize: '22px' }} />
+              <button onClick={toggleLike} className="p-2 cursor-pointer text-white">
+                {isLiked
+                  ? <FavoriteIcon style={{ color: '#ef4444', fontSize: '22px' }} />
+                  : <FavoriteBorderIcon style={{ color: 'white', fontSize: '22px' }} />
+                }
               </button>
             </div>
           </div>
@@ -147,15 +155,46 @@ export default function DetailsLeft({ product }){
             </div>
           </div>
 
-          <div className="flex items-center justify-between p-3 bg-green-500 text-white rounded-lg my-3 gap-2">
+          <div onClick={`tel:${formattedPhone}`} className="flex items-center justify-between p-3 bg-[#2DA562] text-white rounded-lg my-3 gap-2">
             <div className="flex">
               <LocalPhoneIcon sx={{ mx: 1 }} />
-              <h5 className="p-0 m-0">{phone}</h5>
+              <h5 className="p-0 m-0">+994 {String(phone).slice(0, 2)} {String(phone).slice(2, 5)} {String(phone).slice(5, 7)} {String(phone).slice(7, 9)}</h5>
             </div>
             <h5 className="m-0">Zəng et</h5>
           </div>
 
           <Alert severity="warning">Motosikletə baxış keçirmədən öncə beh göndərməyin.</Alert>
+        </div>
+
+
+        <div className="fixed bottom-0 w-full p-2 z-[1000] block lg:hidden">
+          <div className="flex gap-4">
+            
+            <button className="w-full bg-[#2DA562] rounded-xl text-white shadow">
+              <a
+                href={`tel:${formattedPhone}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full h-full flex items-center justify-center p-3"
+              >
+                <LocalPhoneIcon sx={{ mx: 1 }} />
+                <span className="text-white font-bold">Zəng et</span>
+              </a>
+            </button>
+
+            <button className="w-full bg-blue-500 rounded-xl text-white shadow">
+              <a
+                href={`https://wa.me/${formattedPhone}?text=${text}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full h-full flex items-center justify-center p-3"
+              >
+                <WhatsAppIcon sx={{ mx: 1 }} />
+                WhatsApp
+              </a>
+            </button>
+
+          </div>
         </div>
 
       </div>

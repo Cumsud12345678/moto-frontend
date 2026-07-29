@@ -89,7 +89,7 @@ export default function DetailsImages({ images, make }) {
             <img 
               key={index} src={`${BASE_URL}/uploads/${img}`} 
               alt={make.label}
-              className={`w-[70px] h-[60px] object-cover cursor-pointer rounded
+              className={`w-[70px] h-[60px] object-contain cursor-pointer rounded
               ${activeImage === index ? "opacity-100 ring-2 ring-black" : "opacity-60"}`}
               onMouseEnter={() => swiperRef.current?.slideTo(index)}
           />

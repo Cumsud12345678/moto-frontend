@@ -37,6 +37,7 @@ export default function ProductCard({ product }) {
 
   const toggleLike = (e) => {
     e.stopPropagation()
+    e.preventDefault()
     const favorites = JSON.parse(Cookies.get("favorites") || "[]")
     if(is_liked) {
       if(isAuth) {
