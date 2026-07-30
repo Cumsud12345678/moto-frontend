@@ -72,15 +72,15 @@ export default function Autos(){
             </div>
             :
             filteredProducts.length == 0
-              ? 'Urun tapilmadi'
+              ? 'Elan tapılmadı'
               : <ProductList products={filteredProducts} topMob={'0px'} topDes={'0px'} />
         }
       </div>
       {/* <div className="mt-15 lg:mt-6 px-4 container mx-auto max-w-[1000px]">
         <span className='text-2xl font-semibold'>Butun elanlar</span>
         <ProductList products={products} topMob={'0px'} topDes={'0px'} />
-      </div>
-      <Footer /> */}
+      </div> */}
+      <Footer />
     </div>
   )
 }
