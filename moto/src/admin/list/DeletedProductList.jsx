@@ -4,20 +4,22 @@ import { toast } from "@heroui/react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { Fragment } from 'react';
-import LibAlert from '../../../components/customs/libs/LibAlert';
+import LibAlert from '../../components/customs/libs/LibAlert';
 import { Switch } from '@mui/material';
 import { Gear } from '@gravity-ui/icons';
 import { ProductModal } from '../customs/ProductModal';
-import { deleteDeletedUser } from '../../../redux/slices/admin/adminUserSlice';
+import { deleteDeletedProduct } from '../../redux/slices/admin/adminProductSlice';
 
-export default function DeletedUserList({user}) {
+export default function DeletedProductList({product}) {
 
   const dispatch = useDispatch()
   const [open, setOpen] = useState(false)
 
+  console.log(product)
+
   const handleDelete = () => {
     toast.promise(
-      dispatch(deleteDeletedUser(user._id)).unwrap(),
+      dispatch(deleteDeletedProduct(product._id)).unwrap(),
       {
         loading: 'User silinir',
         success: 'User silindi',
@@ -31,23 +33,23 @@ export default function DeletedUserList({user}) {
       <tbody>
         <tr className="border-b hover:bg-gray-50">
           <td className="border-r p-2 truncate">
-            {user._id}
+            {product.product_id}
           </td>
 
           <td className="border-r p-2 truncate">
-            {user.createdAt}
+            {product.createdAt}
           </td>
 
           <td className="border-r p-2 text-center">
-            {user.user_id}
+            {product.user?._id}
           </td>
 
           <td className="border-r p-2 truncate">
-            {user.phone}
+            {product.user?.phone}
           </td>
 
           <td className="border-r p-2">
-            {user.description}
+            {product.description}
           </td>
 
           <td className="p-2">

@@ -1,18 +1,18 @@
-import { Nav } from './customs/Nav';
+import { Nav } from '../customs/Nav';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from "@heroui/react";
 import { createMetadata, getMetadata, setData } from '../../redux/slices/admin/adminMetadataSlice';
 import { useLocation } from 'react-router-dom';
-import MakeModel from './metadata/MakeModel';
-import Model from './metadata/Model';
-import Category from './metadata/Category';
-import City from './metadata/City';
-import Color from './metadata/Color';
-import Fuel from './metadata/Fuel';
-import Speed from './metadata/Speed';
-import Status from './metadata/Status';
-import Equipment from './metadata/Equipment';
+import MakeModel from '../metadata/MakeModel';
+import Model from '../metadata/Model';
+import Category from '../metadata/Category';
+import City from '../metadata/City';
+import Color from '../metadata/Color';
+import Fuel from '../metadata/Fuel';
+import Speed from '../metadata/Speed';
+import Status from '../metadata/Status';
+import Equipment from '../metadata/Equipment';
 
 export default function Metadata() {
 

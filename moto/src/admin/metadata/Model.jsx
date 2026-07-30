@@ -4,7 +4,7 @@ import {Plus} from '@gravity-ui/icons';
 import {Minus} from '@gravity-ui/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from "@heroui/react";
-import { createMetadata, setData } from '../../../redux/slices/admin/adminMetadataSlice';
+import { createMetadata, setData } from '../../redux/slices/admin/adminMetadataSlice';
 import MetadataList from '../list/MetadataList';
 import {ListBox, Select} from "@heroui/react";
 

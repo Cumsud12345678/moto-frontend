@@ -4,7 +4,7 @@ import { toast } from "@heroui/react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { Fragment } from 'react';
-import LibAlert from '../../../components/customs/libs/LibAlert';
+import LibAlert from '../../components/customs/libs/LibAlert';
 import { Switch } from '@mui/material';
 import { Gear } from '@gravity-ui/icons';
 import { ProductModal } from '../customs/ProductModal';

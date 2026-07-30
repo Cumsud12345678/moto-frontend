@@ -1,17 +1,13 @@
-import { IconButton } from '@mui/material';
-import CreateIcon from '@mui/icons-material/Create';
-import {Pencil} from '@gravity-ui/icons';
-import {TrashBin} from '@gravity-ui/icons';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import UserList from './list/UserList';
-import { toast } from "@heroui/react";
+import ProductList from '../list/ProductList';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteUser, getUsers } from '../../redux/slices/admin/adminUserSlice';
-import { Nav } from './customs/Nav';
-import { useLocation, useNavigate } from 'react-router-dom';
-import PaginationComponent from './customs/Pagination';
+import { getProducts } from '../../redux/slices/admin/adminProductSlice';
+import { Nav } from '../customs/Nav';
+import PaginationComponent from '../customs/Pagination';
+import { toast } from '@heroui/react';
 
-export default function Users() {
+export default function Products() {
 
   const [page, setPage] = useState(1)
 
@@ -19,12 +15,11 @@ export default function Users() {
   const navigate = useNavigate()
   const location = useLocation()
 
-  const [userId, setUserId] = useState('')
-  const [phone, setPhone] = useState('')
+  const [id, setId] = useState('')
   
   useEffect(() => {
     toast.promise(
-      dispatch(getUsers(page)).unwrap(),
+      dispatch(getProducts(page)).unwrap(),
       {
         loading: 'Yüklənir...',
         success: 'Yükləndi',
@@ -36,7 +31,7 @@ export default function Users() {
   const manageUrlAndPage = (newPage) => {
     const params = new URLSearchParams()
     params.set('page', newPage)
-    navigate(`/admin/users?${params.toString()}`)
+    navigate(`/admin/products?${params.toString()}`)
   }
 
   useEffect(() => {
@@ -45,22 +40,14 @@ export default function Users() {
     setPage(urlPage)
   }, [location.search])
 
-  const {
-    users,
-    total
-  } = useSelector(s => s.adminUsers)
-
   const handleSearch = () => {
     const params = new URLSearchParams()
+    if(id) params.set('id', id);
 
-    if(userId) {
-      params.set('userId', userId)
-    }else if(phone) {
-      params.set('phone', phone)
-    }
-
-    navigate(`/admin/users/search?${params.toString()}`)
+    navigate(`/admin/products/search?${params.toString()}`)
   }
+
+  const { products, total } = useSelector(s => s.adminProducts)
 
   return(
     <div className='flex flex-row'>
@@ -71,21 +58,13 @@ export default function Users() {
           <h1 className='text-2xl font-bold'>Axtarış</h1>
           <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-3 gap-4'>
             <input 
-              value={userId}
-              onChange={(e) => setUserId(e.target.value)}
-              type="text" className='p-3 rounded-xl border bg-white focus:outline-sky-500' 
-              placeholder='ID yazin' 
-            />
-
-            <input 
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
+              value={id}
+              onChange={(e) => setId(e.target.value)}
               type="text" 
               className='p-3 rounded-xl border bg-white focus:outline-sky-500' 
-              placeholder='Nomre yazin' 
+              placeholder='ID yazin' 
             />
-
-            <button 
+            <button
               onClick={handleSearch}
               className='bg-blue-500 text-white rounded-xl w-1/3 cursor-pointer'
             >
@@ -99,21 +78,20 @@ export default function Users() {
             <tr className="border-b">
               <th className="w-[225px] border-r p-2 text-left font-medium">ID</th>
               <th className="w-[120px] border-r p-2 text-left font-medium">Created</th>
-              <th className="w-[180px] border-r p-2 text-left font-medium">User details</th>
-              <th className="w-[70px] border-r p-2 text-center font-medium">Total pr.</th>
-              <th className="w-[60px] border-r p-2 text-center font-medium">Lock</th>
-              <th className="w-[60px] border-r p-2 text-center font-medium">Warn</th>
-              <th className="w-[80px] border-r p-2 text-center font-medium">Role</th>
-              <th className="w-[200px] p-2 text-center font-medium">Functions</th>
+              <th className="w-[70px] border-r p-2 text-center font-medium">Price</th>
+              <th className="w-[60px] border-r p-2 text-center font-medium">Volume</th>
+              <th className="w-[60px] border-r p-2 text-center font-medium">Active</th>
+              <th className="w-[80px] border-r p-2 text-center font-medium">Number</th>
+              <th className="w-[100px] p-2 text-center font-medium">Functions</th>
             </tr>
           </thead>
 
           {
-            users.map(user => (
-              <UserList key={user._id} user={user} />
+            products.map(product => (
+              <ProductList key={product._id} product={product} />
             ))
           }
-
+          
         </table>
 
         <PaginationComponent page={page} setPage={manageUrlAndPage} totalPages={total} />

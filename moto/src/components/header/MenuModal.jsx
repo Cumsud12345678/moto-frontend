@@ -21,7 +21,7 @@ export default function MenuModal({open, setOpen, isMobile}){
 
   return(
     <Drawer isOpen={open} onOpenChange={setOpen}>
-      <Drawer.Backdrop className='z-[1200]'>
+      <Drawer.Backdrop style={{zIndex: '100000'}}>
         <Drawer.Content placement={isMobile ? 'left' : 'left'}>
           <Drawer.Dialog className='p-0'>
             <Drawer.CloseTrigger />

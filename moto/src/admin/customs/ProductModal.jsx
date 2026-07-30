@@ -11,7 +11,7 @@ import {Ban} from '@gravity-ui/icons';
 import {EyeSlash} from '@gravity-ui/icons';
 import {ArrowsRotateLeft} from '@gravity-ui/icons';
 import {Rocket} from '@gravity-ui/icons';
-import LibAlert from "../../../components/customs/libs/LibAlert";
+import LibAlert from "../../components/customs/libs/LibAlert";
 import { useUser } from "../hooks/useUser";
 import { toast } from "@heroui/react";
 import { useProduct } from "../hooks/useProduct";

@@ -4,8 +4,8 @@ import { toast } from "@heroui/react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { Fragment } from 'react';
-import LibAlert from '../../../components/customs/libs/LibAlert';
-import { deleteData, deleteMetadata } from '../../../redux/slices/admin/adminMetadataSlice';
+import LibAlert from '../../components/customs/libs/LibAlert';
+import { deleteData, deleteMetadata } from '../../redux/slices/admin/adminMetadataSlice';
 
 export default function MetadataList({data, type}) {
 

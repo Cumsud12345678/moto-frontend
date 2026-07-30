@@ -56,31 +56,41 @@ export default function Autos(){
         <link rel="canonical" href="https://dir-indexed-five-prep.trycloudflare.com" />
       </Helmet>
 
+      <div className="flex flex-col container mx-auto max-w-[1000px]">
+      
+        <div className="hidden xl:block lg:fixed top-0 bg-red-500 w-[250px] h-[100vh] z-[2000] left-0">
+          {/* Burda reklam olacaq */}
+        </div>
 
-      <Header filter={filterState} />
-      <div className="mt-43 lg:mt-6 px-4 container mx-auto max-w-[1000px] flex flex-col mb-20">
-        <span className='text-2xl font-semibold'>Bütün elanlar</span>
-        {
-          loading
-            ?
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-2 lg:mt-3">
-              {
-                [...Array(8)].map((_, index) => (
-                  <HomeSkeleton key={index} />
-                ))
-              }
-            </div>
-            :
-            filteredProducts.length == 0
-              ? 'Elan tapılmadı'
-              : <ProductList products={filteredProducts} topMob={'0px'} topDes={'0px'} />
-        }
+        <div className="z-[9999999] bg-[#f5f5f5]">
+          <Header filter={filterState} />
+
+          <div className="mt-40 lg:mt-6 px-4 flex flex-col mb-25">
+            <span className='text-2xl font-semibold'>Bütün elanlar</span>
+            {
+              loading
+                ? (
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-2 lg:mt-3">
+                    {[...Array(8)].map((_, index) => <HomeSkeleton key={index} />)}
+                  </div>
+                )
+                : filteredProducts.length == 0
+                  ? 'Elan tapılmadı'
+                  : <ProductList products={filteredProducts} topMob={'0px'} topDes={'0px'} />
+            }
+          </div>
+
+          <Footer />
+        </div>
+
+        <div className="hidden xl:block fixed top-0 bg-red-500 w-[250px] h-[100vh] z-[2000] right-0">
+          {/* Burda reklam olacaq */}
+        </div>
+
       </div>
-      {/* <div className="mt-15 lg:mt-6 px-4 container mx-auto max-w-[1000px]">
-        <span className='text-2xl font-semibold'>Butun elanlar</span>
-        <ProductList products={products} topMob={'0px'} topDes={'0px'} />
-      </div> */}
+
       <Footer />
+      
     </div>
   )
 }

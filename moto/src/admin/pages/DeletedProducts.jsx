@@ -1,30 +1,30 @@
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import ProductList from './list/ProductList';
+import ProductList from '../list/ProductList';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProducts } from '../../redux/slices/admin/adminProductSlice';
-import { Nav } from './customs/Nav';
-import { getDeletedUser, getDeletedUsers } from '../../redux/slices/admin/adminUserSlice';
-import DeletedUserList from './list/DeletedUserList';
-import PaginationComponent from './customs/Pagination';
+import { getDeletedProduct, getDeletedProducts, getProducts } from '../../redux/slices/admin/adminProductSlice';
+import { Nav } from '../customs/Nav';
+import DeletedUserList from '../list/DeletedUserList';
+import DeletedProductList from '../list/DeletedProductList';
+import PaginationComponent from '../customs/Pagination';
 import { toast } from '@heroui/react';
 
-export default function DeletedUsers() {
+export default function DeletedProducts() {
 
   const [page, setPage] = useState(1)
-
-  const [id, setId] = useState('')
-  const [phone, setPhone] = useState('')
-  const [userId, setUserId] = useState('')
   const [isSearch, setIsSearch] = useState(false)
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const location = useLocation()
 
+  const [productID, setProductID] = useState('')
+  const [userID, setUserID] = useState('')
+  const [userPhone, setUserPhone] = useState('')
+
   useEffect(() => {
     toast.promise(
-      dispatch(getDeletedUsers(page)).unwrap(),
+      dispatch(getDeletedProducts(page)).unwrap(),
       {
         loading: 'Yüklənir...',
         success: 'Yükləndi',
@@ -36,19 +36,18 @@ export default function DeletedUsers() {
   const manageUrlAndPage = (newPage) => {
     const params = new URLSearchParams()
     params.set('page', newPage)
-    navigate(`/admin/deleted/users?${params.toString()}`)
+    navigate(`/admin/deleted/products?${params.toString()}`)
   }
 
   useEffect(() => {
     const params = new URLSearchParams(location.search)
     if(params.get('page')){
       setIsSearch(false)
-      const urlPage = Number(params.get('page')) || 1
-      setPage(urlPage)
-    }else if(params.get('id') || params.get('phone') || params.get('userId')) {
+      setPage(Number(params.get('page')) || 1)
+    }else if(params.get('productID') || params.get('userID') || params.get('userPhone')) {
       setIsSearch(true)
       toast.promise(
-        dispatch(getDeletedUser(location.search)).unwrap(),
+        dispatch(getDeletedProduct(location.search)).unwrap(),
         {
           loading: 'Yüklənir...',
           success: 'Yükləndi',
@@ -60,13 +59,13 @@ export default function DeletedUsers() {
 
   const setFilter = () => {
     const params = new URLSearchParams()
-    if(id) params.set('id', id);
-    if(userId) params.set('userId', userId);
-    if(phone) params.set('phone', phone);
-    navigate(`/admin/deleted/users?${params.toString()}`)
+    if(productID) params.set('productID', productID);
+    if(userID) params.set('userID', userID);
+    if(userPhone) params.set('userPhone', userPhone);
+    navigate(`/admin/deleted/products?${params.toString()}`)
   }
 
-  const { deletedUsers, totalDeletedUsers, deletedUser } = useSelector(s => s.adminUsers)
+  const { deletedProducts, totalDeletedProducts, deletedProduct } = useSelector(s => s.adminProducts)
 
   return(
     <div className='flex flex-row'>
@@ -77,27 +76,25 @@ export default function DeletedUsers() {
           <h1 className='text-2xl font-bold'>Axtarış</h1>
           <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-3 gap-4'>
             <input 
-              value={id}
-              onChange={(e) => setId(e.target.value)}
-              type="text" 
-              className='p-3 rounded-xl border bg-white focus:outline-sky-500'
-              placeholder='ID yazin' 
-            />
-
-            <input 
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
+              value={productID}
+              onChange={(e) => setProductID(e.target.value)}
               type="text" 
               className='p-3 rounded-xl border bg-white focus:outline-sky-500' 
-              placeholder='Nömrə yazın' 
+              placeholder='productID yazin' 
             />
-
             <input 
-              value={userId}
-              onChange={(e) => setUserId(e.target.value)}
+              value={userID}
+              onChange={(e) => setUserID(e.target.value)}
               type="text" 
               className='p-3 rounded-xl border bg-white focus:outline-sky-500' 
               placeholder='userID yazin' 
+            />
+            <input 
+              value={userPhone}
+              onChange={(e) => setUserPhone(e.target.value)}
+              type="text" 
+              className='p-3 rounded-xl border bg-white focus:outline-sky-500' 
+              placeholder='userPhone yazin' 
             />
             <button 
               onClick={setFilter}
@@ -111,24 +108,25 @@ export default function DeletedUsers() {
         <table className="w-full table-fixed border border-collapse bg-white mt-10">
           <thead>
             <tr className="border-b">
-              <th className="w-[180px] border-r p-2 text-left font-medium">ID</th>
+              <th className="w-[180px] border-r p-2 text-left font-medium">product ID</th>
               <th className="w-[120px] border-r p-2 text-left font-medium">Created</th>
               <th className="w-[180px] border-r p-2 text-left font-medium">User ID</th>
-              <th className="w-[100px] border-r p-2 text-center font-medium">Phone</th>
+              <th className="w-[100px] border-r p-2 text-center font-medium">User Phone</th>
               <th className="w-[100px] border-r p-2 text-center font-medium">Description</th>
               <th className="w-[100px] p-2 text-center font-medium">Functions</th>
             </tr>
           </thead>
 
           {
+
             isSearch
-              ? 
-              deletedUser?.map(product => (
-                <DeletedUserList key={product._id} user={product} />
+              ?
+              deletedProduct?.map(product => (
+                <DeletedProductList key={product._id} product={product} />
               ))
               :
-              deletedUsers?.map(product => (
-                <DeletedUserList key={product._id} user={product} />
+              deletedProducts?.map(product => (
+                <DeletedProductList key={product._id} product={product} />
               ))
           }
           
@@ -136,10 +134,10 @@ export default function DeletedUsers() {
 
         {
           !isSearch
-            && <PaginationComponent page={page} setPage={manageUrlAndPage} totalPages={totalDeletedUsers} />
+            && <PaginationComponent page={page} setPage={manageUrlAndPage} totalPages={totalDeletedProducts} />
         }
-
         
+
       </div>
 
     </div>

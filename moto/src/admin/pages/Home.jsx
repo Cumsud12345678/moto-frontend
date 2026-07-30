@@ -1,9 +1,9 @@
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import * as React from 'react';
 import { BarChart } from '@mui/x-charts/BarChart';
-import { dataset, valueFormatter } from './dataset/weather';
+import { dataset, valueFormatter } from '../demoData/weather';
 import { PieChart } from '@mui/x-charts/PieChart';
-import { Nav } from './customs/Nav';
+import { Nav } from '../customs/Nav';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserStats } from '../../redux/slices/admin/adminUserSlice';
 import { getProductStats } from '../../redux/slices/admin/adminProductSlice';

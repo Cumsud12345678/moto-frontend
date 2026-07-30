@@ -3,11 +3,11 @@ import CreateIcon from '@mui/icons-material/Create';
 import {Pencil} from '@gravity-ui/icons';
 import {TrashBin} from '@gravity-ui/icons';
 import { useEffect, useState } from 'react';
-import UserList from './list/UserList';
+import UserList from '../list/UserList';
 import { toast } from "@heroui/react";
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteUser, getUser, getUsers } from '../../redux/slices/admin/adminUserSlice';
-import { Nav } from './customs/Nav';
+import { Nav } from '../customs/Nav';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 export default function UserSearch() {

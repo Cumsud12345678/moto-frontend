@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { toast } from "@heroui/react";
-import { deleteUser, lockUser, resetWarning, unlockUser, warnUser } from "../../../redux/slices/admin/adminUserSlice";
+import { deleteUser, lockUser, resetWarning, unlockUser, warnUser } from "../../redux/slices/admin/adminUserSlice";
 import { useDispatch } from "react-redux";
 
 export const useUser = () => {

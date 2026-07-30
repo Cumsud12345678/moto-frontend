@@ -70,14 +70,14 @@ export default function FilterMobile({useFilter}){
     <div className='flex lg:hidden flex-col'>
       <div className='flex items-center justify-between w-full gap-3 mb-2'>
         <div className="w-full h-full flex align-center py-2 gap-3">
-          <div onClick={() => setOpenMake(true)} className='border rounded-lg p-2 w-full'>
+          <div onClick={() => setOpenMake(true)} className='border rounded-lg p-2 w-full bg-white shadow'>
             { make
                 ?
                 makes.find(x => x._id == make)?.label
                 : 'Marka' 
             }
           </div>
-          <div onClick={handleModelOpen} className='border rounded-lg p-2 w-full'>
+          <div onClick={handleModelOpen} className='border rounded-lg p-2 w-full bg-white shadow'>
             { model
                 ?
                 filteredModel.find(x => x._id == model)?.label
@@ -86,7 +86,7 @@ export default function FilterMobile({useFilter}){
           </div>
         </div>
         
-        <button onClick={() => navigate(`${location.search}#filter`)} className="bg-blue-500 rounded-lg text-white px-3 shrink-0 py-2">
+        <button onClick={() => navigate(`${location.search}#filter`)} className="bg-blue-500 rounded-lg text-white px-3 shrink-0 py-2 shadow">
           <FilterAltIcon />
           Filter
         </button>

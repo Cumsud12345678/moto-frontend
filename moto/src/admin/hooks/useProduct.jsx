@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { toast } from "@heroui/react";
 import { useDispatch } from "react-redux";
-import { activeProduct, deactiveProduct, deleteProduct } from "../../../redux/slices/admin/adminProductSlice";
+import { activeProduct, deactiveProduct, deleteProduct } from "../../redux/slices/admin/adminProductSlice";
 
 export const useProduct = () => {
 

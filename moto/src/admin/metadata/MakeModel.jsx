@@ -1,12 +1,12 @@
 import { Label } from '@heroui/react';
-import LibDropzone from '../../../components/customs/libs/LibDropzone';
+import LibDropzone from '../../components/customs/libs/LibDropzone';
 import { Fragment, useEffect, useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import {Plus} from '@gravity-ui/icons';
 import {Minus} from '@gravity-ui/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from "@heroui/react";
-import { createMetadata, getMetadata, setData } from '../../../redux/slices/admin/adminMetadataSlice';
+import { createMetadata, getMetadata, setData } from '../../redux/slices/admin/adminMetadataSlice';
 import MetadataList from '../list/MetadataList';
 
 export default function MakeModel({makes, models}) {

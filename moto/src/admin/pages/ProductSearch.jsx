@@ -1,15 +1,11 @@
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import ProductList from './list/ProductList';
+import ProductList from '../list/ProductList';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProducts } from '../../redux/slices/admin/adminProductSlice';
-import { Nav } from './customs/Nav';
-import PaginationComponent from './customs/Pagination';
-import { toast } from '@heroui/react';
+import { getProduct, getProducts } from '../../redux/slices/admin/adminProductSlice';
+import { Nav } from '../customs/Nav';
 
-export default function Products() {
-
-  const [page, setPage] = useState(1)
+export default function ProductSearch() {
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -18,28 +14,14 @@ export default function Products() {
   const [id, setId] = useState('')
   
   useEffect(() => {
-    toast.promise(
-      dispatch(getProducts(page)).unwrap(),
-      {
-        loading: 'Yüklənir...',
-        success: 'Yükləndi',
-        error: (err) => err.message || 'Bir xəta oldu!'
-      }
-    )
-  }, [page])
-
-  const manageUrlAndPage = (newPage) => {
-    const params = new URLSearchParams()
-    params.set('page', newPage)
-    navigate(`/admin/products?${params.toString()}`)
-  }
-
-  useEffect(() => {
+    dispatch(getProduct(location.search))
     const params = new URLSearchParams(location.search)
-    const urlPage = Number(params.get('page')) || 1
-    setPage(urlPage)
+    if(params.get('id')){
+      setId(params.get('id'))
+    }
   }, [location.search])
 
+  
   const handleSearch = () => {
     const params = new URLSearchParams()
     if(id) params.set('id', id);
@@ -47,7 +29,7 @@ export default function Products() {
     navigate(`/admin/products/search?${params.toString()}`)
   }
 
-  const { products, total } = useSelector(s => s.adminProducts)
+  const { product } = useSelector(s => s.adminProducts)
 
   return(
     <div className='flex flex-row'>
@@ -87,14 +69,12 @@ export default function Products() {
           </thead>
 
           {
-            products.map(product => (
+            product.map(product => (
               <ProductList key={product._id} product={product} />
             ))
           }
           
         </table>
-
-        <PaginationComponent page={page} setPage={manageUrlAndPage} totalPages={total} />
         
 
       </div>

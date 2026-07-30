@@ -21,11 +21,11 @@ export default function Header({dur, filter}){
   let isScroll = useScrollTrigger()
  
   return(
-    <div className='border pb-5'>
+    <div className='border-b pb-5'>
       <Slide direction="down" in={dur ? dur : !isScroll}>
         <AppBar 
           elevation={0} 
-          sx={{ bgcolor: 'white', color: 'black', zIndex: {xs: 1100, lg: 1300}, borderBottom: '1px solid gray'}}
+          sx={{ bgcolor: '#f5f5f5', color: 'black', zIndex: {xs: 1100, lg: 1300}, borderBottom: '1px solid gray'}}
         >
           <div className='container mx-auto max-w-[1000px]'>
             <Toolbar 
