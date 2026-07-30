@@ -38,7 +38,7 @@ export default function DetailsLeft({ product, isLiked, toggleLike, share }){
     const { name, profile, phone } = user
     const navigate = useNavigate()
 
-    const formattedPhone = `994${phone}`
+    const formattedPhone = `+994${phone}`
     const text = 'Salam'
 
     return (
@@ -172,7 +172,7 @@ export default function DetailsLeft({ product, isLiked, toggleLike, share }){
             
             <button className="w-full bg-[#2DA562] rounded-xl text-white shadow">
               <a
-                href={`tel:${formattedPhone}`}
+                href={`tel:${phone}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full h-full flex items-center justify-center p-3"
@@ -184,7 +184,7 @@ export default function DetailsLeft({ product, isLiked, toggleLike, share }){
 
             <button className="w-full bg-blue-500 rounded-xl text-white shadow">
               <a
-                href={`https://wa.me/${formattedPhone}?text=${text}`}
+                href={`https://wa.me/${phone}?text=${text}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full h-full flex items-center justify-center p-3"
