@@ -10,9 +10,11 @@ import { toast } from "@heroui/react";
 import { useFilter } from '../components/header/filter/hooks/useFilter'
 import Cookies from "js-cookie";
 import { Helmet } from "react-helmet-async";
+import { clickAdsense, getAdsense } from "../redux/slices/admin/adminAdsenseSlice";
 
 export default function Home(){
 
+  const BASE_URL = import.meta.env.VITE_API_URL
   const dispatch = useDispatch()
   const [loading, setLoading] = useState(true)
   const [loadingMore, setLoadingMore] = useState(false)
@@ -33,6 +35,11 @@ export default function Home(){
     isAuth
   } = useSelector(s => s.user)
 
+  const {
+    adsenseData,
+    clickStatus
+  } = useSelector(s => s.adminAdsense)
+
   useEffect(() => {
     // artiq mehsullar redux-da varsa, yeniden cekmirik - eks halda
     // hansisa elana baxib geri qayidanda backend-in sirasi deyise biler
@@ -42,6 +49,7 @@ export default function Home(){
     }else{
       setLoading(false)
     }
+    dispatch(getAdsense())
   }, [])
 
 
@@ -88,9 +96,29 @@ export default function Home(){
     }
   }, [isAuth, products])
 
-  const displayProducts = isAuth ? products : updatedProducts
+  useEffect(() => {
+    if(adsenseData.length > 0) {
+      setMobileAdsense(adsenseData.filter(ads => ads.position === 'mobile'))
+      setDeskopAdsense(adsenseData.filter(ads => ads.position === 'deskop'))
+    }
+  }, [adsenseData])
 
+  const [mobileAdsense, setMobileAdsense] = useState([])
+  const [deskopAdsense, setDeskopAdsense] = useState([])
+
+  const displayProducts = isAuth ? products : updatedProducts
   const isDesktop = useMediaQuery('(min-width: 1024px)', { noSsr: true })
+
+  const handleAdsClick = async (id, link) => {
+    dispatch(clickAdsense(id))
+    if(clickStatus === 'success') {
+      window.open(
+        `https://${link}`,
+        "_blank",
+        "noopener,noreferrer"
+      )
+    }
+  }
 
   return(
     <div>
@@ -120,9 +148,15 @@ export default function Home(){
           <div className="mt-40 lg:mt-6 px-4 flex flex-col mb-25">
 
             {/* Burda mobiloe reklam olacaq */}
-            <div className="lg:hidden w-full h-[100px] rounded-lg my-2">
-              <img src="../../public/mobtop2.jpg" className="w-full h-full object-contain" alt="" />
-            </div>
+            {
+              mobileAdsense.length > 0 && 
+              <div 
+                onClick={() => handleAdsClick(mobileAdsense[0]?._id, mobileAdsense[0]?.link)}
+                className="lg:hidden w-full h-[100px] rounded-lg my-2 border max-w-[500px]">
+                <img src={`${BASE_URL}/uploads/${mobileAdsense[0]?.image}`} className="w-full h-full object-contain" alt="" />
+              </div>
+            }
+            
 
             <span className='text-2xl font-semibold'>Bütün elanlar</span>
             {

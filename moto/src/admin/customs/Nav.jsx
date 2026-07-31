@@ -70,7 +70,7 @@ export function Nav() {
   ];
 
   return (
-    <div className='bg-white h-[100vh] p-5'>
+    <div className='bg-white h-[100vh] p-5 overflow-auto w-[300px]'>
       <h2 className='text-xl font-bold'>Admin panel</h2>
       <div
         onClick={() => navigate('/admin')}
@@ -116,6 +116,16 @@ export function Nav() {
       >
         <Cube className='text-muted' />
         <span>Silinən elanlar</span>
+      </div>
+
+      <div
+        onClick={() => navigate('/admin/adsense')}
+        className={`mt-3 flex items-center gap-2 p-2 w-[180px] 
+        cursor-pointer hover:bg-gray-200 rounded-xl
+        ${location.pathname == '/admin/adsense' && 'border border-green-500 bg-green-200'}`}
+      >
+        <Cube className='text-muted' />
+        <span>Adsense</span>
       </div>
 
       <Accordion className="w-full max-w-md" variant="surface">

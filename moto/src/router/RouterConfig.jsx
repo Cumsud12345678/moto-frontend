@@ -25,6 +25,7 @@ import DeletedUsers from '../admin/pages/DeletedUsers'
 import DeletedProducts from '../admin/pages/DeletedProducts'
 import UserSearch from '../admin/pages/UserSearch'
 import ProductSearch from '../admin/pages/ProductSearch'
+import Adsense from '../admin/pages/Adsense'
 
 export default function RouterConfig(){
 
@@ -90,6 +91,7 @@ export default function RouterConfig(){
         <Route path='/admin/products/search' element={<ProductSearch />} />
         <Route path='/admin/deleted/users' element={<DeletedUsers />} />
         <Route path='/admin/deleted/products' element={<DeletedProducts />} />
+        <Route path='/admin/adsense' element={<Adsense />} />
         <Route path='/admin/metadata' element={<Metadata />} />
 
         {/* <Route path='/' element={<Test2 />} /> */}

@@ -190,8 +190,8 @@ export const adminProductSlice = createSlice({
     builder
 
       .addCase(getProducts.fulfilled, (state, action) => {
-        state.products = action.payload.data.products
-        state.total = action.payload.data.total
+        state.products = action.payload.products
+        state.total = action.payload.total
       })
 
       .addCase(getUserProducts.fulfilled, (state, action) => {
@@ -215,12 +215,12 @@ export const adminProductSlice = createSlice({
       })
 
       .addCase(getDeletedProducts.fulfilled, (state, action) => {
-        state.deletedProducts = action.payload.data.products
-        state.totalDeletedProducts = action.payload.data.total
+        state.deletedProducts = action.payload.products
+        state.totalDeletedProducts = action.payload.total
       })
 
       .addCase(getDeletedProduct.fulfilled, (state, action) => {
-        state.deletedProduct = action.payload.data
+        state.deletedProduct = action.payload.products
       })
 
       .addCase(deleteDeletedProduct.fulfilled, (state, action) => {

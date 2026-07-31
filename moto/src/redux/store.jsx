@@ -6,6 +6,7 @@ import metadataSlice from './slices/metadata/metadataSlice'
 import adminUserSlice from './slices/admin/adminUserSlice'
 import adminProductSlice from './slices/admin/adminProductSlice'
 import adminMetadataSlice from './slices/admin/adminMetadataSlice'
+import adminAdsenseSlice from './slices/admin/adminAdsenseSlice'
 
 export const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ export const store = configureStore({
     
     adminUsers: adminUserSlice,
     adminProducts: adminProductSlice,
-    adminMetadata: adminMetadataSlice
+    adminMetadata: adminMetadataSlice,
+    adminAdsense: adminAdsenseSlice
   },
 })

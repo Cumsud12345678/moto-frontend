@@ -208,8 +208,8 @@ export const adminUserSlice = createSlice({
     builder
 
       .addCase(getUsers.fulfilled, (state, action) => {
-        state.users = action.payload.data.users
-        state.total = action.payload.data.total
+        state.users = action.payload.users
+        state.total = action.payload.total
       })
 
       .addCase(deleteUser.fulfilled, (state, action) => {
@@ -225,8 +225,8 @@ export const adminUserSlice = createSlice({
       })
 
       .addCase(getDeletedUsers.fulfilled, (state, action) => {
-        state.deletedUsers = action.payload.data.users
-        state.totalDeletedUsers = action.payload.data.total
+        state.deletedUsers = action.payload.users
+        state.totalDeletedUsers = action.payload.total
       })
 
       .addCase(deleteDeletedUser.fulfilled, (state, action) => {
@@ -234,7 +234,7 @@ export const adminUserSlice = createSlice({
       })
 
       .addCase(getDeletedUser.fulfilled, (state, action) => {
-        state.deletedUser = action.payload.data
+        state.deletedUser = action.payload.users
       })
   }
 })
