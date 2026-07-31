@@ -147,6 +147,7 @@ export default function FilterModal({open, onClose, useFilter}){
       slots={{
         transition: Transition,
       }}
+      style={{zIndex: '10000'}}
     >
       <AppBar style={{ padding: 0 }} sx={{ position: 'fixed', bgcolor: 'black' }}>
         <Toolbar>
