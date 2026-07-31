@@ -87,16 +87,6 @@ export const adminAdsenseSlice = createSlice({
       state.adsenseData = action.payload.data
     })
 
-    .addCase(createAdsense.fulfilled, (state, action) => {
-      const data = {}
-      data._id = action.payload.data._id
-      data.image = action.payload.data.image
-      data.link = action.payload.data.link
-      data.click = 0
-      data.owner = action.payload.data.owner
-      state.adsenseData = state.adsenseData.push(data)
-    })
-
     .addCase(clickAdsense.pending, (state) => {
       state.clickStatus = 'idle'
     })
