@@ -134,13 +134,13 @@ export default function Home(){
 
       <div className="flex flex-col container mx-auto max-w-[1000px]">
       
-        <div className="hidden xl:block lg:fixed top-0 bg-red-500 w-[250px] h-[100vh] z-[2000] left-0">
-          {/* Burda reklam olacaq */}
+        {/* <div className="hidden xl:block lg:fixed top-0 bg-red-500 w-[250px] h-[100vh] z-[2000] left-0">
+          Burda reklam olacaq
           <div className="w-full h-[100vh]">
-            {/* <img src="../../public/download.png" className="w-[2000px] h-[1000px]" alt="" /> */}
+            <img src="../../public/download.png" className="w-[2000px] h-[1000px]" alt="" />
           </div>
 
-        </div>
+        </div> */}
 
         <div className="z-[9999] bg-[#f5f5f5]">
           <Header filter={filterState} />
@@ -186,9 +186,9 @@ export default function Home(){
           <Footer />
         </div>
 
-        <div className="hidden xl:block fixed top-0 bg-red-500 w-[250px] h-[100vh] z-[2000] right-0">
-          {/* Burda reklam olacaq */}
-        </div>
+        {/* <div className="hidden xl:block fixed top-0 bg-red-500 w-[250px] h-[100vh] z-[2000] right-0">
+          Burda reklam olacaq
+        </div> */}
 
       </div>
       
