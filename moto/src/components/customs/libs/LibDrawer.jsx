@@ -68,7 +68,7 @@ import CheckIcon from "@mui/icons-material/Check";
                 })
               }
             </Drawer.Body>
-            <Drawer.Footer>
+            <Drawer.Footer style={{background: 'red', marginTop: '0px'}}>
               <Button onPress={() => {
                 onClick('')
               }} variant="secondary">

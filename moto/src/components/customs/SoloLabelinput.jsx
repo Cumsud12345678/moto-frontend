@@ -8,7 +8,7 @@ export default function SoloLabelinput ({value, change, label, pl = 10}) {
         value={value} 
         onChange={change} 
         type="text" 
-        className="border-2 rounded-xl p-2.5 bg-white focus:outline-sky-500 w-full shadow"
+        className="border rounded-xl p-2.5 bg-white focus:outline-sky-500 w-full"
         style={{ paddingLeft: `${pl}px` }}
       />
       <div className="absolute py-3 px-2 rounded-l-lg">

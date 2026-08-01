@@ -149,7 +149,7 @@ export default function FilterModal({open, onClose, useFilter}){
       }}
       style={{zIndex: '10000'}}
     >
-      <AppBar style={{ padding: 0 }} sx={{ position: 'fixed', bgcolor: 'black' }}>
+      <AppBar style={{ padding: 0 }} sx={{ position: 'fixed', background: 'rgba(0, 0, 0, 0.35)', backdropFilter: 'blur(12px)', color: 'white' }}>
         <Toolbar>
           <IconButton
             edge="start"
@@ -165,7 +165,7 @@ export default function FilterModal({open, onClose, useFilter}){
         </Toolbar>
       </AppBar>
 
-      <div className='flex flex-col mt-[60px] px-[15px] pb-20 bg-[#f5f5f5]'>
+      <div className='flex flex-col mt-[60px] px-[0px] pb-20 bg-[#f5f5f5]'>
     
         <div className="border rounded-lg my-3 mb-1 p-3 pt-2 bg-white">
           <span>Əsas</span>
@@ -226,12 +226,12 @@ export default function FilterModal({open, onClose, useFilter}){
         <div className="border rounded-lg my-3 mb-1 p-3 pt-2 bg-white">
           <span>il</span>
           <div className='flex gap-3 mt-2'>
-            <div onClick={() => changeDrawer('minYear', minYear, 'Qiyet min.')} className="border-2 rounded-xl w-full p-2 py-2.5">
+            <div onClick={() => changeDrawer('minYear', minYear, 'Qiyet min.')} className="border rounded-xl w-full p-2 py-2.5">
               {
                 minYear ? 'Min. ' + minYear : 'Min'
               }
             </div>
-            <div onClick={() => changeDrawer('maxYear', maxYear, 'Qiymet max.')} className="border-2 rounded-xl w-full p-2 py-2.5">
+            <div onClick={() => changeDrawer('maxYear', maxYear, 'Qiymet max.')} className="border rounded-xl w-full p-2 py-2.5">
               {
                 maxYear ? 'Max. ' + maxYear : 'Max'
               }
@@ -242,12 +242,12 @@ export default function FilterModal({open, onClose, useFilter}){
         <div className="border rounded-lg my-3 mb-1 p-3 pt-2 bg-white">
           <span>Mühərrikin həcmi (sm)</span>
           <div className='flex gap-3 mt-2'>
-            <div onClick={() => changeDrawer('minVolume', minVolume, 'Hecm min.')} className="border-2 rounded-xl w-full p-2 py-2.5">
+            <div onClick={() => changeDrawer('minVolume', minVolume, 'Hecm min.')} className="border rounded-xl w-full p-2 py-2.5">
               {
                 minVolume || minVolume == 0 ? 'Min. ' + minVolume : 'Min'
               }
             </div>
-            <div onClick={() => changeDrawer('maxVolume', maxVolume, 'Hecm max.')} className="border-2 rounded-xl w-full p-2 py-2.5">
+            <div onClick={() => changeDrawer('maxVolume', maxVolume, 'Hecm max.')} className="border rounded-xl w-full p-2 py-2.5">
               {
                 maxVolume ? 'Max. ' + maxVolume : 'Max'
               }
