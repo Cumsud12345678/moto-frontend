@@ -34,7 +34,7 @@ import CheckIcon from "@mui/icons-material/Check";
   return(
    
     <Drawer isOpen={open} onOpenChange={onClose}>
-      <Drawer.Backdrop className='z-[1400]'>
+      <Drawer.Backdrop className='z-[10000]'>
         <Drawer.Content>
           <Drawer.Dialog className="h-[70%]">
             <Drawer.Handle />
