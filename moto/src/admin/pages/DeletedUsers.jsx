@@ -14,7 +14,7 @@ export default function DeletedUsers() {
   const [page, setPage] = useState(1)
 
   const [id, setId] = useState('')
-  const [phone, setPhone] = useState('')
+  const [email, setEmail] = useState('')
   const [userId, setUserId] = useState('')
   const [isSearch, setIsSearch] = useState(false)
 
@@ -45,7 +45,7 @@ export default function DeletedUsers() {
       setIsSearch(false)
       const urlPage = Number(params.get('page')) || 1
       setPage(urlPage)
-    }else if(params.get('id') || params.get('phone') || params.get('userId')) {
+    }else if(params.get('id') || params.get('email') || params.get('userId')) {
       setIsSearch(true)
       toast.promise(
         dispatch(getDeletedUser(location.search)).unwrap(),
@@ -62,7 +62,7 @@ export default function DeletedUsers() {
     const params = new URLSearchParams()
     if(id) params.set('id', id);
     if(userId) params.set('userId', userId);
-    if(phone) params.set('phone', phone);
+    if(email) params.set('email', email);
     navigate(`/admin/deleted/users?${params.toString()}`)
   }
 
@@ -85,11 +85,11 @@ export default function DeletedUsers() {
             />
 
             <input 
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               type="text" 
               className='p-3 rounded-xl border bg-white focus:outline-sky-500' 
-              placeholder='Nömrə yazın' 
+              placeholder='Email yazın' 
             />
 
             <input 
@@ -114,7 +114,7 @@ export default function DeletedUsers() {
               <th className="w-[180px] border-r p-2 text-left font-medium">ID</th>
               <th className="w-[120px] border-r p-2 text-left font-medium">Created</th>
               <th className="w-[180px] border-r p-2 text-left font-medium">User ID</th>
-              <th className="w-[100px] border-r p-2 text-center font-medium">Phone</th>
+              <th className="w-[180px] border-r p-2 text-center font-medium">Email</th>
               <th className="w-[100px] border-r p-2 text-center font-medium">Description</th>
               <th className="w-[100px] p-2 text-center font-medium">Functions</th>
             </tr>

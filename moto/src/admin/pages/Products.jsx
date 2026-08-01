@@ -16,6 +16,7 @@ export default function Products() {
   const location = useLocation()
 
   const [id, setId] = useState('')
+  const [phone, setPhone] = useState()
   
   useEffect(() => {
     toast.promise(
@@ -31,6 +32,7 @@ export default function Products() {
   const manageUrlAndPage = (newPage) => {
     const params = new URLSearchParams()
     params.set('page', newPage)
+    params
     navigate(`/admin/products?${params.toString()}`)
   }
 
@@ -43,6 +45,7 @@ export default function Products() {
   const handleSearch = () => {
     const params = new URLSearchParams()
     if(id) params.set('id', id);
+    if(phone) params.set('phone', phone)
 
     navigate(`/admin/products/search?${params.toString()}`)
   }
@@ -64,6 +67,15 @@ export default function Products() {
               className='p-3 rounded-xl border bg-white focus:outline-sky-500' 
               placeholder='ID yazin' 
             />
+
+            <input 
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              type="text" 
+              className='p-3 rounded-xl border bg-white focus:outline-sky-500' 
+              placeholder='Nomre yazin' 
+            />
+
             <button
               onClick={handleSearch}
               className='bg-blue-500 text-white rounded-xl w-1/3 cursor-pointer'
@@ -81,7 +93,7 @@ export default function Products() {
               <th className="w-[70px] border-r p-2 text-center font-medium">Price</th>
               <th className="w-[60px] border-r p-2 text-center font-medium">Volume</th>
               <th className="w-[60px] border-r p-2 text-center font-medium">Active</th>
-              <th className="w-[80px] border-r p-2 text-center font-medium">Number</th>
+              <th className="w-[130px] border-r p-2 text-center font-medium">Email</th>
               <th className="w-[100px] p-2 text-center font-medium">Functions</th>
             </tr>
           </thead>

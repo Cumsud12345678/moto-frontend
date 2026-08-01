@@ -61,7 +61,7 @@ export default function SearchAndSelect({ data = [], id, onClick, onChange, labe
   const variants = {
     floating: {
       width: 'w-full',
-      inputClass: 'peer w-full bg-white px-3 pt-5 pb-1 text-[16px]',
+      inputClass: 'peer w-full px-3 pt-6 pb-2 text-[16px] bg-[#fafbff]',
       placeholder: ' ',
       labelType: 'label'
     },
@@ -93,7 +93,7 @@ export default function SearchAndSelect({ data = [], id, onClick, onChange, labe
           onFocus={() => setFocus(true)}
           onBlur={() => setFocus(false)}
           className={`
-            border focus:outline-sky-500 rounded-lg
+            border focus:outline-sky-500 rounded-xl
             ${current.inputClass}
           `}
           style={{ paddingLeft: `${pl}px` }}
@@ -105,7 +105,7 @@ export default function SearchAndSelect({ data = [], id, onClick, onChange, labe
         {
           current.labelType == 'label'
           ? (
-            <label className="pointer-events-none absolute left-3.5 top-3 text-gray-500 transition-all duration-200 peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-focus:top-1.5 peer-focus:text-xs peer-not-placeholder-shown:top-1.5 peer-not-placeholder-shown:text-xs">
+            <label className="pointer-events-none absolute left-3.5 top-4 text-gray-500 transition-all duration-200 peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-xs peer-not-placeholder-shown:top-2 peer-not-placeholder-shown:text-xs">
               {label}
             </label>
           ) : current.labelType == 'div' && (

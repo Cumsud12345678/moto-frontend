@@ -87,8 +87,8 @@ export default function ProductDetails(){
           : <Details details={currentProduct} ids={ids} />
       }
 
-      <div className="mt-5 px-4">
-        <h4>Oxşar məhsullar</h4>
+      <div className="mt-5 px-4 pb-25">
+        <h4 className="font-bold text-2xl">Oxşar məhsullar</h4>
         {
           loadingSimilars
             ?

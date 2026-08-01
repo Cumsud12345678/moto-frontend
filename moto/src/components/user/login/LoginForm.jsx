@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { login, loginVerify } from '../../../redux/slices/user/userSlice';
 import {SealCheck} from '@gravity-ui/icons';
 
-export default function LoginForm({formatPhone}) {
+export default function LoginForm() {
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -17,29 +17,15 @@ export default function LoginForm({formatPhone}) {
     loginStatus
   } = useSelector(s => s.user)
 
-  const [phoneValue, setPhoneValue] = useState('')
+  const [email, setEmail] = useState('')
   const [otp, setOtp] = useState()
-  
-  // PHONE FORMAT
-  const inputChange = (value) => {
-    setPhoneValue(formatPhone(value));
-  };
 
   const handleLogin = () => {
-    if(!phoneValue){
-      return toast.warning('Nömrəni girin');
+    if(!email){
+      return toast.warning('Emaili girin');
     }
-
-    const cleanPhone = phoneValue.replace(/\s/g, "")
-
-    if(cleanPhone.length !== 9){
-      return toast.danger('Nömrəni düzgün girin');
-    }
-
-    // dispatch(setPhone({type: 'loginPhone', phone: cleanPhone}))
-    dispatch(login(cleanPhone))
+    dispatch(login(email))
   }
-
 
   const handleOtpChange = (value) => {
     setOtp(value)
@@ -49,8 +35,7 @@ export default function LoginForm({formatPhone}) {
     if(!otp || otp.length !== 6){
       return toast.danger('Məlumatları doldurun');
     }
-
-    dispatch(loginVerify({otp: otp, phone: phoneValue.replace(/\s/g, "")}))
+    dispatch(loginVerify({otp: otp, email: email}))
   }
 
   useEffect(() => {
@@ -66,7 +51,6 @@ export default function LoginForm({formatPhone}) {
 
   useEffect(() => {
     if(stepLogin == 'done'){
-      // dispatch(setAuth({isAuth: true, id: id, name: name, phone: phone}))
       setTimeout(() => {
         navigate('/')
       }, 1000)
@@ -86,14 +70,13 @@ export default function LoginForm({formatPhone}) {
     <div>
       {stepLogin == 'login' && (
         <div>
-          <label htmlFor="number">Nömrəni yazın</label>
+          <label htmlFor="email">Nömrəni yazın</label>
           <input
-            onChange={(e) => inputChange(e.target.value)}
-            id='number'
+            onChange={(e) => setEmail(e.target.value)}
+            id='email'
             type="text"
-            inputMode="numeric"
-            value={phoneValue}
-            className='border-2 w-full rounded-2xl p-3 bg-[#f5f5f5]' placeholder='77 513 14 06'
+            value={email}
+            className='border-2 w-full rounded-2xl p-3 bg-[#f5f5f5]' placeholder='example.com'
           />
 
           <button

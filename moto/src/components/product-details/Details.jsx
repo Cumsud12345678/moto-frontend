@@ -18,11 +18,13 @@ export default function Details({details, ids}){
 
   const {
     _id,
+    phone,
     year,
     volume,
     mileage,
     price,
     images,
+    status,
     user,
     make,
     model,
@@ -109,19 +111,19 @@ export default function Details({details, ids}){
   return (
     <div>
 
-      <div className="hidden lg:flex flex-row items-center justify-between bg-gray-500 text-white rounded-lg mb-2 px-3 py-2 top-[55px] sticky z-[1000]">
+      <div className="hidden lg:flex flex-row items-center justify-between bg-gray-500 text-white rounded-lg mb-2 px-3 py-2.5 top-[55px] sticky z-[1000]">
         <div className="flex items-center">
-          <span className="font-bold text-lg">{make.label}, {model.label}, {volume}, {year}, {mileage}</span>
+          <span className="font-bold text-2xl">{make.label} {model.label}, {volume} L, {year} il, {status?.label}</span>
         </div>
         <div>
-          <span className="font-bold text-lg">{price}</span>
+          <span className="font-bold text-2xl">{price}</span>
         </div>
       </div>
 
-      <div className="flex gap-3 flex-col lg:flex-row">
+      <div className="flex gap-3 flex-col lg:flex-row bg-white lg:p-4 lg:rounded-xl">
 
         <DetailsLeft product={details} isLiked={isLiked} toggleLike={toggleLike} share={handleShare} />
-        <DetailsRight user={user} price={price} city={city.label} isLiked={isLiked} toggleLike={toggleLike} share={handleShare} />
+        <DetailsRight user={user} phone={phone} price={price} city={city.label} isLiked={isLiked} toggleLike={toggleLike} share={handleShare} />
 
       </div>
 

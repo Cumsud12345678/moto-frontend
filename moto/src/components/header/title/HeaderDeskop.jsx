@@ -7,7 +7,6 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { closeModal, openModal } from '../../../redux/slices/silinecek/menuModalSlice';
 import { useLocation, useNavigate } from 'react-router-dom';
 import HomeIcon from '@mui/icons-material/Home';
 

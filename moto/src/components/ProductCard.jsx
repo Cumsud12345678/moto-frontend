@@ -123,8 +123,8 @@ export default function ProductCard({ product }) {
         <p className="text-md font-medium text-gray-800 truncate mt-0.5">
           {make?.label} {model?.label}
         </p>
-        <p className="text-sm text-gray-600 truncate mt-0.5">
-          {year} · {volume} sm · {mileage} km
+        <p className="text-md text-gray-600 truncate mt-0.5">
+          {year} · {volume} sm³ · {mileage} km
         </p>
         <p className="text-sm text-gray-400 mt-0.5">{city?.label}, {createdAt}</p>
       </div>

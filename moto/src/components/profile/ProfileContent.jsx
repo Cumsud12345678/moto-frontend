@@ -12,7 +12,7 @@ export default function ProfileContent({products}) {
 
   const BASE_URL = import.meta.env.VITE_API_URL
 
-  const { id, name, phone, profile } = useSelector(s => s.user)
+  const { id, name, email, profile } = useSelector(s => s.user)
 
   const [open, setOpen] = useState(false);
   
@@ -24,6 +24,7 @@ export default function ProfileContent({products}) {
   const [deleteId, setDeleteId] = useState('')
 
   const clickDelete = (id) => {
+    console.log(id)
     setDeleteId(id)
     setOpenAlert(true)
   }
@@ -52,7 +53,7 @@ export default function ProfileContent({products}) {
           </div>
           <div style={{ marginLeft: '10px' }} className="flex flex-col">
             <span>{name}</span>
-            <span>{phone}</span>
+            <span>{email}</span>
           </div>
         </div>
         <IconButton onClick={handleDialogOpen}>

@@ -14,6 +14,7 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 export default function DetailsLeft({ product, isLiked, toggleLike, share }){
  
   const {
+    phone,
     make,
     model,
     year,
@@ -33,16 +34,18 @@ export default function DetailsLeft({ product, isLiked, toggleLike, share }){
     equipments
   } = product
 
+  const BASE_URL = import.meta.env.VITE_API_URL;
+
   if(user){
 
-    const { name, profile, phone } = user
+    const { name, profile } = user
     const navigate = useNavigate()
 
     const formattedPhone = `+994${phone}`
     const text = 'Salam'
 
     return (
-      <div className="flex flex-col w-[100%] lg:w-[65%] min-w-0 mt-13">
+      <div className="flex flex-col w-[100%] lg:w-[65%] min-w-0 mt-12">
         
         <div className="lg:hidden fixed top-0 bg-gray-500 text-white mt-14 w-full z-[1000]">
           <div className="flex items-center justify-between p-1">
@@ -69,12 +72,12 @@ export default function DetailsLeft({ product, isLiked, toggleLike, share }){
         </div>
 
 
-        <div className="mt-7 lg:mt-0">
+        <div className="mt-14 lg:mt-0">
           <DetailsImages images={images} make={make} />
         </div>
         
 
-        <div className="border-y py-3 my-1 flex flex-col lg:gap-2 text-lg px-3">
+        <div className="border-t py-3 my-1 grid grid-cols-1 lg:grid-cols-2 lg:gap-2 text-md px-3">
           <div className="flex flex-col gap-2 w-full">
             <div className="grid grid-cols-2">
               <span className="text-gray-500">Şəhər</span>
@@ -116,7 +119,7 @@ export default function DetailsLeft({ product, isLiked, toggleLike, share }){
             </div>
             <div className="grid grid-cols-2">
               <span className="text-gray-500">Muhərrik</span>
-              <span>{volume} sm / {power} a.g. / {fuel.label}</span>
+              <span>{volume} sm³ / {power} a.g. / {fuel.label}</span>
             </div>
           </div>
           <div className="flex flex-col gap-2 w-full">
@@ -128,27 +131,24 @@ export default function DetailsLeft({ product, isLiked, toggleLike, share }){
               <span className="text-gray-500">Yeni?</span>
               <span>{status.label}</span>
             </div>
-            <div className="grid grid-cols-2">
-              <span className="text-gray-500">Təchizat</span>
-              <div className="flex flex-wrap gap-2">
-                {
-                  equipments.map(equipment => (
-                    <span key={equipment._id}>{equipment.label},</span>
-                  ))
-                }
-              </div>
-              
-            </div>
           </div>
         </div>
 
+        <div className="flex gap-2 border-y py-3 px-3 lg:px-0">
+          {
+            equipments.map(equipment => (
+              <button className="p-2 px-3 rounded-2x bg-[#ebedf3] rounded-full text-md" key={equipment._id}>{equipment.label}</button>
+            ))
+          }
+        </div>
+
         <div className="border-b p-3">
-          <p className="text-lg">{description}</p>
+          <p className="text-lg whitespace-pre-line">{description}</p>
         </div>
 
         <div className="lg:hidden border-y p-3">
-          <div className="flex">
-            {/* <img className="rounded-full w-[60px] h-[60px]" src={profile} alt="" /> */}
+          <div className="flex bg-white p-2 rounded-lg items-center">
+            <img className="rounded-full w-[60px] h-[60px] object-contain border-2" src={profile ? `${BASE_URL}/uploads/${profile}` : '/profile.jpg'} alt="" />
             <div className="mx-2 flex flex-col">
               <span style={{ fontSize: '18px', fontWeight: 'bold' }}>{name}</span>
               <span>{city.label}</span>
@@ -167,8 +167,8 @@ export default function DetailsLeft({ product, isLiked, toggleLike, share }){
         </div>
 
 
-        <div className="fixed bottom-0 w-full p-2 z-[1000] block lg:hidden">
-          <div className="flex gap-4">
+        <div className="fixed bottom-0 w-full p-4 z-[1000] block lg:hidden">
+          <div className="flex gap-3">
             
             <button className="w-full bg-[#2DA562] rounded-xl text-white shadow">
               <a

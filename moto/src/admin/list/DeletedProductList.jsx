@@ -45,7 +45,7 @@ export default function DeletedProductList({product}) {
           </td>
 
           <td className="border-r p-2 truncate">
-            {product.user?.phone}
+            {product.user?.email}
           </td>
 
           <td className="border-r p-2">

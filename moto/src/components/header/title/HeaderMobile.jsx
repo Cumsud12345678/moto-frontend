@@ -4,7 +4,6 @@ import IconButton from '@mui/material/IconButton'
 import CloseIcon from '@mui/icons-material/Close';
 import MenuIcon from '@mui/icons-material/Menu'
 import { useDispatch, useSelector } from 'react-redux';
-import { closeModal, openModal } from '../../../redux/slices/silinecek/menuModalSlice';
 import { useLocation, useNavigate } from 'react-router-dom';
 import FilterMobile from '../filter/mobile/FilterMobile';
 
@@ -24,7 +23,7 @@ export default function HeaderMobile({openModal, open, isMobile, filter}){
   const location = useLocation()
 
   return(
-    <div className='flex lg:hidden flex-col w-full px-3'>
+    <div className='flex lg:hidden flex-col w-full px-3 bg-white'>
       <div className='flex align-center justify-between w-full mt-2 gap-4'>
         {
           open && !isMobile

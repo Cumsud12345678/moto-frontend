@@ -87,7 +87,7 @@ export default function UserList({user}) {
                 </p>
 
                 <span className="text-sm">
-                  {user.phone}
+                  {user.email}
                 </span>
               </div>
             </div>

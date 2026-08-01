@@ -161,7 +161,7 @@ export default function FilterDialog({ open, onClose, useFilter }) {
                     <div className={`relative w-full`}>
                       <div className="relative flex items-center">
                         <input
-                          className="border rounded-lg peer w-full bg-white px-3 pt-5 pb-1 text-[16px] opacity-70"
+                          className="border rounded-lg peer w-full bg-white px-3 pt-5 pb-1 text-[16px] opacity-70 shadow"
                           readOnly='true'
                           placeholder=""
                         />
@@ -393,7 +393,7 @@ export default function FilterDialog({ open, onClose, useFilter }) {
           <button
             onClick={resetForm} 
             type="button" 
-            className="cursor-pointer p-2 px-6 bg-red-500 rounded-xl text-white"
+            className="cursor-pointer p-2 px-6 bg-red-500 rounded-xl text-white shadow"
           >
             Sıfırla
           </button>
@@ -401,7 +401,7 @@ export default function FilterDialog({ open, onClose, useFilter }) {
           <button 
             onClick={applyFilter} 
             type="button" 
-            className="cursor-pointer p-2 px-10 bg-blue-500 rounded-xl text-white"
+            className="cursor-pointer p-2 px-10 bg-blue-500 rounded-xl text-white shadow"
           >
             Axtar
           </button>

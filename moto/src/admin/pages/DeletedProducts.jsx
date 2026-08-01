@@ -19,8 +19,8 @@ export default function DeletedProducts() {
   const location = useLocation()
 
   const [productID, setProductID] = useState('')
-  const [userID, setUserID] = useState('')
-  const [userPhone, setUserPhone] = useState('')
+  const [phone, setPhone] = useState('')
+  const [userEmail, setUserEmail] = useState('')
 
   useEffect(() => {
     toast.promise(
@@ -44,7 +44,7 @@ export default function DeletedProducts() {
     if(params.get('page')){
       setIsSearch(false)
       setPage(Number(params.get('page')) || 1)
-    }else if(params.get('productID') || params.get('userID') || params.get('userPhone')) {
+    }else if(params.get('productID') || params.get('userID') || params.get('userEmail')) {
       setIsSearch(true)
       toast.promise(
         dispatch(getDeletedProduct(location.search)).unwrap(),
@@ -60,8 +60,8 @@ export default function DeletedProducts() {
   const setFilter = () => {
     const params = new URLSearchParams()
     if(productID) params.set('productID', productID);
-    if(userID) params.set('userID', userID);
-    if(userPhone) params.set('userPhone', userPhone);
+    if(phone) params.set('phone', phone);
+    if(userEmail) params.set('userEmail', userEmail);
     navigate(`/admin/deleted/products?${params.toString()}`)
   }
 
@@ -83,18 +83,18 @@ export default function DeletedProducts() {
               placeholder='productID yazin' 
             />
             <input 
-              value={userID}
-              onChange={(e) => setUserID(e.target.value)}
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
               type="text" 
               className='p-3 rounded-xl border bg-white focus:outline-sky-500' 
-              placeholder='userID yazin' 
+              placeholder='Nomre yazin' 
             />
             <input 
-              value={userPhone}
-              onChange={(e) => setUserPhone(e.target.value)}
+              value={userEmail}
+              onChange={(e) => setUserEmail(e.target.value)}
               type="text" 
               className='p-3 rounded-xl border bg-white focus:outline-sky-500' 
-              placeholder='userPhone yazin' 
+              placeholder='Email yazin' 
             />
             <button 
               onClick={setFilter}
@@ -111,7 +111,7 @@ export default function DeletedProducts() {
               <th className="w-[180px] border-r p-2 text-left font-medium">product ID</th>
               <th className="w-[120px] border-r p-2 text-left font-medium">Created</th>
               <th className="w-[180px] border-r p-2 text-left font-medium">User ID</th>
-              <th className="w-[100px] border-r p-2 text-center font-medium">User Phone</th>
+              <th className="w-[100px] border-r p-2 text-center font-medium">User Email</th>
               <th className="w-[100px] border-r p-2 text-center font-medium">Description</th>
               <th className="w-[100px] p-2 text-center font-medium">Functions</th>
             </tr>

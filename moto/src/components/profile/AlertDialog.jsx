@@ -29,7 +29,7 @@ export default function AlertDialog({openAlert, setOpenAlert, deleteId}) {
                 slot="close"
                 onPress={() => {
                   toast.promise(
-                    dispatch(deleteProduct({ id: deleteId })).unwrap(),
+                    dispatch(deleteProduct(deleteId)).unwrap(),
                     {
                       loading: "Məhsul silinir...",
                       success: "Məhsul uğurla silindi.",

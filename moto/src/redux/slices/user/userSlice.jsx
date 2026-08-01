@@ -5,7 +5,7 @@ const API = import.meta.env.VITE_API_URL
 const initialState = {
   id: null,
   name: null,
-  phone: null,
+  email: null,
   profile: null,
   isAuth: false,
   role: null,
@@ -48,7 +48,7 @@ export const register = createAsyncThunk(
     try {
       const res = await axios.post(`${API}/api/users/register`, {
         name: data.name,
-        phone: data.phone
+        email: data.email
       })
 
       return res.data
@@ -66,7 +66,7 @@ export const registerVerify = createAsyncThunk(
     try {
       const res = await axios.post(
         `${API}/api/users/register/verify`, 
-        { phone: data.phone, otp: data.otp },
+        { email: data.email, otp: data.otp },
         { withCredentials: true }
       )
 
@@ -85,7 +85,7 @@ export const login = createAsyncThunk(
     try {
       const res = await axios.post(
         `${API}/api/users/login`, 
-        { phone: data }
+        { email: data }
       )
 
       return res.data
@@ -103,7 +103,7 @@ export const loginVerify = createAsyncThunk(
     try {
       const res = await axios.post(
         `${API}/api/users/login/verify`, 
-        { phone: data.phone, otp: data.otp},
+        { email: data.email, otp: data.otp},
         { withCredentials: true }
       )
 
@@ -139,7 +139,6 @@ export const updatedUser = createAsyncThunk(
   async (data, thunkAPI) => {
     try {
       const { id } = thunkAPI.getState().user
-      console.log(id)
       const res = await axios.put(
         `${API}/api/users/${id}`,
         data,
@@ -174,9 +173,11 @@ export const userSlice = createSlice({
 
       // CHECK ME
       .addCase(checkMe.fulfilled, (state, action) => {
+        console.log('zzaa')
+        console.log(action.payload.user.role)
         state.id = action.payload.user.id
         state.name = action.payload.user.name
-        state.phone = action.payload.user.phone
+        state.email = action.payload.user.email
         state.profile = action.payload.user.profile
         state.role = action.payload.user.role
         state.isAuth = true
@@ -186,13 +187,16 @@ export const userSlice = createSlice({
         state.isAuth = false
         state.id = null
         state.name = null
-        state.phone = null
+        state.email = null
         state.profile = null
         state.role = null
         state.authStatus = 'error'
       })
 
       // REGISTER
+      .addCase(register.pending, (state) => {
+        state.registerMessage = ''
+      })
       .addCase(register.fulfilled, (state, action) => {
         state.registerMessage = action.payload?.message
         state.registerStatus = 'loading'
@@ -210,7 +214,7 @@ export const userSlice = createSlice({
       .addCase(registerVerify.fulfilled, (state, action) => {
         state.id = action.payload.id
         state.name = action.payload.name
-        state.phone = action.payload.phone
+        state.email = action.payload.email
         state.profile = action.payload.profile
         state.role = action.payload.role
         state.isAuth = true
@@ -223,6 +227,9 @@ export const userSlice = createSlice({
       })
 
       // LOGIN
+      .addCase(login.pending, (state) => {
+        state.loginMessage = ''
+      })
       .addCase(login.fulfilled, (state, action) => {
         state.loginMessage = action.payload?.message
         state.loginStatus = 'loading'
@@ -240,7 +247,7 @@ export const userSlice = createSlice({
       .addCase(loginVerify.fulfilled, (state, action) => {
         state.id = action.payload.id
         state.name = action.payload.name
-        state.phone = action.payload.phone
+        state.email = action.payload.email
         state.profile = action.payload.profile
         state.role = action.payload.role
         state.isAuth = true
@@ -257,7 +264,7 @@ export const userSlice = createSlice({
         state.logoutStatus = 'success'
         state.id = null
         state.name = null
-        state.phone = null
+        state.email = null
         state.profile = null
         state.role = null
         state.isAuth = false

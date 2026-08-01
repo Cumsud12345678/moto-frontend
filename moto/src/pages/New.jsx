@@ -10,7 +10,7 @@ export default function New(){
   return(
     <div>
       <Header />
-      <div className="flex flex-col w-full mt-10 lg:mt-30 container mx-auto max-w-[700px]">
+      <div className="flex flex-col w-full mt-10 lg:mt-30 lg:container mx-auto lg:max-w-[750px]">
         <ProductForm productData={productData} />
       </div>
       <Footer />

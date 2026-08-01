@@ -39,7 +39,7 @@ export default function FilterDeskop({useFilter}){
   }
 
   return(
-    <div className="hidden lg:block container mt-20 mx-auto max-w-[1000px]">
+    <div className="hidden lg:block container mt-13 mx-auto p-3 py-8">
       <div className="flex items-center justify-between gap-2">
 
         <div className='w-full'>
@@ -86,10 +86,10 @@ export default function FilterDeskop({useFilter}){
         </div>
         
         <div className="flex items-center justify-center w-full h-full gap-3">
-          <button onClick={applyFilter} type="button" className="bg-blue-500 text-white h-[40px] px-8 rounded-lg cursor-pointer">
+          <button onClick={applyFilter} type="button" className="bg-blue-500 text-white h-[40px] px-8 rounded-lg cursor-pointer shadow">
             Axtar
           </button>
-          <button onClick={handleOpen} className="bg-blue-500 text-white h-[40px] px-2 rounded-lg cursor-pointer shrink-0">
+          <button onClick={handleOpen} className="bg-blue-500 text-white h-[40px] px-2 rounded-lg cursor-pointer shrink-0 shadow">
             <FilterAltIcon sx={{ mb: '3px' }}></FilterAltIcon>
             Filter
           </button>

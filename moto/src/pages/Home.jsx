@@ -11,6 +11,7 @@ import { useFilter } from '../components/header/filter/hooks/useFilter'
 import Cookies from "js-cookie";
 import { Helmet } from "react-helmet-async";
 import { clickAdsense, getAdsense } from "../redux/slices/admin/adminAdsenseSlice";
+import EmptyData from "../components/EmptyData";
 
 export default function Home(){
 
@@ -132,7 +133,7 @@ export default function Home(){
         <link rel="canonical" href="https://dir-indexed-five-prep.trycloudflare.com/" />
       </Helmet>
 
-      <div className="flex flex-col container mx-auto max-w-[1000px]">
+      <div className="flex flex-col">
       
         {/* <div className="hidden xl:block lg:fixed top-0 bg-red-500 w-[250px] h-[100vh] z-[2000] left-0">
           Burda reklam olacaq
@@ -145,7 +146,7 @@ export default function Home(){
         <div className="z-[9999] bg-[#f5f5f5]">
           <Header filter={filterState} />
 
-          <div className="mt-40 lg:mt-6 px-4 flex flex-col mb-25">
+          <div className="mt-45 lg:mt-6 px-4 flex flex-col mb-25 max-w-[1000px] mx-auto">
 
             {/* Burda mobiloe reklam olacaq */}
             {
@@ -167,7 +168,10 @@ export default function Home(){
                   </div>
                 )
                 : displayProducts.length == 0
-                  ? 'Elan tapılmadı'
+                  ? <div>
+                      <span>Elan tapılmadı</span>
+                      <EmptyData />
+                    </div>
                   : (
                     <>
                       <ProductList products={displayProducts} topMob={'0px'} topDes={'0px'} />

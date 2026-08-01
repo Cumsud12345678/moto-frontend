@@ -11,8 +11,8 @@ export default function Checkbox ({data, ids, onClick}) {
             <button 
               key={item._id}
               className={`
-                p-2 px-3 cursor-pointer border-2 rounded-3xl 
-                ${active ? 'bg-green-300 border-green-600' : 'bg-white hover:bg-gray-200'}
+                p-2.5 px-4 cursor-pointer rounded-3xl
+                ${active ? 'bg-blue-500 text-white' : 'bg-[#ebedf3] border hover:bg-gray-200'}
               `}
               onClick={() => onClick(item._id)}
             >

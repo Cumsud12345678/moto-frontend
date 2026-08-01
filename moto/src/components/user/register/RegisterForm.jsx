@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { register, registerVerify } from '../../../redux/slices/user/userSlice'
 import {SealCheck} from '@gravity-ui/icons';
 
-export default function RegisterForm({ formatPhone }) {
+export default function RegisterForm() {
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -13,35 +13,23 @@ export default function RegisterForm({ formatPhone }) {
 
   const {
     stepRegister,
-
     registerMessage,
     registerStatus
   } = useSelector(s => s.user)
 
   const [nameValue, setNameValue] = useState("")
-  const [phoneValue, setPhoneValue] = useState("")
+  const [email, setEmail] = useState("")
   const [otp, setOtp] = useState("")
-
-  // PHONE FORMAT
-  const handlePhone = (value) => {
-    setPhoneValue(formatPhone(value))
-  }
 
   // REGISTER START
   const handleRegisterStart = () => {
-    if (!nameValue || !phoneValue) {
-      return toast.warning("Ad və Nömrə boş ola bilməz")
-    }
-
-    const cleanPhone = phoneValue.replace(/\s/g, "")
-
-    if(cleanPhone.length !== 9) {
-      return toast.warning('Nömrəni düzgün girin')
+    if (!nameValue || !email) {
+      return toast.warning("Ad və Email boş ola bilməz")
     }
 
     dispatch(register({
       name: nameValue,
-      phone: cleanPhone
+      email: email
     }))
   }
 
@@ -58,7 +46,7 @@ export default function RegisterForm({ formatPhone }) {
     }
 
     dispatch(registerVerify({
-      phone: phoneValue.replace(/\s/g, ""),
+      email: email,
       otp
     }))
   }
@@ -100,7 +88,7 @@ export default function RegisterForm({ formatPhone }) {
           <div>
             <Label>Ad</Label>
             <input
-              className='border-2 w-full rounded-2xl p-3 bg-[#f5f5f5]' placeholder='77 513 14 06'
+              className='border-2 w-full rounded-2xl p-3 bg-[#f5f5f5]'
               placeholder="Name"
               value={nameValue}
               onChange={(e) => setNameValue(e.target.value)}
@@ -108,13 +96,12 @@ export default function RegisterForm({ formatPhone }) {
           </div>
           
           <div className='my-3'>
-            <Label>Nömrə</Label>
+            <Label>Email</Label>
             <input
               className='border-2 w-full rounded-2xl p-3 bg-[#f5f5f5]' 
-              placeholder='77 513 14 06'
-              inputMode="numeric"
-              value={phoneValue}
-              onChange={(e) => handlePhone(e.target.value)}
+              placeholder='example.com'
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           

@@ -1,6 +1,6 @@
 import {Input, Label, useMediaQuery} from "@heroui/react";
 import { useProduct } from "./hooks/useProduct";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import CloseIcon from '@mui/icons-material/Close';
 import DefaultInput from "../customs/DefaultInput"
 import ButtonGroup from "../customs/ButtonGroup"
@@ -110,6 +110,10 @@ export default function ProductForm({ productData }) {
     price,
     setPrice,
 
+    // NOMRE
+    phoneValue,
+    phoneInputChange,
+
     // SET FUNC
     addProduct,
 
@@ -129,24 +133,20 @@ export default function ProductForm({ productData }) {
     setOpen(false)
   }
 
-  console.log(filteredMake)
-
   const isDesktop = useMediaQuery('(min-width: 1024px)', { noSsr: true })
 
   return(
-    <div className="p-5 lg:rounded-3xl lg:p-20 bg-white">
-      <div className="flex items-center justify-center p-6">
-        {/* <span>close</span> */}
-        <span className="text-lg font-bold">Yeni məhsul</span>
-        {/* <span>close</span> */}
+    <div className="lg:rounded-3xl lg:p-15 lg:bg-white flex flex-col lg:gap-8 gap-2 bg-[#f5f5f5]">
+      <div className="flex items-center justify-center p-4 bg-white mt-3 lg:mt-0">
+        <h1 className="lg:text-3xl text-2xl font-bold">Yeni elan</h1>
       </div>
 
-      <div className="lg:p-10 lg:border rounded-3xl">
+      <div className="lg:p-10 border rounded-3xl bg-white p-5">
         <div className="flex flex-col gap-1">
           <DefaultInput 
             value={stateMakeLabel} 
             onChange={((value) => inputChange(setStateMakeLabel, value, setStateMakeValue, 'make', makes, setFilteredMake))} 
-            label={'Make'} 
+            label={'Marka *'} 
           />
         </div>
 
@@ -163,7 +163,7 @@ export default function ProductForm({ productData }) {
             <DefaultInput 
               value={stateModelLabel} 
               onChange={((value) => inputChange(setStateModelLabel, value, setStateModelValue, 'model', allModels, setFilteredModel))} 
-              label={'Model'} 
+              label={'Model *'} 
             />
           </div>
         }
@@ -173,7 +173,7 @@ export default function ProductForm({ productData }) {
             <DefaultInput 
               value={stateYearLabel} 
               onChange={((value) => inputChange(setStateYearLabel, value, setStateYearValue, 'year', yearOriginal, setFilteredYear))} 
-              label={'il'} 
+              label={'il *'} 
             />
           </div>
         }
@@ -183,7 +183,7 @@ export default function ProductForm({ productData }) {
             <DefaultInput 
               value={stateVolumeLabel} 
               onChange={((value) => inputChange(setStateVolumeLabel, value, setStateVolumeValue, 'volume', volumeOriginal, setFilteredVolume))} 
-              label={'Həcm'} 
+              label={'Həcm sm³ *'} 
             />
           </div>
         }
@@ -194,24 +194,48 @@ export default function ProductForm({ productData }) {
         <div className="grid grid-cols-1 lg:grid-cols-3 mt-2 lg:mt-6 max-h-[100vh] overflow-auto">
           {
             !stateMakeValue &&
-            <ListObject filteredData={filteredMake} change={listChange} setStateLabel={setStateMakeLabel} setStateValue={setStateMakeValue} type='make' />
+            <ListObject 
+              filteredData={filteredMake} 
+              change={listChange} 
+              setStateLabel={setStateMakeLabel} 
+              setStateValue={setStateMakeValue} 
+              type='make' 
+            />
           }
 
           {
             loc.includes('make') && !stateModelValue &&
-            <ListObject filteredData={filteredModel} change={listChange} setStateLabel={setStateModelLabel} setStateValue={setStateModelValue} type='model' />
+            <ListObject 
+              filteredData={filteredModel} 
+              change={listChange} 
+              setStateLabel={setStateModelLabel} 
+              setStateValue={setStateModelValue} 
+              type='model' 
+            />
           }
 
           {
             // Years array
             loc.includes('model') && !stateYearValue &&
-            <ListNum filteredData={filteredYear} change={listChange} setStateLabel={setStateYearLabel} setStateValue={setStateYearValue} type='year' />
+            <ListNum 
+              filteredData={filteredYear} 
+              change={listChange} 
+              setStateLabel={setStateYearLabel} 
+              setStateValue={setStateYearValue} 
+              type='year' 
+            />
           }
 
           {
             // Volumes array
             loc.includes('year') && !stateVolumeValue &&
-            <ListNum filteredData={filteredVolume} change={listChange} setStateLabel={setStateVolumeLabel} setStateValue={setStateVolumeValue} type='volume' />
+            <ListNum 
+              filteredData={filteredVolume} 
+              change={listChange} 
+              setStateLabel={setStateVolumeLabel} 
+              setStateValue={setStateVolumeValue} 
+              type='volume' 
+            />
           }
 
         </div>
@@ -222,57 +246,66 @@ export default function ProductForm({ productData }) {
           <div className="flex flex-col gap-4">
 
             <div className="flex flex-col gap-1">
-              <Label>Kateqoriya</Label>
+              <Label>Kateqoriya *</Label>
               <ButtonGroup data={categories} id={stateCategoryValue} onClick={setStateCategoryValue} />
             </div>
 
             <div className="flex flex-col gap-1">
-              <Label>Vəziyyət</Label>
+              <Label>Vəziyyət *</Label>
               <ButtonGroup data={statuses} id={activeStatus} onClick={setActiveStatus} />
             </div>
 
             <div className="flex flex-col gap-1">
-              <Label>Rəng</Label>
+              <Label>Rəng *</Label>
               <ButtonGroup data={colors} id={activeColor} onClick={setActiveColor} />
             </div>
 
             <div className="flex flex-col gap-1">
-              <Label>Mühərrik</Label>
+              <Label>Mühərrik *</Label>
               <ButtonGroup data={fuels} id={activeFuelType} onClick={setActiveFuelType} />
             </div>
 
             <div className="flex flex-col gap-1">
-              <Label>Sürətlər qutusu</Label>
+              <Label>Sürətlər qutusu *</Label>
               <ButtonGroup data={speeds} id={activeSpeedBox} onClick={setActiveSpeedBox} />
             </div>
 
-            <div className="flex flex-col gap-1">
-              <Label>Təchizat</Label>
-              <Checkbox data={equipments} ids={selectedEquipments} onClick={setEquipments} />
+          </div>
+        }
+
+      </div>
+
+
+      {
+        loc.length > 3 && loc.includes('volume') &&
+        <Fragment>
+          <div className="lg:p-10 lg:border rounded-3xl flex flex-col gap-5 bg-white p-5">
+            <h3 className="text-xl">Güc və Yürüş</h3>
+            <div>
+              <DefaultInput value={engine} onChange={setEngine} label={'Güc a.g. *'} />
             </div>
 
             <div>
-              <DefaultInput value={engine} onChange={setEngine} label={'Guc a.g.'} />
+              <DefaultInput value={distance} onChange={setDistance} label={'Yürüş km *'} />
             </div>
+          </div>
 
+          <div className="lg:p-10 lg:border rounded-3xl flex flex-col gap-8 bg-white p-5">
             <div>
-              <DefaultInput value={distance} onChange={setDistance} label={'Yürüş km.'} />
-            </div>
-
-            <div>
-              <textarea 
-                className="border focus:outline-sky-500 w-full rounded-xl px-3 py-2" 
-                placeholder="Açıqlama yazın"
+              <h3 className="text-xl mb-3">Məlumat *</h3>
+              <textarea
+                className="border focus:outline-sky-500 w-full rounded-xl px-3 py-2 h-32 bg-[#f5f5f5] resize-none"
+                placeholder="Motosiklet haqqında vacib məlumatları qeyd edin."
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               ></textarea>
             </div>
+          </div>
 
+          <div className="lg:p-10 lg:border rounded-3xl flex flex-col gap-8 bg-white p-5">
             <div>
-              <Label>Şəkil əlavə et</Label>
-
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
-
+              <h3 className="text-xl mb-3">Şəkillər *</h3>
+              <div className="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-2">
                 {images.map((img) => (
                   <div key={img.id}>
                     <div className="relative overflow-hidden rounded-2xl border border-gray-200">
@@ -280,7 +313,7 @@ export default function ProductForm({ productData }) {
                       <img
                         src={img.url}
                         alt=""
-                        className="w-full h-48 object-cover"
+                        className="w-full h-25 object-cover"
                       />
 
                       <button
@@ -299,40 +332,65 @@ export default function ProductForm({ productData }) {
                 </div>
 
               </div>
-
+              <p className="text-md mt-4">Minimum 1, maksimum 10 şəkil</p>
             </div>
+          </div>
 
+
+          <div className="lg:p-10 lg:border rounded-3xl flex flex-col gap-8 bg-white p-5">
             <div>
-              <DefaultInput value={price} onChange={setPrice} label={'Qiymet'} />
+              <h3 className="text-xl mb-3">Təchizat *</h3>
+              <Checkbox data={equipments} ids={selectedEquipments} onClick={setEquipments} />
             </div>
+          </div>
 
+          <div className="lg:p-10 lg:border rounded-3xl flex flex-col gap-5 bg-white p-5">
+            <h3 className="text-xl">Şəhər və Qiymət</h3>
             <div>
               {
                 isDesktop
-                ? <SearchAndSelect 
-                    data={cities} 
-                    id={selectedCity} 
-                    onClick={setSelectedCity} 
-                    onChange={() => setSelectedCity('')} 
-                    label={'Şəhər'}
+                  ? <SearchAndSelect
+                    data={cities}
+                    id={selectedCity}
+                    onClick={setSelectedCity}
+                    onChange={() => setSelectedCity('')}
+                    label={'Şəhər *'}
                     variant={'floating'}
                   />
-                :
-                <div>
-                  <Label>Şəhər</Label>
-                  <div onClick={() => setOpen(true)} className="w-full p-3 border rounded-xl mt-1.5">
-                    {
-                      selectedCityLabel 
-                      ? selectedCityLabel.label
-                      : <span className="text-muted">Şəhər seç</span>
-                    }
+                  :
+                  <div>
+                    <Label>Şəhər</Label>
+                    <div onClick={() => setOpen(true)} className="w-full p-3 border rounded-xl mt-1.5">
+                      {
+                        selectedCityLabel
+                          ? selectedCityLabel.label
+                          : <span className="text-muted">Şəhər seç</span>
+                      }
+                    </div>
                   </div>
-                </div>
               }
             </div>
 
             <div>
-              <button 
+              <DefaultInput value={price} onChange={setPrice} label={'Qiymət *'} />
+            </div>
+          </div>
+
+          <div className="lg:p-10 lg:border rounded-3xl flex flex-col gap-5 bg-white p-5">
+            <h3 className="text-xl">Əlaqə nömrəsi *</h3>
+            <div>
+              <input
+                onChange={(e) => phoneInputChange(e.target.value)}
+                id='number'
+                type="text"
+                inputMode="numeric"
+                value={phoneValue}
+                className='border-2 w-full rounded-2xl p-3 bg-[#f5f5f5]' placeholder='77 513 14 06'
+              />
+            </div>
+
+            <div>
+              <button
                 onClick={addProduct}
                 disabled={loading}
                 className="w-full p-4 rounded-xl bg-blue-500 text-white cursor-pointer"
@@ -340,11 +398,11 @@ export default function ProductForm({ productData }) {
                 {loading ? "Göndərilir..." : "Göndər"}
               </button>
             </div>
-
           </div>
-        }
+        </Fragment>
+      }
 
-      </div>
+      
 
       <LibDrawer 
         open={open} 

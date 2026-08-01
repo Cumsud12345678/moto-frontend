@@ -20,7 +20,7 @@ export default function Users() {
   const location = useLocation()
 
   const [userId, setUserId] = useState('')
-  const [phone, setPhone] = useState('')
+  const [email, setEmail] = useState('')
   
   useEffect(() => {
     toast.promise(
@@ -55,8 +55,8 @@ export default function Users() {
 
     if(userId) {
       params.set('userId', userId)
-    }else if(phone) {
-      params.set('phone', phone)
+    }else if(email) {
+      params.set('email', email)
     }
 
     navigate(`/admin/users/search?${params.toString()}`)
@@ -78,11 +78,11 @@ export default function Users() {
             />
 
             <input 
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               type="text" 
-              className='p-3 rounded-xl border bg-white focus:outline-sky-500' 
-              placeholder='Nomre yazin' 
+              className='p-3 rounded-xl border bg-white focus:outline-sky-500'
+              placeholder='Email yazin' 
             />
 
             <button 
@@ -99,7 +99,7 @@ export default function Users() {
             <tr className="border-b">
               <th className="w-[225px] border-r p-2 text-left font-medium">ID</th>
               <th className="w-[120px] border-r p-2 text-left font-medium">Created</th>
-              <th className="w-[180px] border-r p-2 text-left font-medium">User details</th>
+              <th className="w-[250px] border-r p-2 text-left font-medium">User details</th>
               <th className="w-[70px] border-r p-2 text-center font-medium">Total pr.</th>
               <th className="w-[60px] border-r p-2 text-center font-medium">Lock</th>
               <th className="w-[60px] border-r p-2 text-center font-medium">Warn</th>

@@ -14,11 +14,11 @@ export default function DefaultInput({ value, onChange, label }) {
           ref={inputRef}
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          className="peer w-full rounded-lg border bg-white px-3 pt-5 pb-1 text-[16px] focus:outline-sky-500"
+          className="peer w-full rounded-xl border bg-[#fafbff] px-3 pt-6 pb-2 text-[16px] focus:outline-sky-500"
           placeholder=" "
         />
 
-        <label className="pointer-events-none absolute left-3.5 top-3 text-gray-500 transition-all duration-200 peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-focus:top-1.5 peer-focus:text-xs peer-not-placeholder-shown:top-1.5 peer-not-placeholder-shown:text-xs">
+        <label className="pointer-events-none absolute left-3.5 top-4 text-gray-500 transition-all duration-200 peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-xs peer-not-placeholder-shown:top-2 peer-not-placeholder-shown:text-xs">
           {label}
         </label>
 

@@ -38,12 +38,12 @@ export default function DeletedUserList({user}) {
             {user.createdAt}
           </td>
 
-          <td className="border-r p-2 text-center">
+          <td className="border-r p-2 text-center truncate">
             {user.user_id}
           </td>
 
-          <td className="border-r p-2 truncate">
-            {user.phone}
+          <td className="border-r p-2">
+            {user.email}
           </td>
 
           <td className="border-r p-2">

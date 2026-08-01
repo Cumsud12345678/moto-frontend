@@ -14,7 +14,7 @@ import Test2 from '../components/test/Test2'
 import Cookies from "js-cookie";
 import { setFavorites } from '../redux/slices/favorite/favoritesSlice'
 import { checkMe } from '../redux/slices/user/userSlice'
-import Register from '../pages/Register'
+import Auth from '../pages/Auth'
 
 import AdminHome from '../admin/pages/Home'
 import Users from '../admin/pages/Users'
@@ -26,6 +26,7 @@ import DeletedProducts from '../admin/pages/DeletedProducts'
 import UserSearch from '../admin/pages/UserSearch'
 import ProductSearch from '../admin/pages/ProductSearch'
 import Adsense from '../admin/pages/Adsense'
+import AdminRoute from './protected-route/AdminRoute'
 
 export default function RouterConfig(){
 
@@ -76,23 +77,25 @@ export default function RouterConfig(){
         <Route path='/' element={<Home />} />
         <Route path='/elanlar/:id' element={<ProductDetails />} />
         <Route path='/bookmarks' element={<Bookmarks />} />
-        <Route path='/new' element={isAuth ? <New /> : <Navigate to="/register" replace />} />
-        <Route path='/profile' element={isAuth ? <Profile /> : <Navigate to="/register" replace />} />
-        <Route path='/edit/product/:id' element={isAuth ? <EditProduct /> : <Navigate to="/register" replace />} />
+        <Route path='/new' element={isAuth ? <New /> : <Navigate to="/auth" replace />} />
+        <Route path='/profile' element={isAuth ? <Profile /> : <Navigate to="/auth" replace />} />
+        <Route path='/edit/product/:id' element={isAuth ? <EditProduct /> : <Navigate to="/auth" replace />} />
         <Route path='/autos' element={<Autos />} />
-        <Route path='/register' element={<Register />} />
+        <Route path='/auth' element={isAuth ? <Navigate to="/" replace /> : <Auth />} />
+        {/* <Route path='/auth' element={<Auth />} /> */}
 
-        {/* Buralar qorunmalidir */}
-        <Route path='/admin' element={<AdminHome />}/>
-        <Route path='/admin/users' element={<Users />} />
-        <Route path='/admin/users/search' element={<UserSearch />} />
-        <Route path='/admin/products/:id' element={<UserProducts />} />
-        <Route path='/admin/products' element={<Products />} />
-        <Route path='/admin/products/search' element={<ProductSearch />} />
-        <Route path='/admin/deleted/users' element={<DeletedUsers />} />
-        <Route path='/admin/deleted/products' element={<DeletedProducts />} />
-        <Route path='/admin/adsense' element={<Adsense />} />
-        <Route path='/admin/metadata' element={<Metadata />} />
+        <Route path="/admin" element={<AdminRoute />}>
+          <Route index element={<AdminHome />} />
+          <Route path="users" element={<Users />} />
+          <Route path="users/search" element={<UserSearch />} />
+          <Route path="products" element={<Products />} />
+          <Route path="products/search" element={<ProductSearch />} />
+          <Route path="products/:id" element={<UserProducts />} />
+          <Route path="deleted/users" element={<DeletedUsers />} />
+          <Route path="deleted/products" element={<DeletedProducts />} />
+          <Route path="adsense" element={<Adsense />} />
+          <Route path="metadata" element={<Metadata />} />
+        </Route>
 
         {/* <Route path='/' element={<Test2 />} /> */}
       </Routes>

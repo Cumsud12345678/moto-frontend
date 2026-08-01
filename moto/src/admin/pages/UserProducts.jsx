@@ -42,7 +42,7 @@ export default function UserProducts() {
               <th className="w-[70px] border-r p-2 text-center font-medium">Price</th>
               <th className="w-[60px] border-r p-2 text-center font-medium">Volume</th>
               <th className="w-[60px] border-r p-2 text-center font-medium">Active</th>
-              <th className="w-[80px] border-r p-2 text-center font-medium">Number</th>
+              <th className="w-[130px] border-r p-2 text-center font-medium">Email</th>
               <th className="w-[100px] p-2 text-center font-medium">Functions</th>
             </tr>
           </thead>

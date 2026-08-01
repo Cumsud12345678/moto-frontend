@@ -16,7 +16,7 @@ export default function MenuModal({open, setOpen, isMobile}){
 
   const handleLogout = () => {
     dispatch(logout())
-    navigate('/register')
+    navigate('/auth')
   }
 
   return(
@@ -56,7 +56,7 @@ export default function MenuModal({open, setOpen, isMobile}){
                       </div>
                     ) : (
                       <div className='flex items-center justify-between p-3 gap-2'>
-                        <button onClick={() => navigate('/register')} className='active:scale-105 transition-all flex items-center w-full border-3 p-2 rounded-xl justify-center gap-1 cursor-pointer'>
+                        <button onClick={() => navigate('/auth')} className='active:scale-105 transition-all flex items-center w-full border-3 p-2 rounded-xl justify-center gap-1 cursor-pointer'>
                           <PersonIcon />
                           <span style={{ fontSize: '16px' }} className='font-bold flex-shrink-0'>Daxil ol</span>
                         </button>

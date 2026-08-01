@@ -13,21 +13,8 @@ export default function Form () {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  const formatPhone = (value) => {
-    const numbers = value.replace(/\D/g, "").slice(0, 9);
-
-    if (numbers.length <= 2) return numbers;
-    if (numbers.length <= 5) return `${numbers.slice(0, 2)} ${numbers.slice(2)}`;
-    if (numbers.length <= 7) return `${numbers.slice(0, 2)} ${numbers.slice(2, 5)} ${numbers.slice(5)}`;
-
-    return `${numbers.slice(0, 2)} ${numbers.slice(2, 5)} ${numbers.slice(5, 7)} ${numbers.slice(7)}`;
-  };
-
   const handleTabChange = () => {
-    // if(location.hash){
-      dispatch(resetForm())
-      // navigate(-1)
-    // }
+    dispatch(resetForm())
   }
   
   return(
@@ -48,10 +35,10 @@ export default function Form () {
             </Tabs.List>
           </Tabs.ListContainer>
           <Tabs.Panel className="pt-4" id="overview">
-            <LoginForm formatPhone={formatPhone} />
+            <LoginForm />
           </Tabs.Panel>
           <Tabs.Panel className="pt-4" id="analytics">
-            <RegisterForm formatPhone={formatPhone} />
+            <RegisterForm />
           </Tabs.Panel>
         </Tabs>
         

@@ -49,7 +49,7 @@ export default function ProductList({product}) {
           </td>
 
           <td className="border-r p-2 text-center">
-            {product.user.phone}
+            {product.user.email}
           </td>
 
           <td className="p-2">

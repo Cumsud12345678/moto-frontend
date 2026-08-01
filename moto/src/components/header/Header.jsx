@@ -21,36 +21,39 @@ export default function Header({dur, filter}){
   let isScroll = useScrollTrigger()
  
   return(
-    <div className='border-b pb-5'>
-      <Slide direction="down" in={dur ? dur : !isScroll}>
-        <AppBar 
-          elevation={0} 
-          sx={{ bgcolor: '#f5f5f5', color: 'black', zIndex: {xs: 1100, lg: 1300}, borderBottom: '1px solid gray'}}
-        >
-          <div className='container mx-auto max-w-[1000px]'>
-            <Toolbar 
-              style={{padding: 0}} 
-              sx={{ minHeight: '56px !important' }}
-            >
-              <Stack
-                direction='row'
-                sx={{ width: '100%', position: 'relative' }}
+    <div className='border-b bg-[#ebedf3]'>
+      <div className='max-w-[1000px] mx-auto'>
+        
+        <Slide direction="down" in={dur ? dur : !isScroll}>
+          <AppBar
+            elevation={0}
+            sx={{ bgcolor: '#f5f5f5', color: 'black', zIndex: { xs: 1100, lg: 1300 }, borderBottom: '1px solid gray' }}
+          >
+            <div className='container mx-auto max-w-[1000px]'>
+              <Toolbar
+                style={{ padding: 0 }}
+                sx={{ minHeight: '56px !important' }}
               >
+                <Stack
+                  direction='row'
+                  sx={{ width: '100%', position: 'relative' }}
+                >
 
-                {isMobile && <HeaderMobile openModal={setOpenModal} open={openModal} isMobile={isMobile} filter={filter}/>}
-                {!isMobile && <HeaderDeskop openModal={setOpenModal} open={openModal} isMobile={isMobile} filter={filter}/>}
+                  {isMobile && <HeaderMobile openModal={setOpenModal} open={openModal} isMobile={isMobile} filter={filter} />}
+                  {!isMobile && <HeaderDeskop openModal={setOpenModal} open={openModal} isMobile={isMobile} filter={filter} />}
 
 
-              </Stack>
-            </Toolbar>
-          </div>
-        </AppBar>
-      </Slide>
+                </Stack>
+              </Toolbar>
+            </div>
+          </AppBar>
+        </Slide>
 
-      {(!isMobile && (location.pathname == '/' || location.pathname.startsWith('/autos'))) && <FilterDeskop useFilter={filter} />}
+        {(!isMobile && (location.pathname == '/' || location.pathname.startsWith('/autos'))) && <FilterDeskop useFilter={filter} />}
 
-      <MenuModal open={openModal} setOpen={setOpenModal} isMobile={isMobile}/>
-
+        <MenuModal open={openModal} setOpen={setOpenModal} isMobile={isMobile} />
+      
+      </div>
     </div>
   )
 }

@@ -7,7 +7,7 @@ import {TrashBin, PencilToSquare} from "@gravity-ui/icons";
 export default function ProductCardProfile({ product, deleteClick }){
 
   const BASE_URL = import.meta.env.VITE_API_URL;
-  const { _id, make, model, year, volume, engine, mileage, images, city, price } = product
+  const { _id, make, model, year, volume, engine, mileage, images, city, price, createdAt } = product
   const navigate = useNavigate()
 
   const API = import.meta.env.VITE_API_URL;
@@ -31,7 +31,7 @@ export default function ProductCardProfile({ product, deleteClick }){
         <p className="text-sm text-gray-600 truncate mt-0.5">
           {year} · {volume} sm · {mileage} km
         </p>
-        <p className="text-sm text-gray-400 mt-0.5">{city.label}, bugün 16:10</p>
+        <p className="text-sm text-gray-400 mt-0.5">{city.label}, {createdAt}</p>
       </div>
 
       <div className="flex flex-col sm:flex-row gap-2 p-2 pt-0">

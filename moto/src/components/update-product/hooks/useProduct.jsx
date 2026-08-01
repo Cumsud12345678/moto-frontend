@@ -56,6 +56,11 @@ export const useProduct = () => {
         : `${Date.now()}-${Math.random().toString(36).slice(2)}`
 
     const handleDrop = async (files) => {
+
+      if(images.length >= 3) {
+        return toast.danger('Maksimum limite catmisiniz')
+      }
+      
       const options = {
         maxSizeMB: 1,
         maxWidthOrHeight: 1600,

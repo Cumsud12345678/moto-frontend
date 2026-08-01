@@ -140,6 +140,10 @@ export function ProductModal({openModal, setOpenModal, images, product}) {
                             <span className="text-red-500 font-bold"> {updatedActive}</span>
                           </span>
                           <span>
+                            Nomre:
+                            <span className="text-red-500 font-bold"> {product.phone}</span>
+                          </span>
+                          <span>
                             Marka, Model:
                             <span className="text-red-500 font-bold"> {product.make?.label}, {product.model?.label}</span>
                           </span>
@@ -282,8 +286,8 @@ export function ProductModal({openModal, setOpenModal, images, product}) {
                             <span className="text-red-500 font-bold"> {product.user.name}</span>
                           </span>
                           <span>
-                            Nomresi
-                            <span className="text-red-500 font-bold"> {product.user.phone}</span>
+                            Emaili
+                            <span className="text-red-500 font-bold"> {product.user.email}</span>
                           </span>
                           <span>
                             Rolu:

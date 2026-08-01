@@ -83,14 +83,14 @@ export default function DetailsImages({ images, make }) {
         }
       </div>
 
-      <div className="flex gap-2 mt-2 overflow-x-auto px-1">
+      <div className="flex gap-1 mt-2 overflow-x-auto px-1">
         {
           images.map((img, index) => (
-            <img 
+            <img
               key={index} src={`${BASE_URL}/uploads/${img}`} 
               alt={make.label}
-              className={`w-[70px] h-[60px] object-contain cursor-pointer rounded
-              ${activeImage === index ? "opacity-100 ring-2 ring-black" : "opacity-60"}`}
+              className={`w-[80px] h-[55px] object-contain cursor-pointer rounded-lg bg-black
+              ${activeImage === index ? "opacity-100" : "opacity-60"}`}
               onMouseEnter={() => swiperRef.current?.slideTo(index)}
           />
           ))

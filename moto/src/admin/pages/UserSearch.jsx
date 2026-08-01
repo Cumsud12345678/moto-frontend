@@ -17,18 +17,18 @@ export default function UserSearch() {
   const location = useLocation()
 
   const [userId, setUserId] = useState('')
-  const [phone, setPhone] = useState('')
+  const [email, setEmail] = useState('')
 
   useEffect(() => {
     dispatch(getUser(location.search))
 
     const params = new URLSearchParams(location.search)
-    const hasAnyFilter = params.get('userId') || params.get('phone')
+    const hasAnyFilter = params.get('userId') || params.get('email')
 
     if(!hasAnyFilter) return;
 
     setUserId(params.get('userId'))
-    setPhone(params.get('phone'))
+    setEmail(params.get('email'))
   }, [location.search])
   
   const {
@@ -40,8 +40,8 @@ export default function UserSearch() {
 
     if(userId) {
       params.set('userId', userId)
-    }else if(phone) {
-      params.set('phone', phone)
+    }else if(email) {
+      params.set('email', email)
     }
 
     navigate(`/admin/users/search?${params.toString()}`)
@@ -63,11 +63,11 @@ export default function UserSearch() {
             />
 
             <input 
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               type="text" 
               className='p-3 rounded-xl border bg-white focus:outline-sky-500' 
-              placeholder='Nomre yazin' 
+              placeholder='Email yazin' 
             />
 
             <button 

@@ -20,7 +20,7 @@ export default function EditProduct(){
   const product = useProduct()
 
   return(
-    <div className='flex flex-col w-full mt-30 container mx-auto max-w-[700px]'>
+    <div className='flex flex-col w-full lg:mt-30 lg:container mx-auto lg:max-w-[750px]'>
       <Form product={product} />
     </div>
   )

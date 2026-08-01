@@ -228,6 +228,11 @@ export const useProduct = () => {
   const [images, setImages] = useState([]);
   
   const handleDrop = async (files) => {
+
+    if(images.length >= 3) {
+      return toast.danger('Maksimum limite catmisiniz')
+    }
+
     const options = {
       maxSizeMB: 1,
       maxWidthOrHeight: 1600,
@@ -268,7 +273,26 @@ export const useProduct = () => {
   const selectedCityLabel = cities.find(c => c._id == selectedCity)
   const [price, setPrice] = useState('')
 
+  const [phoneValue, setPhoneValue] = useState('')
+
+  const phoneInputChange = (value) => {
+    setPhoneValue(formatPhone(value));
+  };
+
+  const formatPhone = (value) => {
+    const numbers = value.replace(/\D/g, "").slice(0, 9);
+
+    if (numbers.length <= 2) return numbers;
+    if (numbers.length <= 5) return `${numbers.slice(0, 2)} ${numbers.slice(2)}`;
+    if (numbers.length <= 7) return `${numbers.slice(0, 2)} ${numbers.slice(2, 5)} ${numbers.slice(5)}`;
+
+    return `${numbers.slice(0, 2)} ${numbers.slice(2, 5)} ${numbers.slice(5, 7)} ${numbers.slice(7)}`;
+  };
+
   const addProduct = () => {
+
+    const cleanPhone = phoneValue.replace(/\s/g, "")
+
     // Marka/Model/il/hecm
     if (!stateMakeValue) return toast.danger('Marka seçin')
     if (!stateModelValue) return toast.danger('Model seçin')
@@ -298,6 +322,9 @@ export const useProduct = () => {
     // Qiymet
     if (!price || Number(price) <= 0) return toast.danger('Qiyməti düzgün daxil edin')
 
+    // Nomre
+    if (!phoneValue || cleanPhone.length !== 9) return toast.danger('Nömrəni düzgün daxil edin')
+
     setLoading(true)
     const form = {
       price: price,
@@ -316,6 +343,7 @@ export const useProduct = () => {
       color: activeColor,
       status: activeStatus,
       equipments: selectedEquipments,
+      phone: cleanPhone
     }
 
     toast.promise(dispatch(createProduct(form)).unwrap(),
@@ -404,7 +432,6 @@ export const useProduct = () => {
     setSelectedEquipments,
     setEquipments,
 
-
     engine,
     setEngine,
 
@@ -413,7 +440,6 @@ export const useProduct = () => {
 
     description,
     setDescription,
-
 
     images,
     handleDrop,
@@ -427,6 +453,8 @@ export const useProduct = () => {
     price,
     setPrice,
 
+    phoneValue,
+    phoneInputChange,
 
     addProduct,
     loading
