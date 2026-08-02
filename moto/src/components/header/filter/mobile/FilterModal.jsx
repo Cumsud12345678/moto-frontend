@@ -13,6 +13,7 @@ import ButtonGroup from '../../../customs/ButtonGroup'
 import SoloLabelinput from '../../../customs/SoloLabelinput'
 import Checkbox from '../../../customs/Checkbox'
 import { useLocation } from 'react-router-dom'
+import { toast } from '@heroui/react'
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -138,6 +139,12 @@ export default function FilterModal({open, onClose, useFilter}){
   }
 
 
+  const handleModelOpen = () => {
+    if (!make) return toast.warning('Əvvəlcə marka seçin')
+    setOpenModel(true)
+  }
+
+
   return(
     <Dialog
       fullScreen
@@ -177,7 +184,7 @@ export default function FilterModal({open, onClose, useFilter}){
                 : 'Marka'
               }
             </div>
-            <div onClick={() => setOpenModel(true)} className='border rounded-xl p-3 w-full cursor-pointer hover:bg-gray-200'>
+            <div onClick={handleModelOpen} className='border rounded-xl p-3 w-full cursor-pointer hover:bg-gray-200'>
               {model
                 ?
                 filteredModel.find(x => x._id == model)?.label

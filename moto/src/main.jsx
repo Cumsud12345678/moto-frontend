@@ -19,13 +19,15 @@ const theme = createTheme({
   },
 });
 
+const isMobile = window.innerWidth < 768;
+
 createRoot(document.getElementById('root')).render(
   <HelmetProvider>
     <Provider store={store}>
       <BrowserRouter>
 
         <ThemeProvider theme={theme}>
-          <ToastProvider className="z-[9999]" />
+          <ToastProvider className="z-[99999999]" placement={`${isMobile ? 'top' : 'bottom'}`} />
           <App />
         </ThemeProvider>
 

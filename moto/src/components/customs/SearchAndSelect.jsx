@@ -145,12 +145,24 @@ export default function SearchAndSelect({ data = [], id, onClick, onChange, labe
 
       {focus && (
         <div className="absolute z-[1000] mt-2 max-h-[225px] w-full overflow-auto rounded-lg border-2 bg-white p-1 shadow-lg">
-          {filteredData.length === 0 ? (
+          
+          {/* Hele data yuklenmiyibse */}
+          {(filteredData.length === 0 && value.length === 0) && 
             <div className="flex items-center justify-center p-1">
               <Spinner />
             </div>
-          ) : (
-            filteredData.map((item) => (
+          }
+          {/* Axdarilan data tapilmiyibsa */}
+          {
+            (filteredData.length === 0 && value.length !== 0) && 
+            <div className="flex items-center justify-center p-1">
+              Tapılmadı
+            </div>
+          }
+          {/* Data varsa */}
+          {
+            filteredData.length !== 0 && 
+            (filteredData.map((item) => (
               <div
                 key={getId(item)}
                 className="flex cursor-pointer justify-between rounded-lg p-2 hover:bg-gray-200"
@@ -162,8 +174,9 @@ export default function SearchAndSelect({ data = [], id, onClick, onChange, labe
                   <CheckIcon sx={{ fontSize: 20, color: "green" }} />
                 )}
               </div>
-            ))
-          )}
+            )))
+          }
+            
         </div>
       )}
     </div>
