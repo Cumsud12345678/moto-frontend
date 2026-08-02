@@ -61,14 +61,14 @@ export default function SearchAndSelect({ data = [], id, onClick, onChange, labe
   const variants = {
     floating: {
       width: 'w-full',
-      inputClass: 'peer w-full px-3 pt-6 pb-2 text-[16px] bg-[#fafbff]',
+      inputClass: 'peer w-full px-3 pt-5.5 pb-1.5 text-[16px] bg-[#fafbff]',
       placeholder: ' ',
       labelType: 'label'
     },
 
     leftLabel: {
       width: 'w-full',
-      inputClass: 'p-2.5 bg-white',
+      inputClass: 'p-3 bg-white',
       placeholder: '',
       labelType: 'div'
     },
@@ -105,11 +105,20 @@ export default function SearchAndSelect({ data = [], id, onClick, onChange, labe
         {
           current.labelType == 'label'
           ? (
-            <label className="pointer-events-none absolute left-3.5 top-4 text-gray-500 transition-all duration-200 peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-xs peer-not-placeholder-shown:top-2 peer-not-placeholder-shown:text-xs">
+            <label className="
+              absolute left-3.5 top-3.1
+              origin-left
+              text-gray-500
+              transition-transform duration-200
+              peer-focus:-translate-y-3
+              peer-focus:scale-75
+              peer-not-placeholder-shown:-translate-y-3
+              peer-not-placeholder-shown:scale-75"
+            >
               {label}
             </label>
           ) : current.labelType == 'div' && (
-            <div className="absolute py-3 px-2 rounded-l-lg">
+            <div className="absolute py-3 px-3.5 rounded-l-lg">
               <span className="text-gray-500">{label}</span>
             </div>
           )

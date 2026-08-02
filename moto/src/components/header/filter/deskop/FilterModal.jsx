@@ -161,11 +161,11 @@ export default function FilterDialog({ open, onClose, useFilter }) {
                     <div className={`relative w-full`}>
                       <div className="relative flex items-center">
                         <input
-                          className="border rounded-lg peer w-full bg-white px-3 pt-5 pb-1 text-[16px] opacity-70 shadow"
+                          className="border rounded-xl peer w-full bg-white text-[16px] opacity-70 py-3.5"
                           readOnly='true'
                           placeholder=""
                         />
-                        <label className="absolute left-3.5 top-3 text-gray-500 transition-all duration-200">
+                        <label className="absolute left-3.5 top-3.1 text-gray-500 transition-all duration-200">
                           Model
                         </label>
                       </div>
@@ -183,14 +183,14 @@ export default function FilterDialog({ open, onClose, useFilter }) {
                   <SoloLabelinput 
                     value={minPrice} 
                     onChange={(e) => setMinPrice(e.target.value)} 
-                    label={'Min.'} pl={'40'} 
+                    label={'Min.'} pl={'48'} 
                   />
 
                   <SoloLabelinput 
                     value={maxPrice} 
                     onChange={(e) => setMaxPrice(e.target.value)} 
                     label={'Max.'} 
-                    pl={'44'} 
+                    pl={'52'} 
                   />
 
                 </div>
@@ -224,7 +224,7 @@ export default function FilterDialog({ open, onClose, useFilter }) {
                     onClick={setMinYear}
                     label={'Min.'}
                     variant={'leftLabel'}
-                    pl={'40'}
+                    pl={'48'}
                   />
 
                   <SearchAndSelect 
@@ -233,7 +233,7 @@ export default function FilterDialog({ open, onClose, useFilter }) {
                     onClick={setMaxYear}
                     label={'Max.'}
                     variant={'leftLabel'}
-                    pl={'44'}
+                    pl={'52'}
                   />
 
                 </div>
@@ -264,14 +264,14 @@ export default function FilterDialog({ open, onClose, useFilter }) {
                     value={minDistance} 
                     change={(e) => setMinDistance(e.target.value)} 
                     label={'Min.'} 
-                    pl={'40'}
+                    pl={'48'}
                   />
 
                   <SoloLabelinput 
                     value={maxDistance} 
                     change={(e) => setMaxDistance(e.target.value)} 
                     label={'Max.'} 
-                    pl={'44'}
+                    pl={'52'}
                   />
 
                 </div>
@@ -304,7 +304,7 @@ export default function FilterDialog({ open, onClose, useFilter }) {
                     onClick={setMinVolume}
                     label={'Min.'}
                     variant={'leftLabel'}
-                    pl={'40'}
+                    pl={'48'}
                   />
 
                   <SearchAndSelect 
@@ -313,7 +313,7 @@ export default function FilterDialog({ open, onClose, useFilter }) {
                     onClick={setMaxVolume}
                     label={'Max.'}
                     variant={'leftLabel'}
-                    pl={'44'}
+                    pl={'52'}
                   />
 
                 </div>
@@ -371,14 +371,14 @@ export default function FilterDialog({ open, onClose, useFilter }) {
                     value={minEngine} 
                     change={(e) => setMinEngine(e.target.value)} 
                     label={'Min.'} 
-                    pl={'40'}
+                    pl={'48'}
                   />
 
                   <SoloLabelinput 
                     value={maxEngine} 
                     change={(e) => setMaxEngine(e.target.value)} 
                     label={'Max.'} 
-                    pl={'44'}
+                    pl={'52'}
                   />
 
                 </div>

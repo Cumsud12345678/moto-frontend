@@ -70,11 +70,11 @@ export default function FilterDeskop({useFilter}){
             <div className={`relative w-full`}>
               <div className="relative flex items-center">
                 <input
-                  className="border rounded-lg peer w-full bg-white px-3 pt-5 pb-1 text-[16px] opacity-70"
+                  className="border rounded-xl peer w-full bg-white px-3 pt-5.5 pb-1.5 text-[16px] opacity-70"
                   readOnly='true'
                   placeholder=""
                 />
-                <label className="absolute left-3.5 top-3 text-gray-500 transition-all duration-200">
+                <label className="absolute left-3.5 top-3.5 text-gray-500 transition-all duration-200">
                   Model
                 </label>
               </div>
@@ -86,10 +86,10 @@ export default function FilterDeskop({useFilter}){
         </div>
         
         <div className="flex items-center justify-center w-full h-full gap-3">
-          <button onClick={applyFilter} type="button" className="bg-blue-500 text-white h-[40px] px-8 rounded-lg cursor-pointer shadow">
+          <button onClick={applyFilter} type="button" className="bg-blue-500 text-white py-2.5 px-8 rounded-lg cursor-pointer shadow">
             Axtar
           </button>
-          <button onClick={handleOpen} className="bg-blue-500 text-white h-[40px] px-2 rounded-lg cursor-pointer shrink-0 shadow">
+          <button onClick={handleOpen} className="bg-blue-500 text-white py-2 px-2 rounded-lg cursor-pointer shrink-0 shadow">
             <FilterAltIcon sx={{ mb: '3px' }}></FilterAltIcon>
             Filter
           </button>
