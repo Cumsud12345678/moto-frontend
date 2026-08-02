@@ -9,8 +9,6 @@ import Autos from '../pages/Autos'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
-import Test from '../components/test/Test'
-import Test2 from '../components/test/Test2'
 import Cookies from "js-cookie";
 import { setFavorites } from '../redux/slices/favorite/favoritesSlice'
 import { checkMe } from '../redux/slices/user/userSlice'
@@ -82,7 +80,6 @@ export default function RouterConfig(){
         <Route path='/edit/product/:id' element={isAuth ? <EditProduct /> : <Navigate to="/auth" replace />} />
         <Route path='/autos' element={<Autos />} />
         <Route path='/auth' element={isAuth ? <Navigate to="/" replace /> : <Auth />} />
-        {/* <Route path='/auth' element={<Auth />} /> */}
 
         <Route path="/admin" element={<AdminRoute />}>
           <Route index element={<AdminHome />} />
@@ -97,7 +94,6 @@ export default function RouterConfig(){
           <Route path="metadata" element={<Metadata />} />
         </Route>
 
-        {/* <Route path='/' element={<Test2 />} /> */}
       </Routes>
     )  
   }
