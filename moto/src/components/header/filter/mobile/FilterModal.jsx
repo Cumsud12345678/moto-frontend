@@ -172,19 +172,19 @@ export default function FilterModal({open, onClose, useFilter}){
         </Toolbar>
       </AppBar>
 
-      <div className='flex flex-col mt-[60px] px-[0px] pb-20 bg-[#f5f5f5]'>
+      <div className='flex flex-col gap-2 mt-[60px] px-[0px] pb-20 bg-[#f5f5f5]'>
     
-        <div className="border rounded-2xl my-2 mb-1 p-3 pt-2 bg-white">
+        <div className="border rounded-2xl p-3 pt-2 bg-white mt-3">
           <span>Əsas</span>
           <div className="flex flex-row mt-2 gap-3">
-            <div onClick={() => setOpenMake(true)} className='border rounded-xl p-3 w-full cursor-pointer hover:bg-gray-200'>
+            <div onClick={() => setOpenMake(true)} className='border rounded-xl p-3 w-full cursor-pointer hover:bg-gray-200 bg-[#fafbff]'>
               {make
                 ?
                 makes.find(x => x._id == make)?.label
                 : 'Marka'
               }
             </div>
-            <div onClick={handleModelOpen} className='border rounded-xl p-3 w-full cursor-pointer hover:bg-gray-200'>
+            <div onClick={handleModelOpen} className='border rounded-xl p-3 w-full cursor-pointer hover:bg-gray-200 bg-[#fafbff]'>
               {model
                 ?
                 filteredModel.find(x => x._id == model)?.label
@@ -195,7 +195,7 @@ export default function FilterModal({open, onClose, useFilter}){
         </div>
         
 
-        <div className="border rounded-2xl my-2 mb-1 p-3 pt-2 bg-white">
+        <div className="border rounded-2xl p-3 pt-2 bg-white">
           <span>Vəziyyəti</span>
           <div className='flex gap-2 mt-2'>
 
@@ -209,7 +209,7 @@ export default function FilterModal({open, onClose, useFilter}){
           </div>
         </div>
         
-        <div className="border rounded-2xl my-2 mb-1 p-3 pt-2 bg-white">
+        <div className="border rounded-2xl p-3 pt-2 bg-white">
           <span>Yürüyüş</span>
           <div className='flex gap-3 mt-2'>
 
@@ -230,15 +230,15 @@ export default function FilterModal({open, onClose, useFilter}){
           </div>
         </div>
 
-        <div className="border rounded-2xl my-2 mb-1 p-3 pt-2 bg-white">
+        <div className="border rounded-2xl p-3 pt-2 bg-white">
           <span>il</span>
           <div className='flex gap-3 mt-2'>
-            <div onClick={() => changeDrawer('minYear', minYear, 'Qiyet min.')} className="border rounded-xl w-full p-3">
+            <div onClick={() => changeDrawer('minYear', minYear, 'Qiyet min.')} className="border rounded-xl w-full p-3 bg-[#fafbff]">
               {
                 minYear ? 'Min. ' + minYear : 'Min'
               }
             </div>
-            <div onClick={() => changeDrawer('maxYear', maxYear, 'Qiymet max.')} className="border rounded-xl w-full p-3">
+            <div onClick={() => changeDrawer('maxYear', maxYear, 'Qiymet max.')} className="border rounded-xl w-full p-3 bg-[#fafbff]">
               {
                 maxYear ? 'Max. ' + maxYear : 'Max'
               }
@@ -246,15 +246,15 @@ export default function FilterModal({open, onClose, useFilter}){
           </div>
         </div>
 
-        <div className="border rounded-2xl my-2 mb-1 p-3 pt-2 bg-white">
+        <div className="border rounded-2xl p-3 pt-2 bg-white">
           <span>Mühərrikin həcmi (sm)</span>
           <div className='flex gap-3 mt-2'>
-            <div onClick={() => changeDrawer('minVolume', minVolume, 'Hecm min.')} className="border rounded-xl w-full p-3">
+            <div onClick={() => changeDrawer('minVolume', minVolume, 'Hecm min.')} className="border rounded-xl w-full p-3 bg-[#fafbff]">
               {
                 minVolume || minVolume == 0 ? 'Min. ' + minVolume : 'Min'
               }
             </div>
-            <div onClick={() => changeDrawer('maxVolume', maxVolume, 'Hecm max.')} className="border rounded-xl w-full p-3">
+            <div onClick={() => changeDrawer('maxVolume', maxVolume, 'Hecm max.')} className="border rounded-xl w-full p-3 bg-[#fafbff]">
               {
                 maxVolume ? 'Max. ' + maxVolume : 'Max'
               }
@@ -262,10 +262,10 @@ export default function FilterModal({open, onClose, useFilter}){
           </div>
         </div>
 
-        <div className="border rounded-2xl my-2 mb-1 p-3 pt-2 bg-white">
+        <div className="border rounded-2xl p-3 pt-2 bg-white">
           <span>Şəhər</span>
           <div className='flex gap-3 mt-2'>
-            <div onClick={() => changeDrawer('selectedCity', city, 'Weher')} className="border rounded-xl w-full p-3">
+            <div onClick={() => changeDrawer('selectedCity', city, 'Weher')} className="border rounded-xl w-full p-3 bg-[#fafbff]">
               {
                 city ? cities.find(x => x._id == city)?.label : 'Şəhər seç'
               }
@@ -273,7 +273,7 @@ export default function FilterModal({open, onClose, useFilter}){
           </div>
         </div>
 
-        <div className="border rounded-2xl my-2 mb-1 p-3 pt-2 bg-white">
+        <div className="border rounded-2xl p-3 pt-2 bg-white">
           <span>Mühərrikin gücü a.g.</span>
           <div className='flex gap-3 mt-2'>
 
@@ -294,7 +294,7 @@ export default function FilterModal({open, onClose, useFilter}){
           </div>
         </div>
 
-        <div className="border rounded-2xl my-2 mb-1 p-3 pt-2 bg-white">
+        <div className="border rounded-2xl p-3 pt-2 bg-white">
           <span>Rəng</span>
           <div className='flex gap-2 mt-2'>
             <ButtonGroup 
@@ -306,7 +306,7 @@ export default function FilterModal({open, onClose, useFilter}){
           </div>
         </div>
 
-        <div className="border rounded-2xl my-2 mb-1 p-3 pt-2 bg-white">
+        <div className="border rounded-2xl p-3 pt-2 bg-white">
           <span>Qiymət</span>
           <div className='flex gap-3 mt-2'>
 
@@ -327,7 +327,7 @@ export default function FilterModal({open, onClose, useFilter}){
           </div>
         </div>
 
-        <div className="border rounded-2xl my-2 mb-1 p-3 pt-2 bg-white">
+        <div className="border rounded-2xl p-3 pt-2 bg-white">
           <span>Yanacaq növü</span>
           <div className='flex gap-2 mt-2'>
 
@@ -341,7 +341,7 @@ export default function FilterModal({open, onClose, useFilter}){
           </div>
         </div>
 
-        <div className="border rounded-2xl my-2 p-3 pt-2 bg-white">
+        <div className="border rounded-2xl p-3 pt-2 bg-white">
           <span>Sürətlər qutusu</span>
           <div className='flex flex-wrap gap-2 mt-2'>
 
@@ -355,7 +355,7 @@ export default function FilterModal({open, onClose, useFilter}){
           </div>
         </div>
 
-        <div className="border rounded-2xl my-2 p-3 pt-2 bg-white">
+        <div className="border rounded-2xl p-3 pt-2 bg-white">
           <span>Təchizat</span>
           <div className='flex flex-wrap gap-2 mt-2'>
             

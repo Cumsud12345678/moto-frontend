@@ -159,7 +159,7 @@ export default function Home(){
             }
             
 
-            <span className='text-2xl font-semibold'>Bütün elanlar</span>
+            <span className='text-xl'>BÜTÜN ELANLAR</span>
             {
               loading
                 ? (
@@ -169,7 +169,6 @@ export default function Home(){
                 )
                 : displayProducts.length == 0
                   ? <div>
-                      <span>Elan tapılmadı</span>
                       <EmptyData />
                     </div>
                   : (

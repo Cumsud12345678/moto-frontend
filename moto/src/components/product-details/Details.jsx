@@ -54,8 +54,8 @@ export default function Details({details, ids}){
         toast.promise(
           dispatch(deleteFavorites(_id)).unwrap(),
           {
-            loading: 'Favoriden cixardilir...',
-            success: 'Favoriden cixardildi',
+            loading: 'Seçilmişlərdən çıxardılır...',
+            success: 'Seçilmişlərdən çıxardıldı',
             error: (err) => err.message || "Xəta baş verdi."
           }
         )
@@ -69,8 +69,8 @@ export default function Details({details, ids}){
         toast.promise(
           dispatch(setFavorites(_id)).unwrap(),
           {
-            loading: 'Favorilere eklenir...',
-            success: 'Favorilere eklendi',
+            loading: 'Seçilmişlərə əlavə edilir...',
+            success: 'Seçilmişlərə əlavə edildi',
             error: (err) => err.message || 'Xəta baş verdi.'
           }
         )

@@ -229,8 +229,9 @@ export const useProduct = () => {
   
   const handleDrop = async (files) => {
 
-    if(images.length >= 3) {
-      return toast.danger('Maksimum limite catmisiniz')
+    if (images.length + files.length > 10) {
+      toast.danger("Maksimum 10 şəkil əlavə edə bilərsiniz");
+      return;
     }
 
     const options = {

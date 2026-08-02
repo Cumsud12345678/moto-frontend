@@ -68,14 +68,14 @@ export default function SearchAndSelect({ data = [], id, onClick, onChange, labe
 
     leftLabel: {
       width: 'w-full',
-      inputClass: 'p-3 bg-white',
+      inputClass: 'p-3 bg-[#fafbff]',
       placeholder: '',
       labelType: 'div'
     },
 
     default: {
       width: 'w-2/4',
-      inputClass: 'w-full bg-white p-3 text-md',
+      inputClass: 'w-full bg-[#fafbff] p-3 text-md',
       placeholder: label,
       labelType: false
     }

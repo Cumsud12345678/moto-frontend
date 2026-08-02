@@ -5,21 +5,32 @@ import { useDispatch, useSelector } from "react-redux";
 import ProductImageDialog from "./ProductImageDialog";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const BASE_URL = import.meta.env.VITE_API_URL;
 
 export default function DetailsImages({ images, make }) {
+
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation();
   const swiperRef = useRef(null);
 
   const [activeImage, setActiveImage] = useState(0)
-
   const [activePagination, setActivePagination] = useState(false)
-  
-  const [imageDialogOpen, setImageDialogOpen] = useState(false)
+  // const [imageDialogOpen, setImageDialogOpen] = useState(false)
+  const imageDialogOpen = location.hash == '#image'
 
   const goPrev = () => swiperRef.current?.slidePrev();
   const goNext = () => swiperRef.current?.slideNext();
+
+  const clickImage = () => {
+    navigate(`${location.search}#image`)
+  }
+
+  const closeImage = () => {
+    navigate(-1)
+  }
 
   return (
     <div className='w-[100%]'>
@@ -49,7 +60,7 @@ export default function DetailsImages({ images, make }) {
 
                 {/* Ön plan - əsl şəkil, tam görünən */}
                 <img
-                  onClick={() => setImageDialogOpen(true)}
+                  onClick={() => clickImage(true)}
                   src={`${BASE_URL}/uploads/${img}`}
                   alt={`${make.label}`}
                   className="relative w-full h-full object-contain cursor-pointer"
@@ -102,7 +113,7 @@ export default function DetailsImages({ images, make }) {
         images={images}
         initialIndex={activeImage}
         open={imageDialogOpen}
-        onClose={() => setImageDialogOpen(false)}
+        onClose={closeImage}
       />
     </div>
 

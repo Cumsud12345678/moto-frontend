@@ -134,7 +134,7 @@ export default function DetailsLeft({ product, isLiked, toggleLike, share }){
           </div>
         </div>
 
-        <div className="flex gap-2 border-y py-3 px-3 lg:px-0">
+        <div className="flex flex-wrap gap-2 border-y py-3 px-3 lg:px-0">
           {
             equipments.map(equipment => (
               <button className="p-2 px-3 rounded-2x bg-[#ebedf3] rounded-full text-md" key={equipment._id}>{equipment.label}</button>

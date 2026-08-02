@@ -74,7 +74,7 @@ export default function MenuModal({open, setOpen, isMobile}){
             </Drawer.Body>
             <Drawer.Footer className='block'>
               <div className="flex flex-col gap-2 p-3 bg-gray-200">
-                <span>Bizimle elaqe</span>
+                <span>Bizimlə əlaqə</span>
                 <div className='flex items-center gap-1'>
                   <LocalPhoneIcon />
                   <span className='font-bold text-lg'>

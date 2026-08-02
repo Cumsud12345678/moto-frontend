@@ -103,7 +103,7 @@ export default function Autos(){
               </div>
             }
 
-            <span className='text-2xl font-semibold mt-1'>Bütün elanlar</span>
+            <span className='text-xl mt-1'>BÜTÜN ELANLAR</span>
             {
               loading
                 ? (
@@ -113,7 +113,6 @@ export default function Autos(){
                 )
                 : filteredProducts.length == 0
                   ? <div>
-                      <span>Elan tapılmadı</span>
                       <EmptyData />
                     </div>
                   : <ProductList products={filteredProducts} topMob={'0px'} topDes={'0px'} />

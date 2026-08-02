@@ -37,6 +37,11 @@ export default function ProductDetails(){
     if(!similarCache[id]){
       dispatch(getSimilarProducts(id))
     }
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", // və ya "auto"
+    });
   }, [id])
 
   // ERRORU YAZDIR
@@ -51,6 +56,8 @@ export default function ProductDetails(){
   const loadingDetails = detailsStatus === 'loading' || !currentProduct || currentProduct._id != id
   const loadingSimilars = similarStatus === 'loading' || !similarCache[id]
     
+  
+
   return (
     <div className="container mx-auto max-w-[1000px]">
 
@@ -88,7 +95,7 @@ export default function ProductDetails(){
       }
 
       <div className="mt-5 px-4 pb-25">
-        <h4 className="font-bold text-2xl">Oxşar məhsullar</h4>
+        <h4 className="text-xl">OXŞAR ELANLAR</h4>
         {
           loadingSimilars
             ?
@@ -101,7 +108,7 @@ export default function ProductDetails(){
             </div>
             :
             currentSimilar.length == 0
-              ? 'Urun tapilmadi'
+              ? 'Elan tapılmadı'
               : <ProductList products={currentSimilar} topMob={'0px'} topDes={'0px'} />
         }
       </div>
