@@ -34,7 +34,7 @@ import CheckIcon from "@mui/icons-material/Check";
   return(
    
     <Drawer isOpen={open} onOpenChange={onClose}>
-      <Drawer.Backdrop className='z-[10000]'>
+      <Drawer.Backdrop className='z-[10000000]'>
         <Drawer.Content>
           <Drawer.Dialog className="h-[70%]">
             <Drawer.Handle />
@@ -57,7 +57,7 @@ import CheckIcon from "@mui/icons-material/Check";
                   const selected = active == (item._id ?? item)
                   return (
                     <div key={index} onClick={() => onClick(item._id ? item._id : item)} className={`cursor-pointer hover:bg-gray-200 p-3 rounded-xl flex justify-between ${selected && 'border text-black'}`}>
-                      <button className='list-group-item list-group-item-action text-black text-md'>
+                      <button style={{fontSize: '16px'}} className='list-group-item list-group-item-action text-black'>
                         {item.label ? item.label : item}
                       </button>
                       {selected && 

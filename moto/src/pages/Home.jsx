@@ -148,7 +148,7 @@ export default function Home(){
 
           <div className="mt-45 lg:mt-6 px-4 flex flex-col mb-25 max-w-[1000px] mx-auto">
 
-            {/* Burda mobiloe reklam olacaq */}
+            {/* Burda mobile reklam olacaq */}
             {
               mobileAdsense.length > 0 && 
               <div 

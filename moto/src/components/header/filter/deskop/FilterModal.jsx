@@ -112,7 +112,7 @@ export default function FilterDialog({ open, onClose, useFilter }) {
           transition: Transition,
         }}
         keepMounted
-        style={{zIndex: '10000'}}
+        style={{zIndex: '10000000'}}
       >
         <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
           Geniş Axdarış
