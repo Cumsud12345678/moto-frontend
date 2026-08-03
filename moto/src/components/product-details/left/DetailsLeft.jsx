@@ -77,7 +77,7 @@ export default function DetailsLeft({ product, isLiked, toggleLike, share }){
           <DetailsImages images={images} make={make} />
         </div>
         
-        <div className="p-3 border-t mt-3">
+        <div className="p-3 lg:border-t lg:mt-3">
           <span>Baxış sayı: {views}</span>
         </div>
 

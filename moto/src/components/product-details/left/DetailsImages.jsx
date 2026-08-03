@@ -93,7 +93,7 @@ export default function DetailsImages({ images, make }) {
         }
       </div>
 
-      <div className="flex gap-1 mt-2 overflow-x-auto px-1 py-2 px-3">
+      <div className="hidden lg:flex gap-1 mt-2 overflow-x-auto px-1 py-2 px-3">
         {
           images.map((img, index) => (
             <img

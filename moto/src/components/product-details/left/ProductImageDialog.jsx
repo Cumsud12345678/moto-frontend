@@ -77,12 +77,9 @@ export default function ProductImageDialog({open, onClose, images, initialIndex 
         </IconButton>
         <DialogContent style={{padding: '0px'}} dividers>
 
-          <div className='flex flex-col justify-center h-full items-center'>
-            <div 
-              className="flex bg-black w-full max-w-[600px] h-[100%] aspect-2/1"
-              // onMouseEnter={() => setActivePagination(true)}
-              // onMouseLeave={() => setActivePagination(false)}
-            >
+          <div className='flex flex-col h-full w-full'>
+
+            <div className="relative flex-1 min-h-0 w-full bg-black overflow-hidden">
               <Swiper
                 onSwiper={(swiper) => (swiperRef.current = swiper)}
                 onSlideChange={(swiper) => {
@@ -91,19 +88,19 @@ export default function ProductImageDialog({open, onClose, images, initialIndex 
                 slidesPerView={1}
                 spaceBetween={10}
                 initialSlide={activeImage}
+                className="w-full h-full"
               >
                 {images.map((img, index) => (
                   <SwiperSlide key={index}>
                     <img
-                      onClick={() => setImageDialogOpen(true)}
                       src={`${BASE_URL}/uploads/${img}`}
-                      className="w-full h-full object-contain cursor-pointer rounded-md"
+                      className="w-full h-full object-contain cursor-pointer"
                     />
                   </SwiperSlide>
                 ))}
               </Swiper>
 
-              <div className="absolute top-3/4 left-1/2 -transform-x-1/2 bg-black/70 text-white text-sm px-3 py-1 rounded-full z-[10000]">
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/70 text-white text-sm px-3 py-1 rounded-full z-[10000]">
                 {activeImage + 1} / {images.length}
               </div>
 
@@ -119,17 +116,17 @@ export default function ProductImageDialog({open, onClose, images, initialIndex 
                   </button>
                   <button
                     className='absolute right-2 top-1/2 -translate-y-1/2 bg-white/60 text-black
-                    p-2 rounded-full transition transition z-[1000] cursor-pointer'
+                    p-2 rounded-full transition z-[1000] cursor-pointer'
                     onClick={goNext}
                   >
                     <ArrowForwardIcon />
                   </button>
                 </div>
               }
-
             </div>
-            <div className='p-3'>
-              <div className='flex lg:flex-wrap overflow-x-auto'>
+
+            <div className='shrink-0 p-3 bg-black'>
+              <div className='flex lg:justify-center flex-nowrap overflow-x-auto gap-[6px] py-2'>
                 {
                   images.map((image, index) => (
                     <img
@@ -137,10 +134,11 @@ export default function ProductImageDialog({open, onClose, images, initialIndex 
                       style={{
                         width: '70px',
                         height: '50px',
-                        margin: '3px',
                         borderRadius: '6px',
-                        cursor: 'pointer'
+                        cursor: 'pointer',
+                        outline: index === activeImage ? `2px solid ${theme.palette.primary.main}` : 'none',
                       }}
+                      className="shrink-0 object-cover border-2"
                       src={`${BASE_URL}/uploads/${image}`}
                       key={index}
                     />
