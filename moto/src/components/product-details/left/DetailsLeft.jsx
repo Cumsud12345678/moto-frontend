@@ -15,6 +15,7 @@ export default function DetailsLeft({ product, isLiked, toggleLike, share }){
  
   const {
     phone,
+    views,
     make,
     model,
     year,
@@ -76,6 +77,9 @@ export default function DetailsLeft({ product, isLiked, toggleLike, share }){
           <DetailsImages images={images} make={make} />
         </div>
         
+        <div className="p-3 border-t mt-3">
+          <span>Baxış sayı: {views}</span>
+        </div>
 
         <div className="border-t py-3 my-1 grid grid-cols-1 lg:grid-cols-2 lg:gap-2 text-md px-3">
           <div className="flex flex-col gap-2 w-full">

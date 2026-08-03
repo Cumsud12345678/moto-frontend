@@ -77,6 +77,21 @@ export const getSimilarProducts = createAsyncThunk(
   }
 )
 
+// CLICK PRODUCT
+export const clickProduct = createAsyncThunk(
+  'user/clickProduct',
+  async (id, thunkAPI) => {
+    try{
+      const res = await axios.get(
+        `${API}/api/products/${id}/click`,
+        { withCredentials: true }
+      )
+    }catch(err){
+      return thunkAPI.rejectWithValue(err.response?.data)
+    }
+  }
+)
+
 // GET FILTERED PRODUCTS 
 export const getFilteredProducts = createAsyncThunk(
   'product/getFilteredProducts',

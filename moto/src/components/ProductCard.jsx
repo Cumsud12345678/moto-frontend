@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import Cookies from "js-cookie";
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteFavorites, setFavorites } from '../redux/slices/favorite/favoritesSlice';
-import { toggleProductLike } from '../redux/slices/product/productSlice';
+import { clickProduct, toggleProductLike } from '../redux/slices/product/productSlice';
 import { toast, useMediaQuery } from "@heroui/react";
 
 export default function ProductCard({ product }) {
@@ -83,6 +83,7 @@ export default function ProductCard({ product }) {
   const isDesktop = useMediaQuery('(min-width: 1024px)', { noSsr: true })
 
   const handleCardClick = (e) => {
+    dispatch(clickProduct(_id))
     // Desktopda yeni tab-da açılır (real navigasiya, problem yoxdur)
     if (isDesktop) return
     // Mobil/eyni tab-da tam reload yerine SPA (client-side) naviqasiya edirik
