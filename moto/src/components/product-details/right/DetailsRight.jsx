@@ -5,9 +5,23 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShareIcon from '@mui/icons-material/Share';
 import OutlinedFlagIcon from '@mui/icons-material/OutlinedFlag';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import { useLocation, useNavigate } from "react-router-dom";
+import { Fragment } from "react";
+import {Button} from "@heroui/react";
+import {TrashBin, PencilToSquare} from "@gravity-ui/icons";
 
-export default function DetailsRight({ user, phone, price, city, isLiked, toggleLike, share}){
+export default function DetailsRight({ user, product, isLiked, toggleLike, share, clickDelete }){
 
+  const navigate = useNavigate()
+  const location = useLocation()
+  const path = location.pathname.split('/', 2)
+
+  const {
+    _id,
+    phone,
+    price,
+    city
+  } = product
 
   const { name, profile } = user
   const BASE_URL = import.meta.env.VITE_API_URL;
@@ -31,7 +45,7 @@ export default function DetailsRight({ user, phone, price, city, isLiked, toggle
 
             <div className="mx-2 flex flex-col">
               <span className="text-[18px] font-bold">{name}</span>
-              <span>{city}</span>
+              <span>{city?.label}</span>
             </div>
           </div>
 
@@ -56,12 +70,29 @@ export default function DetailsRight({ user, phone, price, city, isLiked, toggle
             <span className="mx-2 text-xl font-medium">Şikayət et</span>
           </div> */}
 
-          <div className="my-3 flex items-center gap-2 rounded-lg bg-[#2da562] p-3 text-white cursor-pointer">
-            <LocalPhoneIcon sx={{ mx: 1 }} />
-            <h4 className="m-0 p-0 text-xl font-semibold">
-              +994 {String(phone).slice(0, 2)} {String(phone).slice(2, 5)} {String(phone).slice(5, 7)} {String(phone).slice(7, 9)}
-            </h4>
-          </div>
+          {
+            path[1] == 'elanlar'
+              ?
+              <div className="my-3 flex items-center gap-2 rounded-lg bg-[#2da562] p-3 text-white cursor-pointer">
+                <LocalPhoneIcon sx={{ mx: 1 }} />
+                <h4 className="m-0 p-0 text-xl font-semibold">
+                  +994 {String(phone).slice(0, 2)} {String(phone).slice(2, 5)} {String(phone).slice(5, 7)} {String(phone).slice(7, 9)}
+                </h4>
+              </div>
+              :
+              <div className="flex mb-4 gap-3">
+                <Button size='lg' className='w-full' onClick={() => navigate(`/edit/product/${_id}`)}>
+                  <PencilToSquare />
+                  Düzəlt
+                </Button>
+
+                <Button size='lg' className='w-full' onClick={() => clickDelete(_id)} variant="danger">
+                  <TrashBin />
+                  Sil
+                </Button>
+              </div>
+          }
+          
 
           <Alert severity="warning">
             Motosikletə baxış keçirmədən öncə beh göndərməyin.

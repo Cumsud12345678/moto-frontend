@@ -13,7 +13,11 @@ export default function ProductCardProfile({ product, deleteClick }){
   const API = import.meta.env.VITE_API_URL;
 
   return(
-    <div className='rounded-xl overflow-hidden cursor-pointer relative border border-gray-100 bg-white hover:shadow-lg transition-shadow duration-200'>
+    <div 
+      onClick={() => navigate(`/elanlarim/${_id}`)}
+      className='rounded-xl overflow-hidden cursor-pointer relative border 
+      border-gray-100 bg-white hover:shadow-lg transition-shadow duration-200'
+    >
 
       <div className="relative w-full aspect-[4/3] overflow-hidden">
         <img

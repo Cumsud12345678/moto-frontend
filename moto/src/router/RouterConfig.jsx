@@ -74,6 +74,7 @@ export default function RouterConfig(){
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/elanlar/:id' element={<ProductDetails />} />
+        <Route path='/elanlarim/:id' element={<ProductDetails />} />
         <Route path='/bookmarks' element={<Bookmarks />} />
         <Route path='/new' element={isAuth ? <New /> : <Navigate to="/auth" replace />} />
         <Route path='/profile' element={isAuth ? <Profile /> : <Navigate to="/auth" replace />} />

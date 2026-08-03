@@ -2,21 +2,30 @@ import DetailsLeft from "../components/product-details/left/DetailsLeft";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import DetailsRight from "../components/product-details/right/DetailsRight";
 import Header from "../components/header/Header";
 import ProductList from "../components/ProductList";
 import { DetailsSkeleton } from "../components/skeletons/DetailsSkeleton";
 import Details from "../components/product-details/Details";
 import { toast } from "@heroui/react";
-import { getProductDetails, getSimilarProducts } from "../redux/slices/product/productSlice";
+import { getMyProduct, getProductDetails, getSimilarProducts } from "../redux/slices/product/productSlice";
 import { HomeSkeleton } from "../components/skeletons/HomeSkeleton";
 import { Helmet } from 'react-helmet-async'
 
 export default function ProductDetails(){
 
+  const location = useLocation()
   const { id } = useParams()
   const dispatch = useDispatch()
+
+  const path = location.pathname.split('/', 2)
+
+  useEffect(() => {
+    if(path[1] == 'elanlarim') {
+      dispatch(getMyProduct(id))
+    }
+  }, [location.pathname])
 
   const {
     selectedProduct,
@@ -31,13 +40,15 @@ export default function ProductDetails(){
 
   // DETAYLARI VE SIMILARS I CAQIR
   useEffect(() => {
-    if(!productsCache[id]){
-      dispatch(getProductDetails(id))
+    if(path[1] !== 'elanlarim') {
+      if(!productsCache[id]){
+        dispatch(getProductDetails(id))
+      }
+      if (!similarCache[id]) {
+        dispatch(getSimilarProducts(id))
+      }
     }
-    if(!similarCache[id]){
-      dispatch(getSimilarProducts(id))
-    }
-
+    
     window.scrollTo({
       top: 0,
       behavior: "smooth", // və ya "auto"
@@ -55,8 +66,6 @@ export default function ProductDetails(){
 
   const loadingDetails = detailsStatus === 'loading' || !currentProduct || currentProduct._id != id
   const loadingSimilars = similarStatus === 'loading' || !similarCache[id]
-    
-  
 
   return (
     <div className="container mx-auto max-w-[1000px]">
@@ -94,25 +103,28 @@ export default function ProductDetails(){
           : <Details details={currentProduct} ids={ids} />
       }
 
-      <div className="mt-5 px-4 pb-25">
-        <h4 className="text-xl">OXŞAR ELANLAR</h4>
-        {
-          loadingSimilars
-            ?
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-2 lg:mt-3">
-              {
-                [...Array(8)].map((_, index) => (
-                  <HomeSkeleton key={index} />
-                ))
-              }
-            </div>
-            :
-            currentSimilar.length == 0
-              ? 'Elan tapılmadı'
-              : <ProductList products={currentSimilar} topMob={'0px'} topDes={'0px'} />
-        }
-      </div>
-
+      {
+        path[1] !== 'elanlarim' &&
+        <div className="mt-5 px-4 pb-25">
+          <h4 className="text-xl">OXŞAR ELANLAR</h4>
+          {
+            loadingSimilars
+              ?
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-2 lg:mt-3">
+                {
+                  [...Array(8)].map((_, index) => (
+                    <HomeSkeleton key={index} />
+                  ))
+                }
+              </div>
+              :
+              currentSimilar.length == 0
+                ? 'Elan tapılmadı'
+                : <ProductList products={currentSimilar} topMob={'0px'} topDes={'0px'} />
+          }
+        </div>
+      }
+      
     </div>
   )
 }

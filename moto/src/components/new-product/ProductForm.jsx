@@ -360,7 +360,7 @@ export default function ProductForm({ productData }) {
                   :
                   <div>
                     <Label>Şəhər</Label>
-                    <div onClick={() => setOpen(true)} className="w-full p-3 border rounded-xl mt-1.5">
+                    <div onClick={() => setOpen(true)} className="w-full p-3.5 border rounded-xl mt-1.5 bg-[#fafbff]">
                       {
                         selectedCityLabel
                           ? selectedCityLabel.label

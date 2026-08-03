@@ -24,7 +24,6 @@ export default function ProfileContent({products}) {
   const [deleteId, setDeleteId] = useState('')
 
   const clickDelete = (id) => {
-    console.log(id)
     setDeleteId(id)
     setOpenAlert(true)
   }

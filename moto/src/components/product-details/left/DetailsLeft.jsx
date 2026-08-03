@@ -6,14 +6,20 @@ import ShareIcon from '@mui/icons-material/Share';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import Alert from '@mui/material/Alert';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import IconButton from '@mui/material/IconButton'
-import { useEffect } from "react";
+import { Fragment, useEffect, useState } from "react";
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import {Button} from "@heroui/react";
+import {TrashBin, PencilToSquare} from "@gravity-ui/icons";
 
-export default function DetailsLeft({ product, isLiked, toggleLike, share }){
+export default function DetailsLeft({ product, isLiked, toggleLike, share, clickDelete }){
+
+  const location = useLocation()
+  const path = location.pathname.split('/', 2)
  
   const {
+    _id,
     phone,
     views,
     make,
@@ -150,7 +156,7 @@ export default function DetailsLeft({ product, isLiked, toggleLike, share }){
           <p className="text-lg whitespace-pre-line">{description}</p>
         </div>
 
-        <div className="lg:hidden border-y p-3">
+        <div className={`lg:hidden border-y p-3 ${path[1] == 'elanlarim' && 'pb-18'}`}>
           <div className="flex bg-white p-2 rounded-lg items-center">
             <img className="rounded-full w-[60px] h-[60px] object-contain border-2" src={profile ? `${BASE_URL}/uploads/${profile}` : '/profile.jpg'} alt="" />
             <div className="mx-2 flex flex-col">
@@ -174,29 +180,48 @@ export default function DetailsLeft({ product, isLiked, toggleLike, share }){
         <div className="fixed bottom-0 w-full p-4 z-[1000] block lg:hidden">
           <div className="flex gap-3">
             
-            <button className="w-full bg-[#2DA562] rounded-xl text-white shadow">
-              <a
-                href={`tel:${phone}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full h-full flex items-center justify-center p-3"
-              >
-                <LocalPhoneIcon sx={{ mx: 1 }} />
-                <span className="text-white font-bold">Zəng et</span>
-              </a>
-            </button>
+            {
+              path[1] == 'elanlar'
+                ? 
+                <Fragment>
+                  <button className="w-full bg-[#2DA562] rounded-xl text-white shadow">
+                    <a
+                      href={`tel:${phone}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full h-full flex items-center justify-center p-3"
+                    >
+                      <LocalPhoneIcon sx={{ mx: 1 }} />
+                      <span className="text-white font-bold">Zəng et</span>
+                    </a>
+                  </button>
 
-            <button className="w-full bg-blue-500 rounded-xl text-white shadow">
-              <a
-                href={`https://wa.me/${phone}?text=${text}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full h-full flex items-center justify-center p-3"
-              >
-                <WhatsAppIcon sx={{ mx: 1 }} />
-                WhatsApp
-              </a>
-            </button>
+                  <button className="w-full bg-blue-500 rounded-xl text-white shadow">
+                    <a
+                      href={`https://wa.me/${phone}?text=${text}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full h-full flex items-center justify-center p-3"
+                    >
+                      <WhatsAppIcon sx={{ mx: 1 }} />
+                      WhatsApp
+                    </a>
+                  </button>
+                </Fragment>
+                
+                : 
+                <Fragment>
+                  <Button size='lg' className='w-full' onClick={() => navigate(`/edit/product/${_id}`)}>
+                    <PencilToSquare />
+                    Düzəlt
+                  </Button>
+
+                  <Button size='lg' className='w-full' onClick={() => clickDelete(_id)} variant="danger">
+                    <TrashBin />
+                    Sil
+                  </Button>
+                </Fragment>
+            }
 
           </div>
         </div>

@@ -1,10 +1,15 @@
 import { AlertDialog as HeroAlertDialog, Button, toast } from "@heroui/react";
 import { deleteProduct } from "../../redux/slices/product/productSlice";
 import { useDispatch } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function AlertDialog({openAlert, setOpenAlert, deleteId}) {
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const location = useLocation()
+
+  const path = location.pathname.split('/', 2)
 
   return (
     <HeroAlertDialog isOpen={openAlert} onOpenChange={setOpenAlert}>
@@ -32,7 +37,12 @@ export default function AlertDialog({openAlert, setOpenAlert, deleteId}) {
                     dispatch(deleteProduct(deleteId)).unwrap(),
                     {
                       loading: "Məhsul silinir...",
-                      success: "Məhsul uğurla silindi.",
+                      success: () => {
+                        if(path[1] == 'elanlarim') {
+                          navigate(-1)
+                        }
+                        return "Məhsul silindi" 
+                      },
                       error: (err) => err.message || "Xəta baş verdi.",
                     }
                   );

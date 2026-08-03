@@ -163,6 +163,23 @@ export const getMyProducts = createAsyncThunk(
   }
 )
 
+// USERIN PRODUCTIN GETIR
+export const getMyProduct = createAsyncThunk(
+  'products/getMyProduct', 
+  async (id, thunkAPI) => {
+    try {
+      const res = await axios.get(
+        `${API}/api/products/user/product/${id}`,
+        { withCredentials: true }
+      )
+
+      return res.data
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.response?.data)
+    }
+  }
+)
+
 
 // DELETE PRODUCT
 export const deleteProduct = createAsyncThunk(
@@ -289,14 +306,15 @@ export const productSlice = createSlice({
         state.filteredStatus = 'error'
       })
 
-      // ELAN YARAT
-      // .addCase(createProduct.fulfilled, (state) => {
-      //   state.createStatus = 'success'
-      // })
-      // .addCase(createProduct.rejected, (state, action) => {
-      //   state.createStatus = 'error'
-      //   state.message = action.payload.message
-      // })
+      // USERIN ELANI
+      .addCase(getMyProduct.fulfilled, (state, action) => {
+        state.selectedProduct = action.payload.data
+        state.detailsStatus = 'success'
+      })
+      .addCase(getMyProduct.rejected, (state, action) => {
+        state.message = action.payload?.message
+        state.detailsStatus = 'error'
+      })
 
       // USERIN ELANLARI
       .addCase(getMyProducts.fulfilled, (state, action) => {

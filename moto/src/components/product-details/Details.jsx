@@ -10,6 +10,7 @@ import { toast } from "@heroui/react";
 import { toggleProductLike } from "../../redux/slices/product/productSlice";
 import { deleteFavorites, setFavorites } from "../../redux/slices/favorite/favoritesSlice";
 import Cookies from "js-cookie";
+import AlertDialog from "../profile/AlertDialog";
 
 export default function Details({details, ids}){
 
@@ -108,6 +109,15 @@ export default function Details({details, ids}){
     }
   };
 
+
+  const [openAlert, setOpenAlert] = useState(false)
+  const [deleteId, setDeleteId] = useState('')
+  
+  const clickDelete = (id) => {
+    setDeleteId(id)
+    setOpenAlert(true)
+  }
+
   return (
     <div>
 
@@ -122,10 +132,13 @@ export default function Details({details, ids}){
 
       <div className="flex gap-3 flex-col lg:flex-row bg-white lg:p-4 lg:rounded-xl">
 
-        <DetailsLeft product={details} isLiked={isLiked} toggleLike={toggleLike} share={handleShare} />
-        <DetailsRight user={user} phone={phone} price={price} city={city.label} isLiked={isLiked} toggleLike={toggleLike} share={handleShare} />
+        <DetailsLeft product={details} isLiked={isLiked} toggleLike={toggleLike} share={handleShare} clickDelete={clickDelete} />
+        <DetailsRight user={user} product={details} isLiked={isLiked} toggleLike={toggleLike} share={handleShare} clickDelete={clickDelete} />
 
       </div>
+
+
+      <AlertDialog openAlert={openAlert} setOpenAlert={setOpenAlert} deleteId={deleteId} />
 
     </div>
   )
