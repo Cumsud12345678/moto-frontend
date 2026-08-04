@@ -90,6 +90,7 @@ export default function RegisterForm() {
             <input
               className='border-2 w-full rounded-2xl p-3 bg-[#f5f5f5]'
               placeholder="Name"
+              maxLength='50'
               value={nameValue}
               onChange={(e) => setNameValue(e.target.value)}
             />
@@ -100,6 +101,7 @@ export default function RegisterForm() {
             <input
               className='border-2 w-full rounded-2xl p-3 bg-[#f5f5f5]' 
               placeholder='example.com'
+              maxLength='50'
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />

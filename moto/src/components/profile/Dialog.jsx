@@ -115,6 +115,7 @@ export default function Dialog ({open, value, img, onClose}) {
               type="text" 
               className="w-full p-3 border-2 rounded-xl focus:outline-sky-500"
               placeholder="Adınız"
+              maxLength='50'
               onChange={(e) => setName(e.target.value)}
               value={name}
             />

@@ -184,6 +184,7 @@ export default function ProductForm({ productData }) {
               value={stateVolumeLabel} 
               onChange={((value) => inputChange(setStateVolumeLabel, value, setStateVolumeValue, 'volume', volumeOriginal, setFilteredVolume))} 
               label={'Həcm sm³ *'} 
+              type="number"
             />
           </div>
         }
@@ -199,7 +200,7 @@ export default function ProductForm({ productData }) {
               change={listChange} 
               setStateLabel={setStateMakeLabel} 
               setStateValue={setStateMakeValue} 
-              type='make' 
+              type='make'
             />
           }
 
@@ -279,14 +280,14 @@ export default function ProductForm({ productData }) {
       {
         loc.length > 3 && loc.includes('volume') &&
         <Fragment>
-          <div className="lg:p-10 lg:border rounded-3xl flex flex-col gap-5 bg-white p-5">
+          <div className="lg:p-10 lg:border rounded-3xl flex flex-col gap-4 bg-white p-5">
             <h3 className="text-xl">Güc və Yürüş</h3>
             <div>
-              <DefaultInput value={engine} onChange={setEngine} label={'Güc a.g. *'} />
+              <DefaultInput value={engine} onChange={setEngine} label={'Güc a.g. *'} len={'6'} type="number" />
             </div>
 
             <div>
-              <DefaultInput value={distance} onChange={setDistance} label={'Yürüş km *'} />
+              <DefaultInput value={distance} onChange={setDistance} label={'Yürüş km *'} len={'10'} type="number" />
             </div>
           </div>
 
@@ -297,8 +298,12 @@ export default function ProductForm({ productData }) {
                 className="border focus:outline-sky-500 w-full rounded-xl px-3 py-2 h-32 bg-[#f5f5f5] resize-none"
                 placeholder="Motosiklet haqqında vacib məlumatları qeyd edin."
                 value={description}
+                maxLength='1000'
                 onChange={(e) => setDescription(e.target.value)}
               ></textarea>
+              <span className="text-muted">
+                {description.length} / 1 000
+              </span>
             </div>
           </div>
 
@@ -372,7 +377,7 @@ export default function ProductForm({ productData }) {
             </div>
 
             <div>
-              <DefaultInput value={price} onChange={setPrice} label={'Qiymət *'} />
+              <DefaultInput value={price} onChange={setPrice} label={'Qiymət *'} type="number" />
             </div>
           </div>
 

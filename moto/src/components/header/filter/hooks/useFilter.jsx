@@ -157,7 +157,7 @@ export const useFilter = () => {
 
 
   const years = Array.from({ length: 2026-1950 },(_, index) => 2026 - index)
-  const volumes = Array.from({ length: 3000/50 + 1 }, (_, index) => index * 50)
+  const volumes = Array.from({ length: 3000/50 + 1 }, (_, index) => (index + 1) * 50)
 
   return{
 

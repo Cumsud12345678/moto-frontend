@@ -76,6 +76,7 @@ export default function LoginForm() {
             id='email'
             type="text"
             value={email}
+            maxLength='50'
             className='border-2 w-full rounded-2xl p-3 bg-[#f5f5f5]' placeholder='example.com'
           />
 

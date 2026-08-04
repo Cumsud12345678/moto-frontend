@@ -3,17 +3,39 @@ import CloseIcon from "@mui/icons-material/Close";
 import CheckIcon from "@mui/icons-material/Check";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-export default function DefaultInput({ value, onChange, label }) {
+export default function DefaultInput({ value, onChange, label, len=20, type='string' }) {
   
   const inputRef = useRef(null);
+
+  const formatNumber = (text) => {
+    if (!text) return "";
+
+    if(type === 'string') {
+      return text
+    }
+
+    return new Intl.NumberFormat("fr-FR")
+      .format(Number(text))
+      .replace(/\u202F|\u00A0/g, " ");
+  };
+
+  const changeInput = (value) => {
+    const rawValue = value.replace(/\s/g, "");
+    if (type !== 'string') {
+      const newValue = value.replace(/\D/g, "");
+      return onChange(newValue);
+    }
+    onChange(rawValue);
+  }
 
   return (
     <div className="relative w-full">
       <div className="relative flex items-center">
         <input
           ref={inputRef}
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
+          value={formatNumber(value)}
+          maxLength={len}
+          onChange={(e) => changeInput(e.target.value)}
           className="peer w-full rounded-xl border bg-[#fafbff] px-3 pt-6 pb-2 text-[16px] focus:outline-sky-500"
           placeholder=" "
         />

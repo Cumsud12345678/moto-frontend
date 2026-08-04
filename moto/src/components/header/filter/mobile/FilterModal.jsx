@@ -215,14 +215,14 @@ export default function FilterModal({open, onClose, useFilter}){
 
             <SoloLabelinput
               value={minDistance}
-              change={(e) => setMinDistance(e.target.value)}
+              change={setMinDistance}
               label={'Min.'}
               pl={'48'}
             />
 
             <SoloLabelinput
               value={maxDistance}
-              change={(e) => setMaxDistance(e.target.value)}
+              change={setMaxDistance}
               label={'Max.'}
               pl={'52'}
             />
@@ -279,14 +279,14 @@ export default function FilterModal({open, onClose, useFilter}){
 
             <SoloLabelinput
               value={minEngine}
-              change={(e) => setMinEngine(e.target.value)}
+              change={setMinEngine}
               label={'Min.'}
               pl={'48'}
             />
 
             <SoloLabelinput
               value={maxEngine}
-              change={(e) => setMaxEngine(e.target.value)}
+              change={setMaxEngine}
               label={'Max.'}
               pl={'52'}
             />
@@ -312,14 +312,14 @@ export default function FilterModal({open, onClose, useFilter}){
 
             <SoloLabelinput
               value={minPrice}
-              change={(e) => setMinPrice(e.target.value)}
+              change={setMinPrice}
               label={'Min.'}
               pl={'48'}
             />
 
             <SoloLabelinput
               value={maxPrice}
-              change={(e) => setMaxPrice(e.target.value)}
+              change={setMaxPrice}
               label={'Max.'}
               pl={'52'}
             />
