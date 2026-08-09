@@ -65,6 +65,8 @@ export const useFilter = () => {
       return [...prev, id]
     })
   }
+
+  const [page, setPage] = useState(1)
   
   const applyFilter = () => {
     const params = new URLSearchParams()
@@ -88,10 +90,7 @@ export const useFilter = () => {
     if(maxVolume) params.set('maxVolume', maxVolume || '')
     if(minDistance) params.set('minDistance', minDistance || '')
     if(maxDistance) params.set('maxDistance', maxDistance || '')
-
-    console.log("make:", make);
-    console.log("params:", params.toString());
-
+    params.set('page', page)
     navigate(`/autos?${params.toString()}`)
   }
 
@@ -104,7 +103,7 @@ export const useFilter = () => {
       'city', 'color', 'speed', 'equipments',
       'minPrice', 'maxPrice', 'minYear', 'maxYear',
       'minEngine', 'maxEngine', 'minVolume', 'maxVolume',
-      'minDistance', 'maxDistance'
+      'minDistance', 'maxDistance', 'page'
     ]
     const hasAnyFilter = filterKeys.some(key => params.has(key))
 
@@ -129,8 +128,9 @@ export const useFilter = () => {
     setMaxVolume(params.get('maxVolume'))
     setMinDistance(params.get('minDistance'))
     setMaxDistance(params.get('maxDistance'))
+    setPage(params.get('page'))
 
-  }, [location.search])
+  }, [location.search, page])
 
 
   const resetForm = () => {
@@ -153,6 +153,7 @@ export const useFilter = () => {
     setMaxVolume('')
     setMinDistance('')
     setMaxDistance('')
+    setPage('')
   }
 
 
@@ -219,6 +220,9 @@ export const useFilter = () => {
     categories,
     category,
     setCategory,
+
+    page,
+    setPage,
 
     applyFilter,
     resetForm,

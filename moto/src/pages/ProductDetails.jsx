@@ -19,6 +19,7 @@ export default function ProductDetails(){
   const { id } = useParams()
   const dispatch = useDispatch()
 
+  const [updatedProducts, setUpdatedProducts] = useState([])
   const path = location.pathname.split('/', 2)
 
   useEffect(() => {
@@ -38,6 +39,10 @@ export default function ProductDetails(){
     ids
   } = useSelector(s => s.product)
 
+  const {
+    isAuth
+  } = useSelector(s => s.user)
+
   // DETAYLARI VE SIMILARS I CAQIR
   useEffect(() => {
     if(path[1] !== 'elanlarim') {
@@ -55,6 +60,21 @@ export default function ProductDetails(){
     });
   }, [id])
 
+  useEffect(() => {
+    if (!isAuth) {
+      let favorites = []
+      try {
+        favorites = JSON.parse(Cookies.get('favorites') || '[]')
+      } catch { favorites = [] }
+      const favoriteSet = new Set(favorites)
+      const newProducts = similarProducts.map(product => ({
+        ...product,
+        is_liked: favoriteSet.has(product._id)
+      }))
+      setUpdatedProducts(newProducts)
+    }
+  }, [isAuth, similarProducts])
+
   // ERRORU YAZDIR
   useEffect(() => {
     if(message) toast.danger(message)
@@ -66,6 +86,8 @@ export default function ProductDetails(){
 
   const loadingDetails = detailsStatus === 'loading' || !currentProduct || currentProduct._id != id
   const loadingSimilars = similarStatus === 'loading' || !similarCache[id]
+
+  const displayProducts = isAuth ? currentSimilar : updatedProducts
 
   return (
     <div className="container mx-auto max-w-[1000px]">
@@ -118,9 +140,9 @@ export default function ProductDetails(){
                 }
               </div>
               :
-              currentSimilar.length == 0
+              displayProducts.length == 0
                 ? 'Elan tapılmadı'
-                : <ProductList products={currentSimilar} topMob={'0px'} topDes={'0px'} />
+                : <ProductList products={displayProducts} topMob={'0px'} topDes={'0px'} />
           }
         </div>
       }

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Header from "../components/header/Header";
 import ProductList from "../components/ProductList";
 import Footer from "../components/Footer";
@@ -10,35 +10,59 @@ import { getFilteredProducts } from "../redux/slices/product/productSlice";
 import { useFilter } from '../components/header/filter/hooks/useFilter'
 import { toast } from "@heroui/react";
 import { Helmet } from "react-helmet-async";
-import { clickAdsense } from "../redux/slices/admin/adminAdsenseSlice";
+import { clickAdsense, getAdsense } from "../redux/slices/admin/adminAdsenseSlice";
 import EmptyData from "../components/EmptyData";
+import PaginationComponent from "../admin/customs/Pagination";
 
 export default function Autos(){
 
   const BASE_URL = import.meta.env.VITE_API_URL
   const dispatch = useDispatch()
   const location = useLocation()
+
   const [loading, setLoading] = useState(true)
+  const [updatedProducts, setUpdatedProducts] = useState([])
 
   const filterState = useFilter()
-  const {error} = filterState
+  const {error, page, setPage, applyFilter} = filterState
 
   const {
     filteredProducts,
+    totalFilteredProducts,
+    message,
     filteredStatus,
-    message
   } = useSelector(s => s.product)
+
+  const {
+    isAuth
+  } = useSelector(s => s.user)
 
   const {
     adsenseData,
     clickStatus
   } = useSelector(s => s.adminAdsense)
 
-  useEffect(() => {
-    setLoading(true)
-    dispatch(getFilteredProducts(location.search))
+  
 
+  useEffect(() => {
+    // artiq mehsullar redux-da varsa, yeniden cekmirik - eks halda
+    // hansisa elana baxib geri qayidanda backend-in sirasi deyise biler
+    // ve ekranda elanlarin yeri qarisir
+    // if (filteredStatus === 'idle') {
+    //   dispatch(getFilteredProducts({filteredProductsPage, query: location.search}))
+    // } else {
+    //   setLoading(false)
+    // }
+    const params = new URLSearchParams(location.search)
+    dispatch(getFilteredProducts(location.search))
+    dispatch(getAdsense())
   }, [location.search])
+
+
+  const manageUrlAndPage = (newPage) => {
+    setPage(newPage)
+    applyFilter()
+  }
 
   useEffect(() => {
     if(message) toast.danger(message)
@@ -51,9 +75,32 @@ export default function Autos(){
     }
   }, [filteredStatus])
 
+  useEffect(() => {
+    if (!isAuth) {
+      let favorites = []
+      try {
+        favorites = JSON.parse(Cookies.get('favorites') || '[]')
+      } catch { favorites = [] }
+      const favoriteSet = new Set(favorites)
+      const newProducts = filteredProducts.map(product => ({
+        ...product,
+        is_liked: favoriteSet.has(product._id)
+      }))
+      setUpdatedProducts(newProducts)
+    }
+  }, [isAuth, filteredProducts])
+
+  useEffect(() => {
+    if(adsenseData.length > 0) {
+      setMobileAdsense(adsenseData.filter(ads => ads.position === 'mobile'))
+      setDeskopAdsense(adsenseData.filter(ads => ads.position === 'deskop'))
+    }
+  }, [adsenseData])
+
   const [mobileAdsense, setMobileAdsense] = useState([])
   const [deskopAdsense, setDeskopAdsense] = useState([])
 
+  const displayProducts = isAuth ? filteredProducts : updatedProducts
   const isDesktop = useMediaQuery('(min-width: 1000px)', { noSsr: true })
   
   const handleAdsClick = async (id, link) => {
@@ -66,6 +113,7 @@ export default function Autos(){
       )
     }
   }
+  
 
   return(
     <div>
@@ -111,13 +159,16 @@ export default function Autos(){
                     {[...Array(8)].map((_, index) => <HomeSkeleton key={index} />)}
                   </div>
                 )
-                : filteredProducts.length == 0
+                : displayProducts.length == 0
                   ? <div>
                       <EmptyData />
                     </div>
-                  : <ProductList products={filteredProducts} topMob={'0px'} topDes={'0px'} />
+                  : <ProductList products={displayProducts} topMob={'0px'} topDes={'0px'} />
+                  
             }
           </div>
+
+          <PaginationComponent page={page} setPage={manageUrlAndPage} totalPages={totalFilteredProducts} />
 
           <Footer />
         </div>

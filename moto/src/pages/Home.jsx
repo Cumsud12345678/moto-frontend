@@ -100,12 +100,14 @@ export default function Home(){
   useEffect(() => {
     if(adsenseData.length > 0) {
       setMobileAdsense(adsenseData.filter(ads => ads.position === 'mobile'))
-      setDeskopAdsense(adsenseData.filter(ads => ads.position === 'deskop'))
+      setDeskopLeftAdsense(adsenseData.filter(ads => ads.position === 'deskop_left'))
+      setDeskopRightAdsense(adsenseData.filter(ads => ads.position === 'deskop_right'))
     }
   }, [adsenseData])
 
   const [mobileAdsense, setMobileAdsense] = useState([])
-  const [deskopAdsense, setDeskopAdsense] = useState([])
+  const [deskopLeftAdsense, setDeskopLeftAdsense] = useState([])
+  const [deskopRightAdsense, setDeskopRightAdsense] = useState([])
 
   const displayProducts = isAuth ? products : updatedProducts
   const isDesktop = useMediaQuery('(min-width: 1024px)', { noSsr: true })

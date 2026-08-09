@@ -8,7 +8,10 @@ const initialState = {
   productsHasMore: true,
   selectedProduct: [],
   similarProducts: [],
+
   filteredProducts: [],
+  totalFilteredProducts: null,
+
   userProducts: [],
 
   productsStatus: 'idle',
@@ -97,9 +100,9 @@ export const getFilteredProducts = createAsyncThunk(
   'product/getFilteredProducts',
   async (query, thunkAPI) => {
     try{
-      await new Promise(resolve => setTimeout(resolve, 2000))
       const res = await axios.get(
-        `${API}/api/products/autos${query}`
+        `${API}/api/products/autos${query}`,
+        { withCredentials: true }
       )
 
       return res.data
@@ -272,9 +275,9 @@ export const productSlice = createSlice({
     
       // PRODUCT DETAILS
       .addCase(getProductDetails.fulfilled, (state, action) => {
-        state.selectedProduct = action.payload.data.product
-        state.ids = action.payload.data.ids
-        state.productsCache[action.payload.data.product._id] = action.payload.data.product
+        state.selectedProduct = action.payload.data
+        state.ids = action.payload.ids
+        state.productsCache[action.payload.data._id] = action.payload.data
         state.detailsStatus = 'success'
       })
       .addCase(getProductDetails.rejected, (state, action) => {
@@ -299,6 +302,7 @@ export const productSlice = createSlice({
       })
       .addCase(getFilteredProducts.fulfilled, (state, action) => {
         state.filteredProducts = action.payload.data
+        state.totalFilteredProducts = action.payload.total
         state.filteredStatus = 'success'
       })
       .addCase(getFilteredProducts.rejected, (state, action) => {

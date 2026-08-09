@@ -30,12 +30,8 @@ export default function Adsense({makes, models}) {
   const [link, setLink] = useState('')
   const [owner, setOwner] = useState('')
 
-  const handeTab = () => {
-    if(type == 'mobile') {
-      setType('deskop')
-    }else {
-      setType('mobile')
-    }
+  const handeTab = (value) => {
+    setType(value)
   }
  
   const setMakeModelForm = () => {
@@ -66,14 +62,13 @@ export default function Adsense({makes, models}) {
 
   const {adsenseData} = useSelector(s => s.adminAdsense)
 
-
   return(
     <div className='flex flex-row'>
       <Nav />
       <div className="container mx-auto max-w-[1100px] h-[100vh] overflow-auto p-5">
-        <div className="grid lg:grid-cols-2 gap-5 my-20">
+        <div className="grid lg:grid-cols-3 gap-5 my-20">
         
-          <div className='border-2 p-8 rounded-xl col-span-2'>
+          <div className='border-2 p-8 rounded-xl'>
             <h2 className="text-xl font-bold">Adsense</h2>
             <div className='mt-3 flex flex-col'>
               <Label>Reklam</Label>
@@ -104,14 +99,19 @@ export default function Adsense({makes, models}) {
 
                 <div className='my-4 w-[200px] flex items-center bg-[#f5f5f5] gap-2'>
                   <button
-                    onClick={handeTab}
+                    onClick={() => handeTab('mobile')}
                     className={`p-2 w-full rounded-lg ${type == 'mobile' ? 'bg-blue-500 text-white' : 'bg-white text-black'}`}>
                     Mobile
                   </button>
                   <button
-                    onClick={handeTab}
-                    className={`p-2 w-full rounded-lg ${type == 'deskop' ? 'bg-blue-500 text-white' : 'bg-white text-black'}`}>
-                    Deskop
+                    onClick={() => handeTab('deskop_left')}
+                    className={`p-2 w-full rounded-lg ${type == 'deskop-left' ? 'bg-blue-500 text-white' : 'bg-white text-black'}`}>
+                    Deskop-Left
+                  </button>
+                  <button
+                    onClick={() => handeTab('deskop_right')}
+                    className={`p-2 w-full rounded-lg ${type == 'deskop-right' ? 'bg-blue-500 text-white' : 'bg-white text-black'}`}>
+                    Deskop-Right
                   </button>
                 </div>
 

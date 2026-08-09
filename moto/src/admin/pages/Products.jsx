@@ -32,7 +32,6 @@ export default function Products() {
   const manageUrlAndPage = (newPage) => {
     const params = new URLSearchParams()
     params.set('page', newPage)
-    params
     navigate(`/admin/products?${params.toString()}`)
   }
 
