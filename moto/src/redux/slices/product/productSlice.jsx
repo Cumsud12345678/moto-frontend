@@ -86,7 +86,7 @@ export const clickProduct = createAsyncThunk(
   async (id, thunkAPI) => {
     try{
       const res = await axios.get(
-        `${API}/api/products/${id}/click`,
+        `${API}/api/products/click/${id}`,
         { withCredentials: true }
       )
     }catch(err){
