@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Header from "../components/header/Header";
 import ProductList from "../components/ProductList";
 import Footer from "../components/Footer";
@@ -13,6 +13,8 @@ import { Helmet } from "react-helmet-async";
 import { clickAdsense, getAdsense } from "../redux/slices/admin/adminAdsenseSlice";
 import EmptyData from "../components/EmptyData";
 import PaginationComponent from "../admin/customs/Pagination";
+import { useGenerateFavorites } from "../components/customs/hooks/useGenerateFavorites";
+import { useAdsense } from "../components/customs/hooks/useAdsense";
 
 export default function Autos(){
 
@@ -21,41 +23,42 @@ export default function Autos(){
   const location = useLocation()
 
   const [loading, setLoading] = useState(true)
-  const [updatedProducts, setUpdatedProducts] = useState([])
 
+  // Generate Favorites
+  const {
+    displayProducts
+  } = useGenerateFavorites()
+
+  // Adsense
+  const {
+    mobileAdsense,
+    handleAdsClick
+  } = useAdsense()
+  
   const filterState = useFilter()
   const {error, page, setPage, applyFilter} = filterState
 
   const {
-    filteredProducts,
     totalFilteredProducts,
     message,
     filteredStatus,
   } = useSelector(s => s.product)
 
-  const {
-    isAuth
-  } = useSelector(s => s.user)
-
-  const {
-    adsenseData,
-    clickStatus
-  } = useSelector(s => s.adminAdsense)
-
-  
+  useEffect(() => {
+    if(filteredStatus !== 'idle'){
+      setLoading(false)
+    }
+  }, [filteredStatus])
 
   useEffect(() => {
     // artiq mehsullar redux-da varsa, yeniden cekmirik - eks halda
     // hansisa elana baxib geri qayidanda backend-in sirasi deyise biler
     // ve ekranda elanlarin yeri qarisir
-    // if (filteredStatus === 'idle') {
-    //   dispatch(getFilteredProducts({filteredProductsPage, query: location.search}))
-    // } else {
-    //   setLoading(false)
-    // }
-    const params = new URLSearchParams(location.search)
-    dispatch(getFilteredProducts(location.search))
-    dispatch(getAdsense())
+    if (filteredStatus === 'idle') {
+      dispatch(getFilteredProducts(location.search))
+    } else {
+      setLoading(false)
+    }
   }, [location.search])
 
 
@@ -75,45 +78,7 @@ export default function Autos(){
     }
   }, [filteredStatus])
 
-  useEffect(() => {
-    if (!isAuth) {
-      let favorites = []
-      try {
-        favorites = JSON.parse(Cookies.get('favorites') || '[]')
-      } catch { favorites = [] }
-      const favoriteSet = new Set(favorites)
-      const newProducts = filteredProducts.map(product => ({
-        ...product,
-        is_liked: favoriteSet.has(product._id)
-      }))
-      setUpdatedProducts(newProducts)
-    }
-  }, [isAuth, filteredProducts])
-
-  useEffect(() => {
-    if(adsenseData.length > 0) {
-      setMobileAdsense(adsenseData.filter(ads => ads.position === 'mobile'))
-      setDeskopAdsense(adsenseData.filter(ads => ads.position === 'deskop'))
-    }
-  }, [adsenseData])
-
-  const [mobileAdsense, setMobileAdsense] = useState([])
-  const [deskopAdsense, setDeskopAdsense] = useState([])
-
-  const displayProducts = isAuth ? filteredProducts : updatedProducts
   const isDesktop = useMediaQuery('(min-width: 1000px)', { noSsr: true })
-  
-  const handleAdsClick = async (id, link) => {
-    dispatch(clickAdsense(id))
-    if (clickStatus === 'success') {
-      window.open(
-        `https://${link}`,
-        "_blank",
-        "noopener,noreferrer"
-      )
-    }
-  }
-  
 
   return(
     <div>

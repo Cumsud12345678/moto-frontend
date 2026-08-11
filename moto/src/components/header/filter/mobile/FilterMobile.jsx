@@ -47,8 +47,7 @@ export default function FilterMobile({useFilter}){
   }
 
   useEffect(() => {
-    console.log(location.hash)
-    if((make || model || category) || (location.pathname == '/autos' && location.hash !== '#filter')){
+    if (make || model || category) {
       applyFilter()
     }
   }, [make, model, category])

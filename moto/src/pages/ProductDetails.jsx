@@ -12,6 +12,7 @@ import { toast } from "@heroui/react";
 import { getMyProduct, getProductDetails, getSimilarProducts } from "../redux/slices/product/productSlice";
 import { HomeSkeleton } from "../components/skeletons/HomeSkeleton";
 import { Helmet } from 'react-helmet-async'
+import Cookies from "js-cookie";
 
 export default function ProductDetails(){
 
@@ -62,18 +63,19 @@ export default function ProductDetails(){
 
   useEffect(() => {
     if (!isAuth) {
+      const currentSimilarData = similarCache[id] || similarProducts
       let favorites = []
       try {
         favorites = JSON.parse(Cookies.get('favorites') || '[]')
       } catch { favorites = [] }
       const favoriteSet = new Set(favorites)
-      const newProducts = similarProducts.map(product => ({
+      const newProducts = currentSimilarData.map(product => ({
         ...product,
         is_liked: favoriteSet.has(product._id)
       }))
       setUpdatedProducts(newProducts)
     }
-  }, [isAuth, similarProducts])
+  }, [isAuth, similarProducts, similarCache, id])
 
   // ERRORU YAZDIR
   useEffect(() => {
@@ -84,7 +86,7 @@ export default function ProductDetails(){
   const currentProduct = productsCache[id] || selectedProduct
   const currentSimilar = similarCache[id] || similarProducts
 
-  const loadingDetails = detailsStatus === 'loading' || !currentProduct || currentProduct._id != id
+  const loadingDetails = !currentProduct || currentProduct._id != id
   const loadingSimilars = similarStatus === 'loading' || !similarCache[id]
 
   const displayProducts = isAuth ? currentSimilar : updatedProducts

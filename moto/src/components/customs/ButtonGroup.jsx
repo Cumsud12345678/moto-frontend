@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 
 export default function ButtonGroup ({data, id, onClick, flex=null, isNew=false}) {
-  
+
   return(
     <div className={`flex gap-2 pb-2 ${flex ? 'flex-nowrap' : 'flex-wrap'}`}>
 
       {
-        location.pathname !== '/new'
+        location.pathname !== '/new' && location.pathname.split('/', 2)[1] !== 'edit'
           && (
             <button 
               key={'2'}

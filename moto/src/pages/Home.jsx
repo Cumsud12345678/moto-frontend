@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "../components/header/Header";
 import ProductList from "../components/ProductList";
 import Footer from "../components/Footer";
@@ -8,120 +8,60 @@ import { HomeSkeleton } from "../components/skeletons/HomeSkeleton";
 import { useMediaQuery } from "@heroui/react";
 import { toast } from "@heroui/react";
 import { useFilter } from '../components/header/filter/hooks/useFilter'
-import Cookies from "js-cookie";
 import { Helmet } from "react-helmet-async";
-import { clickAdsense, getAdsense } from "../redux/slices/admin/adminAdsenseSlice";
+import { getAdsense } from "../redux/slices/admin/adminAdsenseSlice";
 import EmptyData from "../components/EmptyData";
+import { useGenerateFavorites } from "../components/customs/hooks/useGenerateFavorites";
+import { useCursorBasedPagination } from "../components/customs/hooks/useCursorBasedPagination";
+import { useAdsense } from "../components/customs/hooks/useAdsense";
 
 export default function Home(){
 
   const BASE_URL = import.meta.env.VITE_API_URL
   const dispatch = useDispatch()
-  const [loading, setLoading] = useState(true)
-  const [loadingMore, setLoadingMore] = useState(false)
-  const [updatedProducts, setUpdatedProducts] = useState([])
+  
+  // Generate Favorites
+  const {
+    displayProducts
+  } = useGenerateFavorites()
+  
+  // Scroll Pagination
+  const {
+    loading,
+    setLoading,
+    lastProductRef,
+    loadingMore
+  } = useCursorBasedPagination()
+
+  // Adsense
+  const {
+    mobileAdsense,
+    handleAdsClick
+  } = useAdsense()
 
   const filterState = useFilter()
   const {error} = filterState
 
   const {
-    products,
-    productsPage,
-    productsHasMore,
     message,
     productsStatus
   } = useSelector((state) => state.product)
 
-  const {
-    isAuth
-  } = useSelector(s => s.user)
-
-  const {
-    adsenseData,
-    clickStatus
-  } = useSelector(s => s.adminAdsense)
-
   useEffect(() => {
-    // artiq mehsullar redux-da varsa, yeniden cekmirik - eks halda
-    // hansisa elana baxib geri qayidanda backend-in sirasi deyise biler
-    // ve ekranda elanlarin yeri qarisir
+    // artiq mehsullar redux-da varsa, yeniden cekmirik - eks halda hansisa elana baxib geri qayidanda backend-in sirasi deyise biler ve ekranda elanlarin yeri qarisir
     if(productsStatus === 'idle'){
       dispatch(getAllProducts())
     }else{
       setLoading(false)
     }
-    dispatch(getAdsense())
   }, [])
-
-
-  // Sonsuz scroll - müşahidə edilən sonuncu element
-  const observerRef = useRef(null)
-  const lastProductRef = useCallback((node) => {
-    if(loading || loadingMore) return
-    if(observerRef.current) observerRef.current.disconnect()
-
-    observerRef.current = new IntersectionObserver((entries) => {
-      if(entries[0].isIntersecting && productsHasMore){
-        setLoadingMore(true)
-        dispatch(getAllProducts(productsPage + 1)).finally(() => setLoadingMore(false))
-      }
-    })
-
-    if(node) observerRef.current.observe(node)
-  }, [loading, loadingMore, productsHasMore, productsPage])
-
 
   useEffect(() => {
     if(message) toast.danger(message)
     if(error) toast.danger(error)
   }, [message, error])
 
-  useEffect(() => {
-    if(productsStatus !== 'idle'){
-      setLoading(false)
-    }
-  }, [productsStatus])
-
-  useEffect(() => {
-    if(!isAuth){
-      let favorites = []
-      try { 
-        favorites = JSON.parse(Cookies.get('favorites') || '[]') 
-      } catch { favorites = [] }
-      const favoriteSet = new Set(favorites)
-      const newProducts = products.map(product => ({
-        ...product,
-        is_liked: favoriteSet.has(product._id)
-      }))
-      setUpdatedProducts(newProducts)
-    }
-  }, [isAuth, products])
-
-  useEffect(() => {
-    if(adsenseData.length > 0) {
-      setMobileAdsense(adsenseData.filter(ads => ads.position === 'mobile'))
-      setDeskopLeftAdsense(adsenseData.filter(ads => ads.position === 'deskop_left'))
-      setDeskopRightAdsense(adsenseData.filter(ads => ads.position === 'deskop_right'))
-    }
-  }, [adsenseData])
-
-  const [mobileAdsense, setMobileAdsense] = useState([])
-  const [deskopLeftAdsense, setDeskopLeftAdsense] = useState([])
-  const [deskopRightAdsense, setDeskopRightAdsense] = useState([])
-
-  const displayProducts = isAuth ? products : updatedProducts
   const isDesktop = useMediaQuery('(min-width: 1024px)', { noSsr: true })
-
-  const handleAdsClick = async (id, link) => {
-    dispatch(clickAdsense(id))
-    if(clickStatus === 'success') {
-      window.open(
-        `https://${link}`,
-        "_blank",
-        "noopener,noreferrer"
-      )
-    }
-  }
 
   return(
     <div>
