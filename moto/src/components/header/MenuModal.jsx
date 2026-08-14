@@ -27,7 +27,7 @@ export default function MenuModal({open, setOpen, isMobile}){
             <Drawer.CloseTrigger />
             <Drawer.Header>
               <Drawer.Heading className='px-3 pt-3'>
-                <div className='w-[120px]'>
+                <div className='w-[150px]'>
                   <img src="/logo.png" className='w-full' alt="logo" />
                 </div>
               </Drawer.Heading>

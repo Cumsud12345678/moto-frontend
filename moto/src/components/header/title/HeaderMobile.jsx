@@ -36,7 +36,7 @@ export default function HeaderMobile({openModal, open, isMobile, filter}){
               <MenuIcon></MenuIcon>
             </IconButton>
         }
-        <div onClick={() => navigate('/')} className='w-[120px]'>
+        <div onClick={() => navigate('/')} className='w-[150px] flex items-center'>
           <img src="/logo.png" className='w-full' alt="logo" />
         </div>
         <span></span>
