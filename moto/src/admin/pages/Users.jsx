@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { deleteUser, getUsers } from '../../redux/slices/admin/adminUserSlice';
 import { Nav } from '../customs/Nav';
 import { useLocation, useNavigate } from 'react-router-dom';
-import PaginationComponent from '../customs/Pagination';
+import PaginationComponent from '../../components/customs/libs/LibPagination';
 
 export default function Users() {
 

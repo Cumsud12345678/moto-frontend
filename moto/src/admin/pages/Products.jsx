@@ -4,7 +4,7 @@ import ProductList from '../list/ProductList';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from '../../redux/slices/admin/adminProductSlice';
 import { Nav } from '../customs/Nav';
-import PaginationComponent from '../customs/Pagination';
+import PaginationComponent from '../../components/customs/libs/LibPagination';
 import { toast } from '@heroui/react';
 
 export default function Products() {

@@ -35,7 +35,7 @@ export default function ProductCardProfile({ product, deleteClick }){
         <p className="text-sm text-gray-600 truncate mt-0.5">
           {year}, {volume} sm³, {mileage} km
         </p>
-        <p className="text-sm text-gray-400 mt-0.5">{city.label}, {createdAt}</p>
+        <p className="text-sm text-gray-400 truncate mt-0.5">{city.label}, {createdAt}</p>
       </div>
 
       <div className="flex flex-col sm:flex-row gap-2 p-2 pt-0">

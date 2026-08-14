@@ -20,13 +20,13 @@ export default function PaginationComponent({ page, setPage, totalPages }) {
   };
 
   return (
-    <div className="w-full max-w-2xs overflow-x-auto sm:max-w-full mt-10">
+    <div className="overflow-x-auto">
       <Pagination className="justify-center">
         <Pagination.Content>
           <Pagination.Item>
             <Pagination.Previous isDisabled={page === 1} onPress={() => setPage(page - 1)}>
               <Pagination.PreviousIcon />
-              <span>Previous</span>
+              <span>Geri</span>
             </Pagination.Previous>
           </Pagination.Item>
           {getPageNumbers().map((p, i) =>
@@ -44,7 +44,7 @@ export default function PaginationComponent({ page, setPage, totalPages }) {
           )}
           <Pagination.Item>
             <Pagination.Next isDisabled={page === totalPages} onPress={() => setPage(page + 1)}>
-              <span>Next</span>
+              <span>İrəli</span>
               <Pagination.NextIcon />
             </Pagination.Next>
           </Pagination.Item>

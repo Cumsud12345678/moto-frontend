@@ -36,7 +36,9 @@ export default function Home(){
   // Adsense
   const {
     mobileAdsense,
-    handleAdsClick
+    handleAdsClick,
+    deskopLeftAdsense,
+    deskopRightAdsense
   } = useAdsense()
 
   const filterState = useFilter()
@@ -77,13 +79,18 @@ export default function Home(){
 
       <div className="flex flex-col">
       
-        {/* <div className="hidden xl:block lg:fixed top-0 bg-red-500 w-[250px] h-[100vh] z-[2000] left-0">
-          Burda reklam olacaq
-          <div className="w-full h-[100vh]">
-            <img src="../../public/download.png" className="w-[2000px] h-[1000px]" alt="" />
+        {
+          deskopRightAdsense.length > 0 &&
+          <div className="hidden xl:block lg:fixed top-0 bg-red-500 w-[250px] h-[100vh] z-[10000] left-0">
+            <div 
+              onClick={() => handleAdsClick(deskopRightAdsense[0]?._id, deskopRightAdsense[0]?.link)}
+              className="w-full h-[100vh]"
+            >
+              <img src={`${BASE_URL}/uploads/${deskopRightAdsense[0]?.image}`} className="w-[2000px] h-[1000px]" alt="" />
+            </div>
           </div>
-
-        </div> */}
+        }
+        
 
         <div className="z-[9999] bg-[#f5f5f5]">
           <Header filter={filterState} />
@@ -95,7 +102,7 @@ export default function Home(){
               mobileAdsense.length > 0 && 
               <div 
                 onClick={() => handleAdsClick(mobileAdsense[0]?._id, mobileAdsense[0]?.link)}
-                className="lg:hidden w-full h-[100px] rounded-lg my-2 border max-w-[500px]">
+                className="lg:hidden w-full h-[100px] rounded-lg my-2 border max-w-[500px] mx-auto">
                 <img src={`${BASE_URL}/uploads/${mobileAdsense[0]?.image}`} className="w-full h-full object-contain" alt="" />
               </div>
             }
@@ -131,10 +138,18 @@ export default function Home(){
           <Footer />
         </div>
 
-        {/* <div className="hidden xl:block fixed top-0 bg-red-500 w-[250px] h-[100vh] z-[2000] right-0">
-          Burda reklam olacaq
-        </div> */}
-
+        {
+          deskopLeftAdsense.length > 0 &&
+          <div className="hidden xl:block lg:fixed top-0 bg-red-500 w-[250px] h-[100vh] z-[10000] right-0">
+            <div 
+              onClick={() => handleAdsClick(deskopLeftAdsense[0]?._id, deskopLeftAdsense[0]?.link)}
+              className="w-full h-[100vh]"
+            >
+              <img src={`${BASE_URL}/uploads/${deskopLeftAdsense[0]?.image}`} className="w-[2000px] h-[1000px]" alt="" />
+            </div>
+          </div>
+        }
+      
       </div>
       
     </div>

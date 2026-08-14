@@ -66,9 +66,9 @@ export default function Adsense({makes, models}) {
     <div className='flex flex-row'>
       <Nav />
       <div className="container mx-auto max-w-[1100px] h-[100vh] overflow-auto p-5">
-        <div className="grid lg:grid-cols-3 gap-5 my-20">
+        <div className="grid gap-5 my-20">
         
-          <div className='border-2 p-8 rounded-xl'>
+          <div className='w-[500px] border-2 p-8 rounded-xl span-2 mx-auto'>
             <h2 className="text-xl font-bold">Adsense</h2>
             <div className='mt-3 flex flex-col'>
               <Label>Reklam</Label>
@@ -94,10 +94,10 @@ export default function Adsense({makes, models}) {
                 <LibDropzone onDrop={handleDrop} />
               </div>
 
-              <div className='max-w-[300px] mt-2 flex flex-col gap-3'>
+              <div className='w-full mt-2 flex flex-col gap-3'>
                 <Label style={{ marginBottom: '-10px' }}>Link</Label>
 
-                <div className='my-4 w-[200px] flex items-center bg-[#f5f5f5] gap-2'>
+                <div className='my-4 w-full flex items-center bg-[#f5f5f5] gap-2'>
                   <button
                     onClick={() => handeTab('mobile')}
                     className={`p-2 w-full rounded-lg ${type == 'mobile' ? 'bg-blue-500 text-white' : 'bg-white text-black'}`}>
@@ -105,12 +105,12 @@ export default function Adsense({makes, models}) {
                   </button>
                   <button
                     onClick={() => handeTab('deskop_left')}
-                    className={`p-2 w-full rounded-lg ${type == 'deskop-left' ? 'bg-blue-500 text-white' : 'bg-white text-black'}`}>
+                    className={`p-2 w-full rounded-lg ${type == 'deskop_left' ? 'bg-blue-500 text-white' : 'bg-white text-black'}`}>
                     Deskop-Left
                   </button>
                   <button
                     onClick={() => handeTab('deskop_right')}
-                    className={`p-2 w-full rounded-lg ${type == 'deskop-right' ? 'bg-blue-500 text-white' : 'bg-white text-black'}`}>
+                    className={`p-2 w-full rounded-lg ${type == 'deskop_right' ? 'bg-blue-500 text-white' : 'bg-white text-black'}`}>
                     Deskop-Right
                   </button>
                 </div>

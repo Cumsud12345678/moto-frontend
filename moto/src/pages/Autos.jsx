@@ -12,7 +12,7 @@ import { toast } from "@heroui/react";
 import { Helmet } from "react-helmet-async";
 import { clickAdsense, getAdsense } from "../redux/slices/admin/adminAdsenseSlice";
 import EmptyData from "../components/EmptyData";
-import PaginationComponent from "../admin/customs/Pagination";
+import PaginationComponent from "../components/customs/libs/LibPagination";
 import { useGenerateFavorites } from "../components/customs/hooks/useGenerateFavorites";
 import { useAdsense } from "../components/customs/hooks/useAdsense";
 
@@ -32,7 +32,9 @@ export default function Autos(){
   // Adsense
   const {
     mobileAdsense,
-    handleAdsClick
+    handleAdsClick,
+    deskopLeftAdsense,
+    deskopRightAdsense
   } = useAdsense()
   
   const filterState = useFilter()
@@ -51,20 +53,20 @@ export default function Autos(){
   }, [filteredStatus])
 
   useEffect(() => {
-    // artiq mehsullar redux-da varsa, yeniden cekmirik - eks halda
-    // hansisa elana baxib geri qayidanda backend-in sirasi deyise biler
-    // ve ekranda elanlarin yeri qarisir
+    setLoading(true)
+    dispatch(getFilteredProducts(location.search))
+  }, [location.search])
+
+  useEffect(() => {
     if (filteredStatus === 'idle') {
       dispatch(getFilteredProducts(location.search))
-    } else {
-      setLoading(false)
     }
-  }, [location.search])
+  }, [])
 
 
   const manageUrlAndPage = (newPage) => {
     setPage(newPage)
-    applyFilter()
+    applyFilter(newPage)
   }
 
   useEffect(() => {
@@ -93,25 +95,29 @@ export default function Autos(){
 
       <div className="flex flex-col">
       
-        {/* <div className="hidden xl:block lg:fixed top-0 bg-red-500 w-[250px] h-[100vh] z-[2000] left-0">
-          Burda reklam olacaq
-          <div className="w-full h-[100vh]">
-            <img src="../../public/download.png" className="w-[2000px] h-[1000px]" alt="" />
+        {
+          deskopRightAdsense.length > 0 &&
+          <div className="hidden xl:block lg:fixed top-0 bg-red-500 w-[250px] h-[100vh] z-[10000] left-0">
+            <div 
+              onClick={() => handleAdsClick(deskopRightAdsense[0]?._id, deskopRightAdsense[0]?.link)}
+              className="w-full h-[100vh]"
+            >
+              <img src={`${BASE_URL}/uploads/${deskopRightAdsense[0]?.image}`} className="w-[2000px] h-[1000px]" alt="" />
+            </div>
           </div>
-
-        </div> */}
+        }
 
         <div className="z-[9999] bg-[#f5f5f5]">
           <Header filter={filterState} />
 
-          <div className="mt-45 lg:mt-6 px-4 flex flex-col mb-25 max-w-[1000px] mx-auto">
+          <div className="mt-45 lg:mt-6 px-4 flex flex-col max-w-[1000px] mx-auto">
             
             {/* Burda mobile reklam olacaq */}
             {
               mobileAdsense.length > 0 && 
               <div 
                 onClick={() => handleAdsClick(mobileAdsense[0]?._id, mobileAdsense[0]?.link)}
-                className="lg:hidden w-full h-[100px] rounded-lg my-2 border max-w-[500px]">
+                className="lg:hidden w-full h-[100px] rounded-lg my-2 border max-w-[500px] mx-auto">
                 <img src={`${BASE_URL}/uploads/${mobileAdsense[0]?.image}`} className="w-full h-full object-contain" alt="" />
               </div>
             }
@@ -133,14 +139,24 @@ export default function Autos(){
             }
           </div>
 
-          <PaginationComponent page={page} setPage={manageUrlAndPage} totalPages={totalFilteredProducts} />
-
+          <div className="flex items-center justify-center my-5 py-3 mb-30 bg-white">
+            <PaginationComponent page={page} setPage={manageUrlAndPage} totalPages={totalFilteredProducts} />
+          </div>
+          
           <Footer />
         </div>
 
-        {/* <div className="hidden xl:block fixed top-0 bg-red-500 w-[250px] h-[100vh] z-[2000] right-0">
-          Burda reklam olacaq
-        </div> */}
+        {
+          deskopLeftAdsense.length > 0 &&
+          <div className="hidden xl:block lg:fixed top-0 bg-red-500 w-[250px] h-[100vh] z-[10000] right-0">
+            <div 
+              onClick={() => handleAdsClick(deskopLeftAdsense[0]?._id, deskopLeftAdsense[0]?.link)}
+              className="w-full h-[100vh]"
+            >
+              <img src={`${BASE_URL}/uploads/${deskopLeftAdsense[0]?.image}`} className="w-[2000px] h-[1000px]" alt="" />
+            </div>
+          </div>
+        }
 
       </div>
       

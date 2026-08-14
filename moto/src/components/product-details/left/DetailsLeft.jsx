@@ -176,7 +176,6 @@ export default function DetailsLeft({ product, isLiked, toggleLike, share, click
           <Alert severity="warning">Motosikletə baxış keçirmədən öncə beh göndərməyin.</Alert>
         </div>
 
-
         <div className="fixed bottom-0 w-full p-4 z-[1000] block lg:hidden">
           <div className="flex gap-3">
             

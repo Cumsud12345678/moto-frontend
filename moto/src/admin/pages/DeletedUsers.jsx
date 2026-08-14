@@ -6,7 +6,7 @@ import { getProducts } from '../../redux/slices/admin/adminProductSlice';
 import { Nav } from '../customs/Nav';
 import { getDeletedUser, getDeletedUsers } from '../../redux/slices/admin/adminUserSlice';
 import DeletedUserList from '../list/DeletedUserList';
-import PaginationComponent from '../customs/Pagination';
+import PaginationComponent from '../../components/customs/libs/LibPagination';
 import { toast } from '@heroui/react';
 
 export default function DeletedUsers() {

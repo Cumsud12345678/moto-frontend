@@ -41,7 +41,9 @@ export const useAdsense = () => {
 
   return {
     mobileAdsense,
-    handleAdsClick
+    handleAdsClick,
+    deskopLeftAdsense,
+    deskopRightAdsense
   }
 
 }

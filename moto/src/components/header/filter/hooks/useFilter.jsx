@@ -68,8 +68,9 @@ export const useFilter = () => {
 
   const [page, setPage] = useState(1)
   
-  const applyFilter = () => {
+  const applyFilter = (customPage) => {
     const params = new URLSearchParams()
+    const currentPage = Number(customPage ?? page) || 1
 
     if(make) params.set('make', make)
     if(model) params.set('model', model || '')
@@ -90,7 +91,7 @@ export const useFilter = () => {
     if(maxVolume) params.set('maxVolume', maxVolume || '')
     if(minDistance) params.set('minDistance', minDistance || '')
     if(maxDistance) params.set('maxDistance', maxDistance || '')
-    params.set('page', page)
+    params.set('page', currentPage)
     navigate(`/autos?${params.toString()}`)
   }
 
@@ -128,7 +129,7 @@ export const useFilter = () => {
     setMaxVolume(params.get('maxVolume'))
     setMinDistance(params.get('minDistance'))
     setMaxDistance(params.get('maxDistance'))
-    setPage(params.get('page'))
+    setPage(Number(params.get('page')) || 1)
 
   }, [location.search, page])
 

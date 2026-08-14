@@ -27,7 +27,6 @@ export default function Bookmarks(){
 
   useEffect(() => {
     if(isAuth) {
-      console.log('aha')
       dispatch(getFavorites())
     }else {
       let parseFavorites = []
