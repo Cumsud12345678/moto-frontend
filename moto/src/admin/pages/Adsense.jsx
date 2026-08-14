@@ -38,6 +38,7 @@ export default function Adsense({makes, models}) {
     if(!link?.trim()) return toast.danger('Link daxil edin')
     if(!owner?.trim()) return toast.danger('Owner daxil edin')
     if(!image) return toast.danger('Şəkil seçin')
+    if(!homeChecked && !detailsChecked) return toast.danger('Seyfe secin seçin')
 
     const formData = new FormData()
 
@@ -45,6 +46,8 @@ export default function Adsense({makes, models}) {
     formData.append('image', image.file)
     formData.append('link', link)
     formData.append('owner', owner)
+    formData.append('is_home', homeChecked)
+    formData.append('is_details', detailsChecked)
 
     toast.promise(
       dispatch(createAdsense(formData)).unwrap(),
@@ -61,6 +64,9 @@ export default function Adsense({makes, models}) {
   }, [])
 
   const {adsenseData} = useSelector(s => s.adminAdsense)
+
+  const [homeChecked, setHomeChecked] = useState(true)
+  const [detailsChecked, setDetailsChecked] = useState(false)
 
   return(
     <div className='flex flex-row'>
@@ -133,6 +139,27 @@ export default function Adsense({makes, models}) {
                   />
                 </div>
 
+                <div>
+                  <div className='flex items-center gap-1'>
+                    <input 
+                      checked={homeChecked}
+                      onChange={(e) => setHomeChecked(e.target.checked)}
+                      type="checkbox" 
+                      className='size-4'
+                    />
+                    Esas seyfede gorunsun
+                  </div>
+                  <div className='flex items-center gap-1'>
+                    <input 
+                      checked={detailsChecked}
+                      onChange={(e) => setDetailsChecked(e.target.checked)}
+                      type="checkbox" 
+                      className='size-4'
+                    />
+                    Detay seyfesinde gorunsun
+                  </div>
+                </div>
+
                 <button
                   onClick={setMakeModelForm}
                   className='w-full bg-blue-500 p-2 rounded-xl text-white mt-5 cursor-pointer'
@@ -156,6 +183,7 @@ export default function Adsense({makes, models}) {
                   <th className="w-[70px] border-r p-2 text-center font-medium">Click</th>
                   <th className="w-[70px] border-r p-2 text-center font-medium">Owner</th>
                   <th className="w-[70px] border-r p-2 text-center font-medium">Position</th>
+                  <th className="w-[100px] border-r p-2 text-center font-medium">Page</th>
                   <th className="w-[70px] border-r p-2 text-center font-medium">createdAt</th>
                   <th className="w-[100px] p-2 text-center font-medium">Functions</th>
                 </tr>

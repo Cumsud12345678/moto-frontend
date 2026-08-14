@@ -2,7 +2,6 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { clickAdsense, getAdsense } from "../../../redux/slices/admin/adminAdsenseSlice"
 
-
 export const useAdsense = () => {
 
   const dispatch = useDispatch()

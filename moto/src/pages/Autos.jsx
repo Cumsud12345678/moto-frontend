@@ -96,13 +96,24 @@ export default function Autos(){
       <div className="flex flex-col">
       
         {
-          deskopRightAdsense.length > 0 &&
-          <div className="hidden xl:block lg:fixed top-0 bg-red-500 w-[250px] h-[100vh] z-[10000] left-0">
-            <div 
+          (deskopRightAdsense.length > 0 && deskopLeftAdsense[0]?.is_home) &&
+          <div
+            className="hidden xl:block lg:fixed top-0 left-0 h-[100vh] z-[10000] overflow-hidden"
+            style={{ 
+              width: 'calc((100vw - 1000px) / 2)',
+              boxSizing: 'border-box',
+              paddingRight: '20px' 
+            }}   // maxWidth silindi
+          >
+            <div
               onClick={() => handleAdsClick(deskopRightAdsense[0]?._id, deskopRightAdsense[0]?.link)}
-              className="w-full h-[100vh]"
+              className="w-full h-full cursor-pointer"
             >
-              <img src={`${BASE_URL}/uploads/${deskopRightAdsense[0]?.image}`} className="w-[2000px] h-[1000px]" alt="" />
+              <img
+                src={`${BASE_URL}/uploads/${deskopRightAdsense[0]?.image}`}
+                className="w-full h-full object-cover object-right"
+                alt=""
+              />
             </div>
           </div>
         }
@@ -114,7 +125,7 @@ export default function Autos(){
             
             {/* Burda mobile reklam olacaq */}
             {
-              mobileAdsense.length > 0 && 
+              (mobileAdsense.length > 0 && mobileAdsense[0]?.is_home) &&
               <div 
                 onClick={() => handleAdsClick(mobileAdsense[0]?._id, mobileAdsense[0]?.link)}
                 className="lg:hidden w-full h-[100px] rounded-lg my-2 border max-w-[500px] mx-auto">
@@ -147,13 +158,24 @@ export default function Autos(){
         </div>
 
         {
-          deskopLeftAdsense.length > 0 &&
-          <div className="hidden xl:block lg:fixed top-0 bg-red-500 w-[250px] h-[100vh] z-[10000] right-0">
-            <div 
+          (deskopLeftAdsense.length > 0 && deskopLeftAdsense[0]?.is_home) &&
+          <div
+            className="hidden xl:block lg:fixed top-0 right-0 h-[100vh] z-[10000] overflow-hidden"
+            style={{ 
+              width: 'calc((100vw - 1000px) / 2)',
+              boxSizing: 'border-box',
+              paddingLeft: '20px' 
+            }}
+          >
+            <div
               onClick={() => handleAdsClick(deskopLeftAdsense[0]?._id, deskopLeftAdsense[0]?.link)}
-              className="w-full h-[100vh]"
+              className="w-full h-full cursor-pointer"
             >
-              <img src={`${BASE_URL}/uploads/${deskopLeftAdsense[0]?.image}`} className="w-[2000px] h-[1000px]" alt="" />
+              <img
+                src={`${BASE_URL}/uploads/${deskopLeftAdsense[0]?.image}`}
+                className="w-full h-full object-cover object-left"
+                alt=""
+              />
             </div>
           </div>
         }

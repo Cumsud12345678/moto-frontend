@@ -51,6 +51,10 @@ export default function AdsenseList({product}) {
           </td>
 
           <td className="border-r p-2">
+            {product.is_home ? product.is_details ? 'Home, Details' : 'Home' : 'Details'}
+          </td>
+
+          <td className="border-r p-2">
             {product.createdAt}
           </td>
 
