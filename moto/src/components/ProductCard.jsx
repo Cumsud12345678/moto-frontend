@@ -100,7 +100,7 @@ export default function ProductCard({ product }) {
       border-gray-100 bg-white hover:shadow-lg transition-shadow duration-200"
     >
       
-      <div className="relative w-full aspect-[4/3] overflow-hidden">
+      <div className="relative w-full aspect-[4/3] overflow-hidden bg-gray-200">
         <img
           src={`${import.meta.env.VITE_API_URL}/uploads/${images?.[0]}`}
           alt={`${make.label} ${model.label} ${year}`}

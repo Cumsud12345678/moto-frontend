@@ -40,7 +40,7 @@ export const useProduct = () => {
     if(alertType == 'delete') {
       handleProductDelete(text, id)
     }else if(alertType == 'deactive') {
-      handleDeactive(id)
+      handleDeactive(text, id)
     } else if(alertType == 'active') {
       handleActive(id)
     }
@@ -62,9 +62,11 @@ export const useProduct = () => {
   }
 
   // PRODUCTU DEACTIVE ET
-  const handleDeactive = (id) => {
+  const handleDeactive = (text, id) => {
+    console.log(text, id)
+    if(!text || text.length == 0) return toast.warning('Formu doldurun')
     toast.promise(
-      dispatch(deactiveProduct(id)).unwrap(),
+      dispatch(deactiveProduct({id, message: text})).unwrap(),
       {
         loading: 'Elan guncellenir..',
         success: () => {

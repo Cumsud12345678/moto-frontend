@@ -86,7 +86,7 @@ export default function ProfileContent({products}) {
             <Box className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 lg:gap-4">
               {
                 activeProducts.map((p) => (
-                  <ProductCardProfile deleteClick={clickDelete} product={p} key={p._id} />
+                  <ProductCardProfile deleteClick={clickDelete} product={p} type={p.isActive} key={p._id} />
                 ))
               }
             </Box>
@@ -101,7 +101,7 @@ export default function ProfileContent({products}) {
             <Box className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 lg:gap-4">
               {
                 deactiveProducts.map((p) => (
-                  <ProductCardProfile deleteClick={clickDelete} product={p} key={p._id} />
+                  <ProductCardProfile deleteClick={clickDelete} product={p} type={p.isActive} key={p._id} />
                 ))
               }
             </Box>
@@ -116,7 +116,7 @@ export default function ProfileContent({products}) {
             <Box className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 lg:gap-4">
               {
                 products.map((p) => (
-                  <ProductCardProfile deleteClick={clickDelete} product={p} key={p._id} />
+                  <ProductCardProfile deleteClick={clickDelete} product={p} type={p.isActive} key={p._id} />
                 ))
               }
             </Box>

@@ -99,11 +99,12 @@ export const deleteProduct = createAsyncThunk(
 
 export const deactiveProduct = createAsyncThunk(
   'admin/deactiveProduct',
-  async (id, thunkAPI) => {
+  async (data, thunkAPI) => {
+    const {id, message} = data
     try{
       const res = await axios.put(
         `${API}/api/admin/products/deactive/${id}`,
-        {},
+        {message},
         { withCredentials: true }
       )
 

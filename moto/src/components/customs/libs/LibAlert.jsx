@@ -24,7 +24,7 @@ export default function LibAlert({openAlert, setOpenAlert, title, label = '', on
                 {label}
               </p>
               {
-                type == 'delete' && (
+                (type == 'delete' || type == 'deactive') && (
                   <div className="mt-4">
                     <span>Açıqlama</span>
                     <textarea 
@@ -44,7 +44,7 @@ export default function LibAlert({openAlert, setOpenAlert, title, label = '', on
               <Button
                 slot="close"
                 onClick={() => {
-                  type == 'delete'
+                  type == 'delete' || type == 'deactive'
                   ? onClick(description)
                   : onClick()
                 }}

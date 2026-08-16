@@ -5,6 +5,9 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import {Spinner} from "@heroui/react";
 
 export default function SearchAndSelect({ data = [], id, onClick, onChange, label, variant, pl=null}) {
+
+  const BASE_URL = import.meta.env.VITE_API_URL;
+
   const [focus, setFocus] = useState(false);
   const [value, setValue] = useState('');
   const [selectedId, setSelectedId] = useState('');
@@ -168,8 +171,14 @@ export default function SearchAndSelect({ data = [], id, onClick, onChange, labe
                 className="flex cursor-pointer justify-between rounded-lg p-2 hover:bg-gray-200"
                 onMouseDown={() => checkedData(item)}
               >
-                <span style={{fontSize: '14px'}}>{getLabel(item)}</span>
-
+                <div>
+                  {
+                    item.logo && 
+                    <img src={`${BASE_URL}/uploads/${item.logo}`} className="w-7 inline mr-2" />
+                  }
+                  <span style={{fontSize: '14px'}}>{getLabel(item)}</span>
+                </div>
+                
                 {selectedId === getId(item) && (
                   <CheckIcon sx={{ fontSize: 20, color: "green" }} />
                 )}
