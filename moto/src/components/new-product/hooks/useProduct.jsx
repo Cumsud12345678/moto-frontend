@@ -270,6 +270,22 @@ export const useProduct = () => {
     })
   }
 
+  const reorderImages = (fromIndex, toIndex) => {
+    if (
+      fromIndex === toIndex ||
+      fromIndex < 0 ||
+      toIndex < 0
+    ) return
+
+    setImages((prev) => {
+      if (fromIndex >= prev.length || toIndex >= prev.length) return prev
+      const updated = [...prev]
+      const [moved] = updated.splice(fromIndex, 1)
+      updated.splice(toIndex, 0, moved)
+      return updated
+    })
+  }
+
   const [selectedCity, setSelectedCity] = useState('')
   const selectedCityLabel = cities.find(c => c._id == selectedCity)
   const [price, setPrice] = useState('')
@@ -445,6 +461,7 @@ export const useProduct = () => {
     images,
     handleDrop,
     removeImage,
+    reorderImages,
 
     cities,
     selectedCity,

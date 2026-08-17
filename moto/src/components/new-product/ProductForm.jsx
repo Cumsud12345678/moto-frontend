@@ -2,6 +2,7 @@ import {Input, Label, useMediaQuery} from "@heroui/react";
 import { useProduct } from "./hooks/useProduct";
 import { Fragment, useState } from "react";
 import CloseIcon from '@mui/icons-material/Close';
+import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
 import DefaultInput from "../customs/DefaultInput"
 import ButtonGroup from "../customs/ButtonGroup"
 import SearchAndSelect from "../customs/SearchAndSelect"
@@ -99,6 +100,7 @@ export default function ProductForm({ productData }) {
     images,
     handleDrop,
     removeImage,
+    reorderImages,
 
     // WEHER
     cities,
@@ -127,6 +129,35 @@ export default function ProductForm({ productData }) {
 
 
   const [open, setOpen] = useState(false)
+
+  // Şəkillərin sürüklə-burax ilə sıralanması
+  const [draggedIndex, setDraggedIndex] = useState(null)
+  const [overIndex, setOverIndex] = useState(null)
+
+  const handleDragStart = (e, index) => {
+    setDraggedIndex(index)
+    e.currentTarget.setPointerCapture?.(e.pointerId)
+  }
+
+  const handleDragMove = (e) => {
+    if (draggedIndex === null) return
+
+    const target = document.elementFromPoint(e.clientX, e.clientY)
+    const card = target?.closest?.('[data-image-index]')
+
+    if (card) {
+      const index = Number(card.getAttribute('data-image-index'))
+      if (!Number.isNaN(index)) setOverIndex(index)
+    }
+  }
+
+  const handleDragEnd = () => {
+    if (draggedIndex !== null && overIndex !== null && draggedIndex !== overIndex) {
+      reorderImages(draggedIndex, overIndex)
+    }
+    setDraggedIndex(null)
+    setOverIndex(null)
+  }
 
   const testFunc = (id) => {
     setSelectedCity(id)
@@ -311,14 +342,28 @@ export default function ProductForm({ productData }) {
             <div>
               <h3 className="text-xl mb-3">Şəkillər *</h3>
               <div className="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-2">
-                {images.map((img) => (
-                  <div key={img.id}>
-                    <div className="relative overflow-hidden rounded-2xl border border-gray-200">
+                {images.map((img, index) => (
+                  <div
+                    key={img.id}
+                    data-image-index={index}
+                    onPointerMove={handleDragMove}
+                    onPointerUp={handleDragEnd}
+                    onPointerCancel={handleDragEnd}
+                  >
+                    <div
+                      className={`relative overflow-hidden rounded-2xl border transition-all ${
+                        draggedIndex === index
+                          ? 'border-blue-400 opacity-50'
+                          : overIndex === index && draggedIndex !== null
+                            ? 'border-blue-400 scale-95'
+                            : 'border-gray-200'
+                      }`}
+                    >
 
                       <img
                         src={img.url}
                         alt=""
-                        className="w-full h-25 object-cover"
+                        className="w-full h-25 object-cover pointer-events-none"
                       />
 
                       <button
@@ -327,6 +372,14 @@ export default function ProductForm({ productData }) {
                       >
                         <CloseIcon sx={{ fontSize: 16 }} />
                       </button>
+
+                      <div
+                        onPointerDown={(e) => handleDragStart(e, index)}
+                        style={{ touchAction: 'none' }}
+                        className="absolute cursor-grab active:cursor-grabbing top-2 left-2 flex h-7 w-7 items-center justify-center rounded-full bg-white shadow-sm hover:bg-gray-100"
+                      >
+                        <DragIndicatorIcon sx={{ fontSize: 16 }} />
+                      </div>
 
                     </div>
                   </div>
@@ -337,7 +390,7 @@ export default function ProductForm({ productData }) {
                 </div>
 
               </div>
-              <p className="text-md mt-4">Minimum 1, maksimum 10 şəkil</p>
+              <p className="text-md mt-4">Şəkillərin sırasını dəyişmək üçün sol yuxarı küncdəki tutacaqdan sürükləyin. Minimum 1, maksimum 10 şəkil</p>
             </div>
           </div>
 
@@ -406,8 +459,6 @@ export default function ProductForm({ productData }) {
           </div>
         </Fragment>
       }
-
-      
 
       <LibDrawer 
         open={open} 
