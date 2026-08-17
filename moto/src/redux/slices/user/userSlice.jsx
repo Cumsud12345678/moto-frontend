@@ -29,7 +29,7 @@ export const checkMe = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const res = await axios.get(
-        `${API}/api/users/me`,
+        `${API}/api/auth/me`,
         { withCredentials: true }
       )
 
@@ -46,7 +46,7 @@ export const register = createAsyncThunk(
   'user/register',
   async (data, thunkAPI) => {
     try {
-      const res = await axios.post(`${API}/api/users/register`, {
+      const res = await axios.post(`${API}/api/auth/register`, {
         name: data.name,
         email: data.email
       })
@@ -65,7 +65,7 @@ export const registerVerify = createAsyncThunk(
   async (data, thunkAPI) => {
     try {
       const res = await axios.post(
-        `${API}/api/users/register/verify`, 
+        `${API}/api/auth/register/verify`, 
         { email: data.email, otp: data.otp },
         { withCredentials: true }
       )
@@ -84,7 +84,7 @@ export const login = createAsyncThunk(
   async (data, thunkAPI) => {
     try {
       const res = await axios.post(
-        `${API}/api/users/login`, 
+        `${API}/api/auth/login`, 
         { email: data }
       )
 
@@ -102,7 +102,7 @@ export const loginVerify = createAsyncThunk(
   async (data, thunkAPI) => {
     try {
       const res = await axios.post(
-        `${API}/api/users/login/verify`, 
+        `${API}/api/auth/login/verify`, 
         { email: data.email, otp: data.otp},
         { withCredentials: true }
       )
@@ -121,7 +121,7 @@ export const logout = createAsyncThunk(
   async (_, thunkAPI) => {
     try{
       const res = await axios.get(
-        `${API}/api/users/logout`,
+        `${API}/api/auth/logout`,
         { withCredentials: true }
       )
 
@@ -140,7 +140,7 @@ export const updatedUser = createAsyncThunk(
     try {
       const { id } = thunkAPI.getState().user
       const res = await axios.put(
-        `${API}/api/users/${id}`,
+        `${API}/api/auth/${id}`,
         data,
         { withCredentials: true }
       )
