@@ -91,7 +91,7 @@ export default function FilterMobile({useFilter}){
         </button>
         
       </div>
-      <div className="flex flex-nowrap overflow-auto gap-2 mb-2">
+      <div className="flex whitespace-nowrap overflow-auto gap-2 mb-2 [mask-image:linear-gradient(to_right,black_85%,transparent)]">
         
         <ButtonGroup
           data={categories}
@@ -100,6 +100,7 @@ export default function FilterMobile({useFilter}){
           flex={'nowrap'}
           isNew={location.pathname === '/new'}
         />
+
       </div>
 
       <LibDrawer open={openMake} onClose={handleClose} arr={makes} onClick={handleMakeSelect} active={make} label={'Marka'} />

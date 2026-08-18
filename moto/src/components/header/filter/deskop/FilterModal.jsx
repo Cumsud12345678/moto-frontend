@@ -13,6 +13,7 @@ import ButtonGroup from '../../../customs/ButtonGroup';
 import SoloLabelinput from '../../../customs/SoloLabelinput';
 import Checkbox from '../../../customs/Checkbox';
 import SriButtonGroup from '../../../customs/SriButtonGroup';
+import { useLocation } from 'react-router-dom';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -29,6 +30,8 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export default function FilterDialog({ open, onClose, useFilter }) {
   
+  const location = useLocation()
+
   const { 
     
     makes,
@@ -172,6 +175,23 @@ export default function FilterDialog({ open, onClose, useFilter }) {
                     </div>
                 }
 
+              </div>
+            </div>
+
+            <div className='flex gap-3 items-center justify-between'>
+              <span className='w-[180px] shrink-0'>Kateqoriya</span>
+              <div className='flex w-full gap-3'>
+                <div className="flex gap-2 h-full w-full">
+                  
+                  <ButtonGroup
+                    data={categories}
+                    id={category}
+                    onClick={setCategory}
+                    flex={'nowrap'}
+                    isNew={location.pathname === '/new'}
+                  />
+
+                </div>
               </div>
             </div>
           

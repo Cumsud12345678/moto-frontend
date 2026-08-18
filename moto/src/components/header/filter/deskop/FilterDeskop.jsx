@@ -3,6 +3,7 @@ import FilterModal from "./FilterModal"
 import { useLocation, useNavigate } from "react-router-dom";
 import SearchAndSelect from "../../../customs/SearchAndSelect";
 import SriButtonGroup from "../../../customs/SriButtonGroup";
+import ButtonGroup from '../../../customs/ButtonGroup';
 
 export default function FilterDeskop({useFilter}){
 
@@ -43,10 +44,10 @@ export default function FilterDeskop({useFilter}){
       <div className="flex items-center justify-between gap-2">
 
         <div className='w-full'>
-          <SearchAndSelect 
-            data={makes} 
-            id={make || ''} 
-            onClick={handleMakeSelect} 
+          <SearchAndSelect
+            data={makes}
+            id={make || ''}
+            onClick={handleMakeSelect}
             onChange={handleMakeSelect}
             label={'Marka'}
             variant={'floating'}
@@ -54,7 +55,7 @@ export default function FilterDeskop({useFilter}){
         </div>
 
         {
-          make 
+          make
             ?
             <div className="w-full">
               <SearchAndSelect
@@ -66,7 +67,7 @@ export default function FilterDeskop({useFilter}){
                 variant={'floating'}
               />
             </div>
-            : 
+            :
             <div className={`relative w-full`}>
               <div className="relative flex items-center">
                 <input
@@ -84,7 +85,6 @@ export default function FilterDeskop({useFilter}){
         <div className="">
           <SriButtonGroup data={statuses} id={status} onClick={setStatus} />
         </div>
-        
         <div className="flex items-center justify-center w-full h-full gap-3">
           <button onClick={applyFilter} type="button" className="bg-blue-500 text-white py-2.5 px-8 rounded-lg cursor-pointer shadow">
             Axtar
@@ -94,9 +94,7 @@ export default function FilterDeskop({useFilter}){
             Filter
           </button>
         </div>
-        
       </div>
-
       <FilterModal open={openFilter} onClose={() => navigate(-1)} useFilter={useFilter} />
     
     </div>
