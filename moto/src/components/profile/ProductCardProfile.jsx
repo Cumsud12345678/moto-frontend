@@ -14,11 +14,17 @@ export default function ProductCardProfile({ product, deleteClick, type }){
 
   const API = import.meta.env.VITE_API_URL;
 
+  const handleNext = () => {
+    if(type) {
+      navigate(`/elanlarim/${_id}`)
+    }
+  }
+
   const [openAlert, setOpenAlert] = useState(false)
 
   return(
     <div 
-      onClick={() => navigate(`/elanlarim/${_id}`)}
+      onClick={handleNext}
       className='rounded-xl overflow-hidden cursor-pointer relative border 
       border-gray-100 bg-white hover:shadow-lg transition-shadow duration-200'
     >

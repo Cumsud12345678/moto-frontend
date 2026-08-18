@@ -1,6 +1,19 @@
+import { Skeleton } from "@heroui/react";
 import { useEffect, useState } from "react";
 
 export default function ButtonGroup ({data, id, onClick, flex=null, isNew=false}) {
+
+  if(data.length === 0) {
+    return (
+      <div className={`flex gap-2 pb-2 ${flex ? 'flex-nowrap' : 'flex-wrap'}`}>
+        {
+          [...Array(5)].map((_, index) => (
+            <Skeleton key={index} className={`h-10 w-18 cursor-pointer rounded-3xl`}/>
+          ))
+        }
+      </div>
+    )
+  }
 
   return(
     <div className={`flex gap-2 pb-2 ${flex ? 'flex-nowrap' : 'flex-wrap'}`}>

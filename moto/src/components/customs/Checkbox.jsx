@@ -1,6 +1,20 @@
+import { Skeleton } from "@heroui/react";
+
 export default function Checkbox ({data, ids, onClick}) {
 
   const safeIds = ids || [];   // ← əlavə edin
+
+  if(data.length === 0) {
+    return (
+      <div className="flex flex-wrap gap-2">
+        {
+          [...Array(9)].map((_, index) => (
+            <Skeleton key={index} className={`h-10 w-18 cursor-pointer rounded-3xl`} />
+          ))
+        }
+      </div>
+    )
+  }
 
   return(
     <div className="flex flex-wrap gap-2">

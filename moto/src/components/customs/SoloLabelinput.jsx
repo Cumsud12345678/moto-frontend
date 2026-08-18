@@ -24,6 +24,7 @@ export default function SoloLabelinput ({value, change, label, pl = 10}) {
   return(
     <div className="flex items-center relative">
       <input 
+        inputMode='numeric'
         value={formatNumber(value)} 
         onChange={(e) => changeInput(e.target.value)} 
         type="text" 

@@ -44,7 +44,7 @@ export default function MenuModal({open, setOpen, isMobile}){
               <div className='container mx-auto max-w-[1000px] p-2'>
                 <div className='grid grid-col lg:grid-cols-3 gap-3 text-black'>
 
-                  <div onClick={() => navigate('/privacy')} className='bg-[#f5f5f5] p-2 rounded-2xl  cursor-pointer border border-[#f5f5f5] hover:border-blue-500'>
+                  <a href='/privacy' className='bg-[#f5f5f5] p-2 rounded-2xl  cursor-pointer border border-[#f5f5f5] hover:border-blue-500'>
                     <div>
                       <div className='flex items-center justify-between'>
                         <div className='flex items-center'>
@@ -56,9 +56,9 @@ export default function MenuModal({open, setOpen, isMobile}){
                         <ChevronRight className='float-right text-gray-400' />
                       </div>
                     </div>
-                  </div>
+                  </a>
 
-                  <div onClick={() => navigate('/about')} className='bg-[#f5f5f5] p-2 rounded-2xl cursor-pointer border border-[#f5f5f5] hover:border-blue-500'>
+                  <a href='/about' className='bg-[#f5f5f5] p-2 rounded-2xl cursor-pointer border border-[#f5f5f5] hover:border-blue-500'>
                     <div>
                       <div className='flex items-center justify-between'>
                         <div className='flex items-center'>
@@ -70,9 +70,9 @@ export default function MenuModal({open, setOpen, isMobile}){
                         <ChevronRight className='float-right text-gray-400' />
                       </div>
                     </div>
-                  </div>
+                  </a>
 
-                  <div className='bg-[#f5f5f5] p-2 rounded-2xl cursor-pointer border border-[#f5f5f5] hover:border-blue-500'>
+                  <a href={`tel:${import.meta.env.VITE_PHONE}`} className='bg-[#f5f5f5] p-2 rounded-2xl cursor-pointer border border-[#f5f5f5] hover:border-blue-500'>
                     <div>
                       <div className='flex items-center justify-between'>
                         <div className='flex items-center'>
@@ -87,9 +87,9 @@ export default function MenuModal({open, setOpen, isMobile}){
                         <ChevronRight className='float-right text-gray-400' />
                       </div>
                     </div>
-                  </div>
+                  </a>
 
-                  <div className='bg-[#f5f5f5] p-2 rounded-2xl cursor-pointer border border-[#f5f5f5] hover:border-blue-500'>
+                  <a href={`mailto:${import.meta.env.VITE_EMAIL}`} className='bg-[#f5f5f5] p-2 rounded-2xl cursor-pointer border border-[#f5f5f5] hover:border-blue-500'>
                     <div>
                       <div className='flex items-center justify-between'>
                         <div className='flex items-center'>
@@ -104,7 +104,7 @@ export default function MenuModal({open, setOpen, isMobile}){
                         <ChevronRight className='float-right text-gray-400' />
                       </div>
                     </div>
-                  </div>
+                  </a>
 
                   {
                     isAuth 

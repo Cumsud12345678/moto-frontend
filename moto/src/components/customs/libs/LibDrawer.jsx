@@ -7,7 +7,8 @@ import {
   SearchField,
   useFilter,
   Button,
-  Drawer
+  Drawer,
+  Skeleton
 } from "@heroui/react";
 import { useEffect, useState } from "react";
 import CheckIcon from "@mui/icons-material/Check";
@@ -52,6 +53,14 @@ import CheckIcon from "@mui/icons-material/Check";
                   onChange={(e) => setInputValue(e.target.value)}
                 />
               </div>
+
+              {
+                arr.length == 0  &&
+                  [...Array(10)].map((_, index) => (
+                    <Skeleton className="h-[100px] rounded-xl" />
+                  ))
+                  
+              }
               {
                 filteredData.map((item, index) => {
                   const selected = active == (item._id ?? item)

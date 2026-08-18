@@ -1,3 +1,4 @@
+import { Skeleton } from "@heroui/react"
 import { useEffect, useState } from "react"
 
 
@@ -8,6 +9,18 @@ export default function SriButtonGroup ({data, id, onClick}) {
   useEffect(() => {
     setNewData([{_id: '', label: 'Hamısı'}, ...data])
   }, [data])
+
+  if(newData.length === 1) {
+    return (
+      <div className="flex gap-2">
+        {
+          [...Array(3)].map((_, index) => (
+            <Skeleton key={index} className={`h-12 w-20 cursor-pointer rounded-lg`}/>
+          ))
+        }
+      </div>
+    )
+  }
 
   return(
     <div className="flex">
