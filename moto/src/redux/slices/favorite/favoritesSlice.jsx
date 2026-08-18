@@ -34,7 +34,7 @@ export const setFavorites = createAsyncThunk(
   async (data, thunkAPI) => {
     try {
       const res = await axios.post(
-        `${API}/api/users/favorites`,
+        `${API}/api/favorites`,
         { data },
         { withCredentials: true }
       )
@@ -51,7 +51,7 @@ export const deleteFavorites = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const res = await axios.delete(
-        `${API}/api/users/favorites/${id}`,
+        `${API}/api/favorites/${id}`,
         { withCredentials: true }
       )
 
@@ -67,7 +67,7 @@ export const getFavorites = createAsyncThunk(
   async (data, thunkAPI) => {
     try {
       const res = await axios.get(
-        `${API}/api/users/favorites`,
+        `${API}/api/favorites`,
         { withCredentials: true }
       )
 
