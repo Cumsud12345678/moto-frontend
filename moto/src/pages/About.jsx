@@ -1,0 +1,37 @@
+import { useEffect, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { useLocation } from 'react-router-dom'
+import { useFilter } from '../components/header/filter/hooks/useFilter'
+import Header from '../components/header/Header'
+import Footer from '../components/Footer'
+
+export default function About(){
+
+  const filterState = useFilter()
+
+  return(
+    <div>
+      <div className="flex flex-col">
+        <div className="z-[9999] bg-[#f5f5f5]">
+          <Header filter={filterState} />
+        
+            <div className="mt-20 lg:mt-25 px-4 flex flex-col mb-25 max-w-[1000px] mx-auto">
+              <h3 className='text-xl font-bold'>Haqqımızda</h3>
+              <div className='mt-3 text-[15px] text-gray-600'>
+                <p>
+                  Motosiklet alqı-satqısını daha rahat, sürətli və əlçatan etmək üçün yaradılmış platformaya xoş gəlmisiniz.
+                  Platformamız motosiklet, moped, trisikl kimi nəqliyyat vasitələrinin elanlarını bir araya gətirərək alıcılarla satıcıları daha asan şəkildə əlaqələndirməyi hədəfləyir.
+                  Burada istifadəçilər öz nəqliyyat vasitələrini ətraflı məlumat və şəkillərlə elan yerləşdirə, müxtəlif elanlar arasında axtarış və filtr imkanlarından istifadə edərək ehtiyaclarına uyğun motosikleti daha asan tapa bilərlər.
+                  Məqsədimiz Azərbaycanda motosiklet alqı-satqısı üçün <span className='font-semibold'>sadə, rahat və etibarlı</span> elan platforması yaratmaqdır. Platformanı daim inkişaf etdirərək istifadəçilər üçün daha yaxşı axtarış, elan yerləşdirmə və ünsiyyət imkanları təqdim etməyə çalışırıq.
+                  İstər motosikletinizi satmaq, istər yeni motosiklet axtarmaq, istərsə də bazardakı elanlarla tanış olmaq istəyirsinizsə, doğru ünvandasınız.
+                  <br /> <br /> <span className="font-bold">Motosikletinizi tapın. Elanınızı yerləşdirin. Yola davam edin.</span> 
+                </p>
+              </div>
+            </div>
+        
+          <Footer />
+        </div>
+      </div>
+    </div>
+  )
+}

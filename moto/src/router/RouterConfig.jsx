@@ -25,6 +25,8 @@ import UserSearch from '../admin/pages/UserSearch'
 import ProductSearch from '../admin/pages/ProductSearch'
 import Adsense from '../admin/pages/Adsense'
 import AdminRoute from './protected-route/AdminRoute'
+import About from '../pages/About'
+import Privacy from '../pages/Privacy'
 
 export default function RouterConfig(){
 
@@ -99,6 +101,8 @@ export default function RouterConfig(){
         <Route path='/edit/product/:id' element={isAuth ? <EditProduct /> : <Navigate to="/auth" replace />} />
         <Route path='/autos' element={<Autos />} />
         <Route path='/auth' element={isAuth ? <Navigate to="/" replace /> : <Auth />} />
+        <Route path='/about' element={<About />} />
+        <Route path='/privacy' element={<Privacy />} />
 
         <Route path="/admin" element={<AdminRoute />}>
           <Route index element={<AdminHome />} />
