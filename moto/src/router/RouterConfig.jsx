@@ -66,9 +66,27 @@ export default function RouterConfig(){
     }
   }, [authStatus])
 
-  if(loading){
-    return <div className='fixed top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2'><span>Loading...</span></div>
-  }else{
+  if (loading) {
+    const text = "Motosat.az";
+    return (
+      <div className="fixed inset-0 flex items-center justify-center bg-white">
+        <div className="flex">
+          {text.split('').map((char, i) => (
+            <span
+              key={i}
+              className="text-3xl font-bold text-orange-500 animate-bounce"
+              style={{
+                animationDelay: `${i * 0.1}s`,
+                animationDuration: '1s',
+              }}
+            >
+              {char === ' ' ? '\u00A0' : char}
+            </span>
+          ))}
+        </div>
+      </div>
+    );
+  } else{
 
     return (
       <Routes>
