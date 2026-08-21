@@ -33,7 +33,7 @@ export default function DeletedProductList({product}) {
       <tbody>
         <tr className="border-b hover:bg-gray-50">
           <td className="border-r p-2 truncate">
-            {product.product_id}
+            {product.product}
           </td>
 
           <td className="border-r p-2 truncate">
@@ -48,8 +48,20 @@ export default function DeletedProductList({product}) {
             {product.user?.email}
           </td>
 
+          <td className="border-r p-2 truncate">
+            {product.phone}
+          </td>
+
           <td className="border-r p-2">
-            {product.description}
+            {product.reason}
+          </td>
+
+          <td className="border-r p-2">
+            {product.deletedBy}
+          </td>
+
+          <td className="border-r p-2">
+            {product.type}
           </td>
 
           <td className="p-2">

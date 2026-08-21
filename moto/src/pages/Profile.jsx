@@ -3,7 +3,7 @@ import Header from "../components/header/Header";
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import ProfileSkeleton from "../components/skeletons/ProfileSkeleton";
-import { deleteProduct, getMyProducts } from "../redux/slices/product/productSlice";
+import { getMyActiveProducts, getMyDeactiveProducts, getMyProducts } from "../redux/slices/product/productSlice";
 import ProfileContent from "../components/profile/ProfileContent";
 
 export default function Profile(){
@@ -15,10 +15,14 @@ export default function Profile(){
 
   useEffect(() => {
     dispatch(getMyProducts(id))
+    dispatch(getMyActiveProducts(id))
+    dispatch(getMyDeactiveProducts(id))
   }, [])
 
   const {
     userProducts,
+    userActiveProducts,
+    userDeactiveProducts,
     userStatus,
     message
   } = useSelector(s=> s.product)
@@ -42,7 +46,7 @@ export default function Profile(){
   return (
     <div>
       <Header />
-      <ProfileContent products={userProducts} />
+      <ProfileContent products={userProducts} activeProducts={userActiveProducts} deactiveProducts={userDeactiveProducts} />
       <Footer />
     </div>
   )

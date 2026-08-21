@@ -8,7 +8,7 @@ import ProductCardProfile from "./ProductCardProfile";
 import AlertDialog from "./AlertDialog";
 import EmptyData from "../EmptyData";
 
-export default function ProfileContent({products}) {
+export default function ProfileContent({products, activeProducts, deactiveProducts}) {
 
   const BASE_URL = import.meta.env.VITE_API_URL
 
@@ -39,9 +39,6 @@ export default function ProfileContent({products}) {
       document.body.style.overflow = 'unset';
     };
   }, [open]);
-
-  const activeProducts = products.filter(p => p.isActive == true) 
-  const deactiveProducts = products.filter(p => p.isActive == false)
 
   return (
     <div style={{ maxWidth: '1000px', marginTop: '60px' }} className="container mx-auto p-3 mb-29">
@@ -86,7 +83,7 @@ export default function ProfileContent({products}) {
             <Box className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 lg:gap-4">
               {
                 activeProducts.map((p) => (
-                  <ProductCardProfile deleteClick={clickDelete} product={p} type={p.isActive} key={p._id} />
+                  <ProductCardProfile deleteClick={clickDelete} product={p} type={p.is_active} key={p._id} />
                 ))
               }
             </Box>
@@ -101,7 +98,7 @@ export default function ProfileContent({products}) {
             <Box className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 lg:gap-4">
               {
                 deactiveProducts.map((p) => (
-                  <ProductCardProfile deleteClick={clickDelete} product={p} type={p.isActive} key={p._id} />
+                  <ProductCardProfile deleteClick={clickDelete} product={p} type={p.is_active} key={p._id} />
                 ))
               }
             </Box>
@@ -116,7 +113,7 @@ export default function ProfileContent({products}) {
             <Box className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 lg:gap-4">
               {
                 products.map((p) => (
-                  <ProductCardProfile deleteClick={clickDelete} product={p} type={p.isActive} key={p._id} />
+                  <ProductCardProfile deleteClick={clickDelete} product={p} type={p.is_active} key={p._id} />
                 ))
               }
             </Box>

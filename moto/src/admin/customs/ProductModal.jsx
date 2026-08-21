@@ -1,4 +1,4 @@
-import {Button, Modal} from "@heroui/react";
+import {Modal} from "@heroui/react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { useEffect, useRef, useState } from "react";
@@ -6,7 +6,6 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import {TrashBin} from '@gravity-ui/icons';
 import {TriangleExclamation} from '@gravity-ui/icons';
-import {ShieldExclamation} from '@gravity-ui/icons';
 import {Ban} from '@gravity-ui/icons';
 import {EyeSlash} from '@gravity-ui/icons';
 import {ArrowsRotateLeft} from '@gravity-ui/icons';
@@ -33,12 +32,6 @@ export function ProductModal({openModal, setOpenModal, images, product}) {
 
     handleNext,
 
-    handleDelete,
-    handleWarning,
-    handleLock,
-    handleUnlock,
-    handleResetWarning,
-
     updatedLock,
     removeLock
   } = useUser()
@@ -54,14 +47,10 @@ export function ProductModal({openModal, setOpenModal, images, product}) {
 
     // Handle Alerts
     handleProductDeleteAlert,
-    handleDeactiveAlert,
     handleActiveAlert,
     
     handleProductNext,
 
-    handleProductDelete,
-    handleDeactive,
-    handleActive,
   } = useProduct()
 
   const BASE_URL = import.meta.env.VITE_API_URL;
@@ -86,13 +75,12 @@ export function ProductModal({openModal, setOpenModal, images, product}) {
 
 
   useEffect(() => {
-    console.log('1')
-    if(product.isActive){
+    if(product.is_active){
       setUpdatedActive('Beli')
     }else {
       setUpdatedActive('Xeyir')
     }
-  }, [product.isActive])
+  }, [product.is_active])
 
   return (
     <Modal isOpen={openModal} onOpenChange={setOpenModal}>
@@ -189,17 +177,6 @@ export function ProductModal({openModal, setOpenModal, images, product}) {
                             >
                               <TrashBin className="text-white size-5" />
                               <span className="text-white">Sil</span>
-                            </button>
-                            <button 
-                              onClick={() => {
-                                updatedActive == 'Beli'
-                                  ? handleDeactiveAlert()
-                                  : toast.danger('Elan onsuzda deaktivdi')
-                              }}
-                              className="flex items-center bg-yellow-500 p-1 rounded-full px-3 gap-1 cursor-pointer"
-                            >
-                              <TriangleExclamation className="text-white size-5" />
-                              <span className="text-white">Deaktiv et</span>
                             </button>
                             <button 
                               onClick={() => {

@@ -110,9 +110,12 @@ export default function DeletedProducts() {
             <tr className="border-b">
               <th className="w-[180px] border-r p-2 text-left font-medium">product ID</th>
               <th className="w-[120px] border-r p-2 text-left font-medium">Created</th>
-              <th className="w-[180px] border-r p-2 text-left font-medium">User ID</th>
+              <th className="w-[230px] border-r p-2 text-left font-medium">User ID</th>
               <th className="w-[100px] border-r p-2 text-center font-medium">User Email</th>
+              <th className="w-[100px] border-r p-2 text-center font-medium">Phone</th>
               <th className="w-[100px] border-r p-2 text-center font-medium">Description</th>
+              <th className="w-[230px] border-r p-2 text-center font-medium">Deleted ID</th>
+              <th className="w-[100px] border-r p-2 text-center font-medium">Deleted Role</th>
               <th className="w-[100px] p-2 text-center font-medium">Functions</th>
             </tr>
           </thead>

@@ -45,7 +45,7 @@ export default function ProductList({product}) {
           </td>
 
           <td className="border-r p-2 text-center">
-            {String(product.isActive)}
+            {String(product.is_active)}
           </td>
 
           <td className="border-r p-2 text-center">

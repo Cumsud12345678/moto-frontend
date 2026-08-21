@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { toast } from "@heroui/react";
 import { useDispatch } from "react-redux";
-import { activeProduct, deactiveProduct, deleteProduct } from "../../redux/slices/admin/adminProductSlice";
+import { deleteProduct } from "../../redux/slices/admin/adminProductSlice";
 
 export const useProduct = () => {
 
@@ -21,13 +21,6 @@ export const useProduct = () => {
     setProductOpen(true)
   }
 
-  const handleDeactiveAlert = () => {
-    setAlertType('deactive')
-    setTitle('Elani deaktiv etmek isdediyinize eminsiz?')
-    setLabel('Deaktiv elan 5 gun icinde aktiv olmasa avtomatik silinecek!. Yaxsi dusunun.')
-    setProductOpen(true)
-  }
-
   const handleActiveAlert = () => {
     setAlertType('active')
     setTitle('Elani aktiv etmek isdediyinize eminsiniz?')
@@ -39,8 +32,6 @@ export const useProduct = () => {
   const handleProductNext = (text = null, id) => {
     if(alertType == 'delete') {
       handleProductDelete(text, id)
-    }else if(alertType == 'deactive') {
-      handleDeactive(text, id)
     } else if(alertType == 'active') {
       handleActive(id)
     }
@@ -61,40 +52,6 @@ export const useProduct = () => {
     setProductOpen(false)
   }
 
-  // PRODUCTU DEACTIVE ET
-  const handleDeactive = (text, id) => {
-    console.log(text, id)
-    if(!text || text.length == 0) return toast.warning('Formu doldurun')
-    toast.promise(
-      dispatch(deactiveProduct({id, message: text})).unwrap(),
-      {
-        loading: 'Elan guncellenir..',
-        success: () => {
-          setUpdatedActive('Xeyir')
-          return 'Elan guncellendi'
-        },
-        error: (err) => err.message || "Xəta baş verdi.",
-      }
-    )
-    setProductOpen(false)
-  }
-
-  // PRODUCTI ACTIVE ET
-  const handleActive = (id) => {
-    toast.promise(
-      dispatch(activeProduct(id)).unwrap(),
-      {
-        loading: 'Elan guncellenir..',
-        success: () => {
-          setUpdatedActive('Beli')
-          return 'Elan guncellendi'
-        },
-        error: (err) => err.message || "Xəta baş verdi.",
-      }
-    )
-    setProductOpen(false)
-  }
-
   return {
     productAlertType: alertType,
     productTitle: title,
@@ -106,13 +63,10 @@ export const useProduct = () => {
 
     // Handle Alerts
     handleProductDeleteAlert,
-    handleDeactiveAlert,
     handleActiveAlert,
     
     handleProductNext,
 
     handleProductDelete,
-    handleDeactive,
-    handleActive,
   }
 }

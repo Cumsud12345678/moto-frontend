@@ -97,41 +97,6 @@ export const deleteProduct = createAsyncThunk(
   }
 )
 
-export const deactiveProduct = createAsyncThunk(
-  'admin/deactiveProduct',
-  async (data, thunkAPI) => {
-    const {id, message} = data
-    try{
-      const res = await axios.put(
-        `${API}/api/admin/products/deactive/${id}`,
-        {message},
-        { withCredentials: true }
-      )
-
-      return id
-    }catch(err){
-      return thunkAPI.rejectWithValue(err.response?.data)
-    }
-  }
-)
-
-export const activeProduct = createAsyncThunk(
-  'admin/activeProduct',
-  async (id, thunkAPI) => {
-    try{
-      const res = await axios.put(
-        `${API}/api/admin/products/active/${id}`,
-        {},
-        { withCredentials: true }
-      )
-
-      return id
-    }catch(err){
-      return thunkAPI.rejectWithValue(err.response?.data)
-    }
-  }
-)
-
 export const getDeletedProducts = createAsyncThunk(
   'admin/getDeletedProducts',
   async (page, thunkAPI) => {

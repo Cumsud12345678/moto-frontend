@@ -13,6 +13,8 @@ const initialState = {
   totalFilteredProducts: null,
 
   userProducts: [],
+  userActiveProducts: [],
+  userDeactiveProducts: [],
 
   productsStatus: 'idle',
   detailsStatus: 'idle',
@@ -148,7 +150,6 @@ export const createProduct  = createAsyncThunk(
   }
 )
 
-
 // USERIN PRODUCTLARIN GETIR
 export const getMyProducts = createAsyncThunk(
   'products/getMyProducts', 
@@ -156,6 +157,40 @@ export const getMyProducts = createAsyncThunk(
     try {
       const res = await axios.get(
         `${API}/api/products/user/${id}`,
+        { withCredentials: true }
+      )
+
+      return res.data
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.response?.data)
+    }
+  }
+)
+
+// USERIN AKTIV PRODUCTLARIN GETIR
+export const getMyActiveProducts = createAsyncThunk(
+  'products/getMyActiveProducts', 
+  async (id, thunkAPI) => {
+    try {
+      const res = await axios.get(
+        `${API}/api/products/user/active/${id}`,
+        { withCredentials: true }
+      )
+
+      return res.data
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.response?.data)
+    }
+  }
+)
+
+// USERIN DEAKTIV PRODUCTLARIN GETIR
+export const getMyDeactiveProducts = createAsyncThunk(
+  'products/getMyDeactiveProducts', 
+  async (id, thunkAPI) => {
+    try {
+      const res = await axios.get(
+        `${API}/api/products/user/deactive/${id}`,
         { withCredentials: true }
       )
 
@@ -183,6 +218,22 @@ export const getMyProduct = createAsyncThunk(
   }
 )
 
+// SET ACTIVE PRODUCT
+export const setActiveProduct = createAsyncThunk(
+  'products/setActiveProduct', 
+  async (id, thunkAPI) => {
+    try{
+      const res = await axios.get(
+        `${API}/api/products/actived/${id}`,
+        { withCredentials: true }
+      )
+      return id
+    }catch(err){
+      return thunkAPI.rejectWithValue(err.response?.data)
+    }
+    
+  }
+)
 
 // DELETE PRODUCT
 export const deleteProduct = createAsyncThunk(
@@ -320,6 +371,15 @@ export const productSlice = createSlice({
         state.detailsStatus = 'error'
       })
 
+      // ELANI EKTIV ET
+      .addCase(setActiveProduct.fulfilled, (state, action) => {
+        const product = state.userDeactiveProducts.find(p => p._id === action.payload)
+        if (product) {
+          state.userActiveProducts.push({ ...product, is_active: true })
+        }
+        state.userDeactiveProducts = state.userDeactiveProducts.filter(p => p._id !== action.payload)
+      })
+
       // USERIN ELANLARI
       .addCase(getMyProducts.fulfilled, (state, action) => {
         state.userProducts = action.payload.data
@@ -328,6 +388,13 @@ export const productSlice = createSlice({
       .addCase(getMyProducts.rejected, (state, action) => {
         state.message = action.payload?.message
         state.userStatus = 'error'
+      })
+
+      .addCase(getMyActiveProducts.fulfilled, (state, action) => {
+        state.userActiveProducts = action.payload.data
+      })
+      .addCase(getMyDeactiveProducts.fulfilled, (state, action) => {
+        state.userDeactiveProducts = action.payload.data
       })
 
       // DELETE PRODUCT
