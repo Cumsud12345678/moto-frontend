@@ -1,23 +1,41 @@
-import { Avatar, Box, IconButton } from "@mui/material";
+import { Avatar, Badge, Box, IconButton } from "@mui/material";
 import EditSquareIcon from '@mui/icons-material/EditSquare';
 import { Tabs } from "@heroui/react";
 import { useSelector } from "react-redux";
-import Dialog from "./Dialog";
+import ProfileDialog from "./ProfileDialog";
+import MessageDialog from "./MessageDialog";
 import { useEffect, useState } from "react";
 import ProductCardProfile from "./ProductCardProfile";
 import AlertDialog from "./AlertDialog";
 import EmptyData from "../EmptyData";
+import NotificationsIcon from '@mui/icons-material/Notifications';
 
 export default function ProfileContent({products, activeProducts, deactiveProducts}) {
 
   const BASE_URL = import.meta.env.VITE_API_URL
-
   const { id, name, email, profile } = useSelector(s => s.user)
 
-  const [open, setOpen] = useState(false);
+  const [openProfile, setOpenProfile] = useState(false);
+  const [openMessage, setOpenMessage] = useState(false);
+
+  const [messagesCount, setMessagesCount] = useState(0)
+
+  const {
+    systemMessages
+  } = useSelector(s=> s.product)
+
+  useEffect(() => {
+    if(systemMessages) {
+      const count = systemMessages.filter(msg => !msg.views)
+      setMessagesCount(count.length)
+    }
+  }, [systemMessages])
   
-  const handleDialogOpen = () => {
-    setOpen(!open)
+  const handleDialogOpenProfile = () => {
+    setOpenProfile(!openProfile)
+  }
+  const handleDialogOpenMessage = () => {
+    setOpenMessage(!openMessage)
   }
 
   const [openAlert, setOpenAlert] = useState(false)
@@ -29,7 +47,7 @@ export default function ProfileContent({products, activeProducts, deactiveProduc
   }
 
   useEffect(() => {
-    if (open) {
+    if (openProfile) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'unset';
@@ -38,7 +56,7 @@ export default function ProfileContent({products, activeProducts, deactiveProduc
     return () => {
       document.body.style.overflow = 'unset';
     };
-  }, [open]);
+  }, [openProfile]);
 
   return (
     <div style={{ maxWidth: '1000px', marginTop: '60px' }} className="container mx-auto p-3 mb-29">
@@ -52,9 +70,16 @@ export default function ProfileContent({products, activeProducts, deactiveProduc
             <span>{email}</span>
           </div>
         </div>
-        <IconButton onClick={handleDialogOpen}>
-          <EditSquareIcon />
-        </IconButton>
+        <div>
+          <IconButton onClick={handleDialogOpenProfile}>
+            <EditSquareIcon />
+          </IconButton>
+          <IconButton onClick={handleDialogOpenMessage}>
+              <Badge badgeContent={messagesCount} color="error">
+                <NotificationsIcon />
+              </Badge>
+          </IconButton>
+        </div>
       </div>
 
       <Tabs className="w-full mt-4">
@@ -121,7 +146,9 @@ export default function ProfileContent({products, activeProducts, deactiveProduc
         </Tabs.Panel>
       </Tabs>
 
-      <Dialog open={open} value={name} img={profile} onClose={handleDialogOpen} />
+      <ProfileDialog open={openProfile} value={name} img={profile} onClose={handleDialogOpenProfile} />
+      <MessageDialog open={openMessage} onClose={handleDialogOpenMessage} messages={systemMessages} />
+
 
       <AlertDialog openAlert={openAlert} setOpenAlert={setOpenAlert} deleteId={deleteId} />
 

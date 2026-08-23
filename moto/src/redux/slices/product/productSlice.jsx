@@ -16,6 +16,8 @@ const initialState = {
   userActiveProducts: [],
   userDeactiveProducts: [],
 
+  systemMessages: [],
+
   productsStatus: 'idle',
   detailsStatus: 'idle',
   similarStatus: 'idle',
@@ -23,6 +25,7 @@ const initialState = {
   userStatus: 'idle',
   deleteStatus: 'idle',
   updateStatus: 'idle',
+  systemMessagesStatus: 'idle',
 
   productsCache: {},
   similarCache: {},
@@ -191,6 +194,23 @@ export const getMyDeactiveProducts = createAsyncThunk(
     try {
       const res = await axios.get(
         `${API}/api/products/user/deactive/${id}`,
+        { withCredentials: true }
+      )
+
+      return res.data
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.response?.data)
+    }
+  }
+)
+
+// USERIN MESAJLARIN GETIR
+export const getMyMessages = createAsyncThunk(
+  'products/getMyMessages', 
+  async (id, thunkAPI) => {
+    try {
+      const res = await axios.get(
+        `${API}/api/messages/${id}`,
         { withCredentials: true }
       )
 
@@ -395,6 +415,15 @@ export const productSlice = createSlice({
       })
       .addCase(getMyDeactiveProducts.fulfilled, (state, action) => {
         state.userDeactiveProducts = action.payload.data
+      })
+
+      .addCase(getMyMessages.fulfilled, (state, action) => {
+        state.systemMessages = action.payload.data
+        state.systemMessagesStatus = 'success'
+      })
+      .addCase(getMyMessages.rejected, (state, action) => {
+        state.message = action.payload?.message
+        state.systemMessagesStatus = 'error'
       })
 
       // DELETE PRODUCT

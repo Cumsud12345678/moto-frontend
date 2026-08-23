@@ -9,7 +9,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { useNavigate } from "react-router-dom";
 import { updatedUser } from "../../redux/slices/user/userSlice";
 
-export default function Dialog ({open, value, img, onClose}) {
+export default function ProfileDialog ({open, value, img, onClose}) {
 
   const BASE_URL = import.meta.env.VITE_API_URL
 
@@ -72,7 +72,7 @@ export default function Dialog ({open, value, img, onClose}) {
     <div className={`${open ? 'fixed' : 'hidden'} top-0 left-0 inset-0 bg-black/50 z-40 w-full h-full flex items-center justify-center z-[2000]`}>
       <div className={`md:max-w-[400px] w-full h-full md:h-auto bg-white md:rounded-xl p-6`}>
         <div>
-          <IconButton onClick={onClose} className="float-right">
+          <IconButton onClick={onClose}>
             <CloseIcon />
           </IconButton>
         </div>
