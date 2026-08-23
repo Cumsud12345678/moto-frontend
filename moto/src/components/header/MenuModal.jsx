@@ -34,7 +34,7 @@ export default function MenuModal({open, setOpen, isMobile}){
             <Drawer.Header>
               <Drawer.Heading className='px-3 pt-3'>
                 <div className='container mx-auto max-w-[1000px]'>
-                  <div className='w-[150px]'>
+                  <div className='w-[180px]'>
                     <img src="/logo.png" className='w-full' alt="logo" />
                   </div>
                 </div>
