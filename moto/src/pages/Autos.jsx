@@ -90,7 +90,7 @@ export default function Autos(){
         <meta name="description" content="Motosiklet elanlarını marka, model, qiymət və s. görə axtarın və filterləyin." />
         <meta property="og:title" content="Bütün Elanlar — Moto" />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://dir-indexed-five-prep.trycloudflare.com" />
+        <link rel="canonical" href="https://motoelan.com" />
       </Helmet>
 
       <div className="flex flex-col">

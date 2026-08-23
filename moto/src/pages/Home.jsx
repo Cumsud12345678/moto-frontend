@@ -74,7 +74,7 @@ export default function Home(){
         <meta property="og:title" content="Moto — Motosiklet Elanları" />
         <meta property="og:description" content="Azərbaycanda motosiklet al-sat platforması" />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://dir-indexed-five-prep.trycloudflare.com/" />
+        <link rel="canonical" href="https://motoelan.com/" />
       </Helmet>
 
       <div className="flex flex-col">

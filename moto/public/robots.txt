@@ -6,4 +6,4 @@ Disallow: /new
 Disallow: /edit
 Disallow: /bookmarks
 
-Sitemap: https://sənin-domenin.com/sitemap.xml
+Sitemap: https://motoelan.com/sitemap.xml
