@@ -17,7 +17,7 @@ export const getFavoritesNotLogin = createAsyncThunk(
   async (favorites, thunkAPI) => {
     try {
       const res = await axios.post(
-        `${API}/api/products/not/login/favorites`,
+        `${API}/api/favorites/not/login`,
         { favorites }
       )
 
