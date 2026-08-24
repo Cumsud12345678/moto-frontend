@@ -154,7 +154,7 @@ export default function Form({ product }) {
 
                   <img
                     src={img.isNew ? img.url : `${BASE_URL}/uploads/${img.url}`}
-                    alt=""
+                    alt="update-product"
                     className="w-full h-25 object-cover"
                   />
 

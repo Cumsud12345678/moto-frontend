@@ -50,7 +50,7 @@ export default function ProductCardProfile({ product, deleteClick, type }){
         <img
           src={`${BASE_URL}/uploads/${images?.[0]}`}
           className='w-full h-full object-cover hover:scale-105 transition-transform duration-300'
-          alt=""
+          alt="profile"
         />
       </div>
 
