@@ -93,7 +93,7 @@ export default function LoginForm() {
         <div>
 
           <h2 className="text-xl font-bold mb-2">OTP Verification</h2>
-          <span className='text-muted'>Telefon nömrənizə göndərilən doğrulama kodun daxil edin.</span>
+          <span className='text-muted'>{email} Adresinizə göndərilən doğrulama kodunu daxil edin.</span>
 
           <InputOTP
             value={otp}
