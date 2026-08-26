@@ -233,12 +233,12 @@ export default function FilterModal({open, onClose, useFilter}){
         <div className="border rounded-2xl p-3 pt-2 bg-white">
           <span>il</span>
           <div className='flex gap-3 mt-2'>
-            <div onClick={() => changeDrawer('minYear', minYear, 'Qiyet min.')} className="border rounded-xl w-full p-3 bg-[#fafbff]">
+            <div onClick={() => changeDrawer('minYear', minYear, 'Qiyət min.')} className="border rounded-xl w-full p-3 bg-[#fafbff]">
               {
                 minYear ? 'Min. ' + minYear : 'Min'
               }
             </div>
-            <div onClick={() => changeDrawer('maxYear', maxYear, 'Qiymet max.')} className="border rounded-xl w-full p-3 bg-[#fafbff]">
+            <div onClick={() => changeDrawer('maxYear', maxYear, 'Qiymət max.')} className="border rounded-xl w-full p-3 bg-[#fafbff]">
               {
                 maxYear ? 'Max. ' + maxYear : 'Max'
               }
@@ -249,12 +249,12 @@ export default function FilterModal({open, onClose, useFilter}){
         <div className="border rounded-2xl p-3 pt-2 bg-white">
           <span>Mühərrikin həcmi (sm)</span>
           <div className='flex gap-3 mt-2'>
-            <div onClick={() => changeDrawer('minVolume', minVolume, 'Hecm min.')} className="border rounded-xl w-full p-3 bg-[#fafbff]">
+            <div onClick={() => changeDrawer('minVolume', minVolume, 'Həcm min.')} className="border rounded-xl w-full p-3 bg-[#fafbff]">
               {
                 minVolume || minVolume == 0 ? 'Min. ' + minVolume : 'Min'
               }
             </div>
-            <div onClick={() => changeDrawer('maxVolume', maxVolume, 'Hecm max.')} className="border rounded-xl w-full p-3 bg-[#fafbff]">
+            <div onClick={() => changeDrawer('maxVolume', maxVolume, 'Həcm max.')} className="border rounded-xl w-full p-3 bg-[#fafbff]">
               {
                 maxVolume ? 'Max. ' + maxVolume : 'Max'
               }
@@ -265,7 +265,7 @@ export default function FilterModal({open, onClose, useFilter}){
         <div className="border rounded-2xl p-3 pt-2 bg-white">
           <span>Şəhər</span>
           <div className='flex gap-3 mt-2'>
-            <div onClick={() => changeDrawer('selectedCity', city, 'Weher')} className="border rounded-xl w-full p-3 bg-[#fafbff]">
+            <div onClick={() => changeDrawer('selectedCity', city, 'Şəhər')} className="border rounded-xl w-full p-3 bg-[#fafbff]">
               {
                 city ? cities.find(x => x._id == city)?.label : 'Şəhər seç'
               }

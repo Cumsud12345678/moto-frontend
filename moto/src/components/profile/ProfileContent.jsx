@@ -61,16 +61,16 @@ export default function ProfileContent({products, activeProducts, deactiveProduc
   return (
     <div style={{ maxWidth: '1000px', marginTop: '60px' }} className="container mx-auto p-3 mb-29">
       <div className="flex items-center justify-between bg-white p-3 rounded-sm">
-        <div className="flex items-center">
+        <div className="flex items-center w-full">
           <div>
             <Avatar alt="Remy Sharp" src={profile ? `${BASE_URL}/uploads/${profile}` : '/profile.jpg'} sx={{ width: 56, height: 56 }} />
           </div>
-          <div style={{ marginLeft: '10px' }} className="flex flex-col">
+          <div style={{ marginLeft: '10px' }} className="flex flex-col w-full min-w-[100px]">
             <span>{name}</span>
-            <span>{email}</span>
+            <span className="truncate max-w-[90%]">{email}</span>
           </div>
         </div>
-        <div>
+        <div className="flex">
           <IconButton onClick={handleDialogOpenProfile}>
             <EditSquareIcon />
           </IconButton>
