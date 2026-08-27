@@ -33,15 +33,15 @@ export default function MenuModal({open, setOpen, isMobile}){
             <Drawer.CloseTrigger />
             <Drawer.Header>
               <Drawer.Heading className='px-3 pt-3'>
-                <div className='container mx-auto max-w-[1000px]'>
-                  <div className='w-[180px]'>
+                <div className='container mx-auto max-w-250'>
+                  <div className='w-45'>
                     <img src="/logo.png" className='w-full' alt="logo" />
                   </div>
                 </div>
               </Drawer.Heading>
             </Drawer.Header>
             <Drawer.Body>
-              <div className='container mx-auto max-w-[1000px] p-2'>
+              <div className='container mx-auto max-w-250 p-2'>
                 <div className='grid grid-col lg:grid-cols-3 gap-3 text-black'>
 
                   <a href='/privacy' className='bg-[#f5f5f5] p-2 rounded-2xl  cursor-pointer border border-[#f5f5f5] hover:border-blue-500'>
@@ -126,7 +126,7 @@ export default function MenuModal({open, setOpen, isMobile}){
                       <div className='flex items-center justify-between p-1 gap-2'>
                         <button onClick={() => navigate('/auth')} className='active:scale-105 transition-all flex items-center w-full border-3 p-2 rounded-xl justify-center gap-1 cursor-pointer'>
                           <PersonIcon />
-                          <span style={{ fontSize: '16px' }} className='font-bold flex-shrink-0'>Daxil ol</span>
+                          <span style={{ fontSize: '16px' }} className='font-bold shrink-0'>Daxil ol</span>
                         </button>
                         <button className='active:scale-105 transition-all flex items-center w-full border p-2 rounded-xl justify-center gap-1 bg-blue-500 text-white cursor-pointer'>
                           <PersonAddIcon />

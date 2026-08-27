@@ -69,18 +69,22 @@ export default function FilterMobile({useFilter}){
     <div className='flex lg:hidden flex-col'>
       <div className='flex items-center justify-between w-full gap-3 mb-2'>
         <div className="w-full h-full flex align-center py-2 gap-3">
-          <div onClick={() => setOpenMake(true)} className='border rounded-xl p-2 w-full bg-[#fafbff]'>
+          <div onClick={() => setOpenMake(true)} className='flex flex-nowrap border rounded-xl p-2 w-full bg-[#fafbff] overflow-x-auto scrollbar-none'>
             { make
                 ?
-                makes.find(x => x._id == make)?.label
-                : 'Marka' 
+                <span className='text-nowrap'>
+                  {makes.find(x => x._id == make)?.label}
+                </span>
+                : <span>Marka</span>
             }
           </div>
-          <div onClick={handleModelOpen} className='border rounded-xl p-2 w-full bg-[#fafbff]'>
+          <div onClick={handleModelOpen} className='flex flex-nowrap border rounded-xl p-2 w-full bg-[#fafbff] overflow-x-auto scrollbar-none'>
             { model
                 ?
-                filteredModel.find(x => x._id == model)?.label
-                : 'Model' 
+                <span className='text-nowrap'>
+                  {filteredModel.find(x => x._id == model)?.label}
+                </span>
+                : <span>Model</span>
             }
           </div>
         </div>

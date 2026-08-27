@@ -10,7 +10,9 @@ const initialState = {
   colors: [],
   categories: [],
   statuses: [],
-  equipments: []
+  equipments: [],
+
+  reqStatus: 'idle'
 }
 
 export const getMetadata = createAsyncThunk(
@@ -40,6 +42,9 @@ export const metadataSlice = createSlice({
   extraReducers: (builder) => {
     builder
 
+      .addCase(getMetadata.pending, (state) => {
+        state.reqStatus = 'idle'
+      })
       .addCase(getMetadata.fulfilled, (state, action) => {
         state.makes = action.payload.data.makes
         state.models = action.payload.data.models,
@@ -50,6 +55,7 @@ export const metadataSlice = createSlice({
         state.categories = action.payload.data.categories
         state.statuses = action.payload.data.statuses
         state.equipments = action.payload.data.equipments
+        state.reqStatus = 'success'
       })
   }
 })

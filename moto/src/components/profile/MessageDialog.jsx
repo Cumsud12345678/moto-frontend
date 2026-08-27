@@ -14,8 +14,8 @@ export default function MessageDialog ({open, onClose, messages}) {
   const navigate = useNavigate()
 
   return(
-    <div className={`${open ? 'fixed' : 'hidden'} top-0 left-0 inset-0 bg-black/50 z-40 w-full h-full flex items-center justify-center z-[2000]`}>
-      <div className={`md:max-w-[500px] w-full h-full md:h-auto bg-[#f5f5f5] md:rounded-xl md:p-6 p-3`}>
+    <div className={`${open ? 'fixed' : 'hidden'} top-0 left-0 inset-0 bg-black/50 w-full h-full flex items-center justify-center z-2000`}>
+      <div className={`md:max-w-125 w-full h-full md:h-auto bg-[#f5f5f5] md:rounded-xl md:p-6 p-3`}>
         <div>
           <div className="flex items-center justify-between">
             <IconButton onClick={onClose}>
@@ -26,7 +26,7 @@ export default function MessageDialog ({open, onClose, messages}) {
           </div>
           
         </div>
-        <div className="w-full flex flex-col mt-3">
+        <div className="w-full flex flex-col mt-3 gap-3">
           {
             messages.length == 0 &&
             <div className="">

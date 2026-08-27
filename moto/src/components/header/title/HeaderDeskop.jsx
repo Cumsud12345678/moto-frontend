@@ -60,7 +60,7 @@ export default function({ openModal, open, isMobile }){
           </IconButton>
       }
   
-      <div onClick={() => navigate('/')} className='w-[180px] cursor-pointer'>
+      <div onClick={() => navigate('/')} className='w-42 cursor-pointer'>
         <a href="/">
           <img src="/logo.png" className='w-full' alt="logo" />
         </a>

@@ -69,7 +69,7 @@ export default function RouterConfig(){
   }, [authStatus])
 
   if (loading) {
-    const text = "Motosat.az";
+    const text = "Motoelan.com";
     return (
       <div className="fixed inset-0 flex items-center justify-center bg-white">
         <div className="flex">

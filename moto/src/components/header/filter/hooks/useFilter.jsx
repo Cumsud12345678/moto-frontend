@@ -20,7 +20,9 @@ export const useFilter = () => {
     fuels,
     speeds,
     equipments,
-    message
+    message,
+
+    reqStatus
   } = useSelector(s => s.metadata)
   const [filteredModel, setFilteredModel] = useState([])
 
@@ -52,9 +54,11 @@ export const useFilter = () => {
   }, [makes])
 
   useEffect(() => {
-    const arr = models.filter(model => model.make == make)
-    setFilteredModel(arr)
-  }, [make])
+    if(models.length !== 0) {
+      const arr = models.filter(model => model.make == make)
+      setFilteredModel(arr)
+    }
+  }, [make, models])
 
   const setEquipments = (id) => {
     setStateEquipment(prev => {

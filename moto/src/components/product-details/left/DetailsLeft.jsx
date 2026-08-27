@@ -12,6 +12,7 @@ import { Fragment, useEffect, useState } from "react";
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import {Button} from "@heroui/react";
 import {TrashBin, PencilToSquare} from "@gravity-ui/icons";
+import { Avatar } from "@mui/material";
 
 export default function DetailsLeft({ product, isLiked, toggleLike, share, clickDelete }){
 
@@ -158,7 +159,8 @@ export default function DetailsLeft({ product, isLiked, toggleLike, share, click
 
         <div className={`lg:hidden border-y p-3 ${path[1] == 'elanlarim' && 'pb-18'}`}>
           <div className="flex bg-white p-2 rounded-lg items-center">
-            <img className="rounded-full w-[60px] h-[60px] object-contain border-2" src={profile ? `${BASE_URL}/uploads/${profile}` : '/profile.jpg'} alt="" />
+            <Avatar alt="Remy Sharp" src={profile ? `${BASE_URL}/uploads/${profile}` : '/profile.jpg'} sx={{ width: 56, height: 56 }} />
+            {/* <img className="rounded-full w-[60px] h-[60px] object-contain border-2" src={profile ? `${BASE_URL}/uploads/${profile}` : '/profile.jpg'} alt="" /> */}
             <div className="mx-2 flex flex-col">
               <span style={{ fontSize: '18px', fontWeight: 'bold' }}>{name}</span>
               <span>{city.label}</span>
