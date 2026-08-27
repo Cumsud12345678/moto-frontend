@@ -68,32 +68,34 @@ export default function FilterMobile({useFilter}){
   return(
     <div className='flex lg:hidden flex-col'>
       <div className='flex items-center justify-between w-full gap-3 mb-2'>
-        <div className="w-full h-full flex align-center py-2 gap-3">
-          <div onClick={() => setOpenMake(true)} className='flex flex-nowrap border rounded-xl p-2 w-full bg-[#fafbff] overflow-x-auto scrollbar-none'>
-            { make
-                ?
-                <span className='text-nowrap'>
-                  {makes.find(x => x._id == make)?.label}
-                </span>
-                : <span>Marka</span>
+        <div className="w-full h-full flex items-center py-2 gap-3 min-w-0">
+          <div
+            onClick={() => setOpenMake(true)}
+            className='flex flex-nowrap border rounded-xl p-2 bg-[#fafbff] overflow-x-auto scrollbar-none flex-1 min-w-0'
+          >
+            {make
+              ? <span className='text-nowrap'>{makes.find(x => x._id == make)?.label}</span>
+              : <span>Marka</span>
             }
           </div>
-          <div onClick={handleModelOpen} className='flex flex-nowrap border rounded-xl p-2 w-full bg-[#fafbff] overflow-x-auto scrollbar-none'>
-            { model
-                ?
-                <span className='text-nowrap'>
-                  {filteredModel.find(x => x._id == model)?.label}
-                </span>
-                : <span>Model</span>
+          <div
+            onClick={handleModelOpen}
+            className='flex flex-nowrap border rounded-xl p-2 bg-[#fafbff] overflow-x-auto scrollbar-none flex-1 min-w-0'
+          >
+            {model
+              ? <span className='text-nowrap'>{filteredModel.find(x => x._id == model)?.label}</span>
+              : <span>Model</span>
             }
           </div>
         </div>
-        
-        <button onClick={() => navigate(`${location.search}#filter`)} className="bg-blue-500 rounded-lg text-white px-3 shrink-0 py-2 shadow">
+
+        <button
+          onClick={() => navigate(`${location.search}#filter`)}
+          className="bg-blue-500 rounded-lg text-white px-3 shrink-0 py-2 shadow flex items-center gap-1 whitespace-nowrap"
+        >
           <FilterAltIcon />
           Filter
         </button>
-        
       </div>
       <div className="flex whitespace-nowrap overflow-auto gap-2 mb-2 [mask-image:linear-gradient(to_right,black_85%,transparent)]">
         
