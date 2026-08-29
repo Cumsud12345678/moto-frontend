@@ -9,6 +9,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Fragment } from "react";
 import {Button} from "@heroui/react";
 import {TrashBin, PencilToSquare} from "@gravity-ui/icons";
+import { Avatar } from "@mui/material";
 
 export default function DetailsRight({ user, product, isLiked, toggleLike, share, clickDelete }){
 
