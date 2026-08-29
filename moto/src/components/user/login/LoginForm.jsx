@@ -70,7 +70,7 @@ export default function LoginForm() {
     <div>
       {stepLogin == 'login' && (
         <div>
-          <label htmlFor="email">Nömrəni yazın</label>
+          <label htmlFor="email">Email</label>
           <input
             onChange={(e) => setEmail(e.target.value)}
             id='email'
