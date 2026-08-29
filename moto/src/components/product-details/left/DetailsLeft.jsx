@@ -154,7 +154,7 @@ export default function DetailsLeft({ product, isLiked, toggleLike, share, click
         </div>
 
         <div className="border-b p-3">
-          <p className="text-lg whitespace-pre-line">{description}</p>
+          <p className="text-lg whitespace-pre-line text-[14px]">{description}</p>
         </div>
 
         <div className={`lg:hidden border-y p-3 ${path[1] == 'elanlarim' && 'pb-18'}`}>
@@ -167,13 +167,17 @@ export default function DetailsLeft({ product, isLiked, toggleLike, share, click
             </div>
           </div>
 
-          <div onClick={`tel:${formattedPhone}`} className="flex items-center justify-between p-3 bg-[#2DA562] text-white rounded-lg my-3 gap-2">
+          <a 
+            href={`tel:${formattedPhone}`}
+            target="_blank"
+            rel="noopener noreferrer" className="flex items-center justify-between p-3 bg-[#2DA562] text-white rounded-lg my-3 gap-2"
+          >
             <div className="flex">
               <LocalPhoneIcon sx={{ mx: 1 }} />
               <h5 className="p-0 m-0">+994 {String(phone).slice(0, 2)} {String(phone).slice(2, 5)} {String(phone).slice(5, 7)} {String(phone).slice(7, 9)}</h5>
             </div>
             <h5 className="m-0">Zəng et</h5>
-          </div>
+          </a>
 
           <Alert severity="warning">Motosikletə baxış keçirmədən öncə beh göndərməyin.</Alert>
         </div>
@@ -187,7 +191,7 @@ export default function DetailsLeft({ product, isLiked, toggleLike, share, click
                 <Fragment>
                   <button className="w-full bg-[#2DA562] rounded-xl text-white shadow">
                     <a
-                      href={`tel:${phone}`}
+                      href={`tel:${formattedPhone}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-full h-full flex items-center justify-center p-3"
