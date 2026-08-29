@@ -118,10 +118,10 @@ export default function Autos(){
           </div>
         }
 
-        <div className="z-[9999] bg-[#f5f5f5]">
+        <div className="z-9999 bg-[#f5f5f5]">
           <Header filter={filterState} />
 
-          <div className="mt-45 lg:mt-6 px-4 flex flex-col max-w-[1000px] mx-auto">
+          <div className="mt-45 lg:mt-6 px-4 flex flex-col max-w-250 mx-auto">
             
             {/* Burda mobile reklam olacaq */}
             {
@@ -150,9 +150,13 @@ export default function Autos(){
             }
           </div>
 
-          <div className="flex items-center justify-center my-5 py-3 mb-30 bg-white">
-            <PaginationComponent page={page} setPage={manageUrlAndPage} totalPages={totalFilteredProducts} />
-          </div>
+          {
+            displayProducts.length >= 12 &&
+              <div className="flex items-center justify-center my-5 py-3 mb-30 bg-white">
+                <PaginationComponent page={page} setPage={manageUrlAndPage} totalPages={totalFilteredProducts} />
+              </div>
+          }
+          
           
           <Footer />
         </div>
