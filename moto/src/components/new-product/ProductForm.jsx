@@ -223,7 +223,7 @@ export default function ProductForm({ productData }) {
         {
           // INPUT DATA LISTLER 
         }
-        <div className="grid grid-cols-1 lg:grid-cols-3 mt-2 lg:mt-6 max-h-[100vh] overflow-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-3 mt-2 lg:mt-6 max-h-screen overflow-auto">
           {
             !stateMakeValue &&
             <ListObject 
@@ -443,7 +443,7 @@ export default function ProductForm({ productData }) {
                 type="text"
                 inputMode="numeric"
                 value={phoneValue}
-                className='border-2 w-full rounded-2xl p-3 bg-[#f5f5f5]' placeholder='77 513 14 06'
+                className='border-2 w-full rounded-2xl p-3 bg-[#f5f5f5]' placeholder='55 555 55 55'
               />
             </div>
 

@@ -176,19 +176,23 @@ export default function FilterModal({open, onClose, useFilter}){
     
         <div className="border rounded-2xl p-3 pt-2 bg-white mt-3">
           <span>Əsas</span>
-          <div className="flex flex-row mt-2 gap-3">
-            <div onClick={() => setOpenMake(true)} className='border rounded-xl p-3 w-full cursor-pointer hover:bg-gray-200 bg-[#fafbff]'>
+          <div className="w-full flex flex-row mt-2 gap-3 min-w-0">
+            <div 
+              onClick={() => setOpenMake(true)} 
+              className='flex flex-nowrap border rounded-xl p-3 cursor-pointer hover:bg-gray-200 bg-[#fafbff]  overflow-x-auto scrollbar-none flex-1 min-w-0'
+            >
               {make
-                ?
-                makes.find(x => x._id == make)?.label
-                : 'Marka'
+                ? <span className='text-nowrap'>{makes.find(x => x._id == make)?.label}</span> 
+                : <span>Marka</span>
               }
             </div>
-            <div onClick={handleModelOpen} className='border rounded-xl p-3 w-full cursor-pointer hover:bg-gray-200 bg-[#fafbff]'>
+            <div 
+              onClick={handleModelOpen} 
+              className='flex flex-nowrap border rounded-xl p-3 cursor-pointer hover:bg-gray-200 bg-[#fafbff]  overflow-x-auto scrollbar-none flex-1 min-w-0'
+            >
               {model
-                ?
-                filteredModel.find(x => x._id == model)?.label
-                : 'Model'
+                ? <span className='text-nowrap'>{filteredModel.find(x => x._id == model)?.label}</span>
+                : <span>Model</span>
               }
             </div>
           </div>
