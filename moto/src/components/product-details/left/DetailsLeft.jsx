@@ -154,7 +154,7 @@ export default function DetailsLeft({ product, isLiked, toggleLike, share, click
         </div>
 
         <div className="border-b p-3">
-          <p className="text-lg whitespace-pre-line text-[14px]">{description}</p>
+          <p className="text-lg whitespace-pre-line text-[15px]">{description}</p>
         </div>
 
         <div className={`lg:hidden border-y p-3 ${path[1] == 'elanlarim' && 'pb-18'}`}>
