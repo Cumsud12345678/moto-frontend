@@ -57,7 +57,7 @@ export default function DetailsLeft({ product, isLiked, toggleLike, share, click
         
         <div className="lg:hidden fixed top-0 bg-gray-500 text-white mt-14 w-full z-[1000]">
           <div className="flex items-center justify-between p-1">
-            <div className="flex items-center">
+            <div className="flex items-center overflow-x-auto truncate scrollbar-none">
               <button className="p-2 cursor-pointer text-white">
                 <ArrowBackIosIcon onClick={() => navigate(-1)} />
               </button>
@@ -65,7 +65,7 @@ export default function DetailsLeft({ product, isLiked, toggleLike, share, click
               <span className="ml-1">{model.label},</span>
               <span className="ml-2 font-bold text-green-400">{price} ₼</span>
             </div>
-            <div>
+            <div className="flex">
               <button onClick={share} className="p-2 cursor-pointer text-white">
                 <ShareIcon sx={{ fontSize: '22px', mx: 2 }} />
               </button>
