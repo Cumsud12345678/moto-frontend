@@ -47,7 +47,7 @@ export default function FilterMobile({useFilter}){
   }
 
   useEffect(() => {
-    if (make || model || category) {
+    if (make || model || category == null || category) {
       applyFilter()
     }
   }, [make, model, category])

@@ -145,13 +145,17 @@ export default function DetailsLeft({ product, isLiked, toggleLike, share, click
           </div>
         </div>
 
-        <div className="flex flex-wrap gap-2 border-y py-3 px-3 lg:px-0">
-          {
-            equipments.map(equipment => (
-              <button className="p-2 px-3 rounded-2x bg-[#ebedf3] rounded-full text-md" key={equipment._id}>{equipment.label}</button>
-            ))
-          }
-        </div>
+        {
+          equipments.length === 0 && 
+            <div className="flex flex-wrap gap-2 border-y py-3 px-3 lg:px-0">
+              {
+                equipments.map(equipment => (
+                  <button className="p-2 px-3 rounded-2x bg-[#ebedf3] rounded-full text-md" key={equipment._id}>{equipment.label}</button>
+                ))
+              }
+            </div>
+        }
+        
 
         <div className="border-b p-3">
           <p className="text-lg whitespace-pre-line text-[15px]">{description}</p>
