@@ -145,7 +145,9 @@ export default function Autos(){
                   ? <div>
                       <EmptyData />
                     </div>
-                  : <ProductList products={displayProducts} topMob={'0px'} topDes={'0px'} />
+                  : <div className="pb-10">
+                      <ProductList products={displayProducts} topMob={'0px'} topDes={'0px'} />
+                    </div>
                   
             }
           </div>
