@@ -146,7 +146,7 @@ export default function DetailsLeft({ product, isLiked, toggleLike, share, click
         </div>
 
         {
-          equipments.length === 0 && 
+          equipments.length !== 0 && 
             <div className="flex flex-wrap gap-2 border-y py-3 px-3 lg:px-0">
               {
                 equipments.map(equipment => (
