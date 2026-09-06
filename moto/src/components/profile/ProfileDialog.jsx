@@ -83,7 +83,7 @@ export default function ProfileDialog ({open, value, img, onClose}) {
                 image
                   ? (image.startsWith('blob:')
                     ? image                              // ✅ preview üçün birbaşa istifadə et
-                    : `${BASE_URL}/uploads/${image}`)    // ✅ server faylı üçün prefix əlavə et
+                    : `${image}`)    // ✅ server faylı üçün prefix əlavə et
                   : '/profile.jpg'
               }
               sx={{height: 120, width: 120, border: '2px solid gray'}}

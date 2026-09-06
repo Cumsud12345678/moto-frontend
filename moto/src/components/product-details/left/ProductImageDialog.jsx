@@ -93,7 +93,7 @@ export default function ProductImageDialog({open, onClose, images, initialIndex 
                 {images.map((img, index) => (
                   <SwiperSlide key={index}>
                     <img
-                      src={`${BASE_URL}/uploads/${img}`}
+                      src={`${img}`}
                       alt={`${selectedProduct.make.label} ${selectedProduct.model.label} ${selectedProduct.year}`}
                       className="w-full h-full object-contain cursor-pointer"
                     />
@@ -140,7 +140,7 @@ export default function ProductImageDialog({open, onClose, images, initialIndex 
                         outline: index === activeImage ? `2px solid ${theme.palette.primary.main}` : 'none',
                       }}
                       className="shrink-0 object-cover border-2"
-                      src={`${BASE_URL}/uploads/${image}`}
+                      src={`${image}`}
                       alt={`${selectedProduct.make.label} ${selectedProduct.model.label} ${selectedProduct.year}`}
                       key={index}
                     />

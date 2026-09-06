@@ -63,7 +63,7 @@ export default function ProfileContent({products, activeProducts, deactiveProduc
       <div className="flex items-center justify-between bg-white p-3 rounded-sm">
         <div className="flex items-center w-full max-w-[70%]">
           <div>
-            <Avatar alt="Remy Sharp" src={profile ? `${BASE_URL}/uploads/${profile}` : '/profile.jpg'} sx={{ width: 56, height: 56 }} />
+            <Avatar alt="Remy Sharp" src={profile ? `${profile}` : '/profile.jpg'} sx={{ width: 56, height: 56 }} />
           </div>
           <div style={{ marginLeft: '10px' }} className="flex flex-col w-full min-w-[100px]">
             <span>{name}</span>

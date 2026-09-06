@@ -210,7 +210,7 @@ export function ProductModal({openModal, setOpenModal, images, product}) {
                             {images.map((img, index) => (
                               <SwiperSlide key={index}>
                                 <img
-                                  src={`${BASE_URL}/uploads/${img}`}
+                                  src={img.startsWith('http') ? img : `${BASE_URL}/uploads/${img}`}
                                   className="w-full h-[320px] lg:h-[400px] object-fit cursor-pointer rounded-md"
                                 />
                               </SwiperSlide>
@@ -345,7 +345,7 @@ export function ProductModal({openModal, setOpenModal, images, product}) {
                           className="flex w-[500px]"
                         >
                           <img
-                            src={product.user.profile ? `${BASE_URL}/uploads/${product.user.profile}` : '../../../../public/profile.jpg'}
+                            src={product.user.profile ? `${product.user.profile}` : '../../../../public/profile.jpg'}
                             className="w-full h-[320px] lg:h-[400px] object-fit cursor-pointer rounded-md"
                           />
                         </div>

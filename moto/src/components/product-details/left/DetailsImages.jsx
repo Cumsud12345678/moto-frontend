@@ -52,7 +52,7 @@ export default function DetailsImages({ images, make }) {
               <div className="relative w-full h-[340px] lg:h-[500px] overflow-hidden rounded-md">
                 {/* Arxa fon - bulanıq */}
                 <img
-                  src={`${BASE_URL}/uploads/${img}`}
+                  src={`${img}`}
                   className="absolute inset-0 w-full h-full object-cover blur-xl scale-110 opacity-70"
                   aria-hidden="true"
                 />
@@ -60,7 +60,7 @@ export default function DetailsImages({ images, make }) {
                 {/* Ön plan - əsl şəkil, tam görünən */}
                 <img
                   onClick={() => clickImage(true)}
-                  src={`${BASE_URL}/uploads/${img}`}
+                  src={`${img}`}
                   alt={`${make.label}`}
                   className="relative w-full h-full object-contain cursor-pointer"
                 />
@@ -97,7 +97,7 @@ export default function DetailsImages({ images, make }) {
         {
           images.map((img, index) => (
             <img
-              key={index} src={`${BASE_URL}/uploads/${img}`} 
+              key={index} src={`${img}`} 
               alt={make.label}
               className={`w-[80px] h-[55px] object-contain cursor-pointer rounded-lg bg-black
               ${activeImage === index ? "opacity-100" : "opacity-60"}`}

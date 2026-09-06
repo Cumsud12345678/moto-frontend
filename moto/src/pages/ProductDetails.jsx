@@ -111,7 +111,7 @@ export default function ProductDetails(){
           <title>{`${currentProduct.make?.label} ${currentProduct.model?.label} ${currentProduct.year} - ${currentProduct.price} ₼`}</title>
           <meta name="description" content={`${currentProduct.make?.label} ${currentProduct.model?.label}, ${currentProduct.year}, ${currentProduct.mileage} km. ${currentProduct.city?.label}-də satılır.`} />
           <meta property="og:title" content={`${currentProduct.make?.label} ${currentProduct.model?.label}`} />
-          <meta property="og:image" content={`${import.meta.env.VITE_API_URL}/uploads/${currentProduct.images?.[0]}`} />
+          <meta property="og:image" content={`${currentProduct.images?.[0]}`} />
           <meta property="og:type" content="product" />
 
           <script type="application/ld+json">
@@ -119,7 +119,7 @@ export default function ProductDetails(){
               "@context": "https://schema.org",
               "@type": "Product",
               "name": `${currentProduct.make?.label} ${currentProduct.model?.label}`,
-              "image": `${import.meta.env.VITE_API_URL}/uploads/${currentProduct.images?.[0]}`,
+              "image": `${currentProduct.images?.[0]}`,
               "offers": {
                 "@type": "Offer",
                 "price": currentProduct.price,
@@ -146,7 +146,7 @@ export default function ProductDetails(){
             className="w-full h-full cursor-pointer"
           >
             <img
-              src={`${BASE_URL}/uploads/${deskopRightAdsense[0]?.image}`}
+              src={`${deskopRightAdsense[0]?.image}`}
               className="w-full h-full object-cover object-right"
               alt=""
             />
@@ -171,7 +171,7 @@ export default function ProductDetails(){
             <div
               onClick={() => handleAdsClick(mobileAdsense[0]?._id, mobileAdsense[0]?.link)}
               className="lg:hidden w-full h-[100px] rounded-lg my-2 border max-w-[500px] mx-auto">
-              <img src={`${BASE_URL}/uploads/${mobileAdsense[0]?.image}`} className="w-full h-full object-contain" alt="" />
+              <img src={`${mobileAdsense[0]?.image}`} className="w-full h-full object-contain" alt="" />
             </div>
           }
           <h4 className="text-xl">OXŞAR ELANLAR</h4>
@@ -209,7 +209,7 @@ export default function ProductDetails(){
               className="w-full h-full cursor-pointer"
             >
               <img
-                src={`${BASE_URL}/uploads/${deskopLeftAdsense[0]?.image}`}
+                src={`${deskopLeftAdsense[0]?.image}`}
                 className="w-full h-full object-cover object-left"
                 alt=""
               />

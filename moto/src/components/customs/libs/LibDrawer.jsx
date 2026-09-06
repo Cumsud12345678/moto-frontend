@@ -69,7 +69,7 @@ import CheckIcon from "@mui/icons-material/Check";
                       <div className="flex gap-2">
                         {
                           item.logo && 
-                          <img src={`${import.meta.env.VITE_API_URL}/uploads/${item.logo}`} className="w-[30px]" alt={`${item.label}`} />
+                          <img src={`${item.logo}`} className="w-[30px]" alt={`${item.label}`} />
                         }
                         <button style={{ fontSize: '16px' }} className='list-group-item list-group-item-action text-black'>
                           {item.label ? item.label : item}

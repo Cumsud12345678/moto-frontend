@@ -153,7 +153,7 @@ export default function Form({ product }) {
                 <div className="relative overflow-hidden rounded-2xl border border-gray-200">
 
                   <img
-                    src={img.isNew ? img.url : `${BASE_URL}/uploads/${img.url}`}
+                    src={img.isNew ? img.url : `${img.url}`}
                     alt="update-product"
                     className="w-full h-25 object-cover"
                   />

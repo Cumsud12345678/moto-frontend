@@ -174,7 +174,7 @@ export default function SearchAndSelect({ data = [], id, onClick, onChange, labe
                 <div>
                   {
                     item.logo && 
-                    <img src={`${BASE_URL}/uploads/${item.logo}`} className="w-7 inline mr-2" />
+                    <img src={`${item.logo}`} className="w-7 inline mr-2" />
                   }
                   <span style={{fontSize: '14px'}}>{getLabel(item)}</span>
                 </div>

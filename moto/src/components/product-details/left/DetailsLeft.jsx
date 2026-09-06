@@ -163,7 +163,7 @@ export default function DetailsLeft({ product, isLiked, toggleLike, share, click
 
         <div className={`lg:hidden border-y p-3 ${path[1] == 'elanlarim' && 'pb-18'}`}>
           <div className="flex bg-white p-2 rounded-lg items-center">
-            <Avatar alt="Remy Sharp" src={profile ? `${BASE_URL}/uploads/${profile}` : '/profile.jpg'} sx={{ width: 56, height: 56 }} />
+            <Avatar alt="Remy Sharp" src={profile ? `${profile}` : '/profile.jpg'} sx={{ width: 56, height: 56 }} />
             {/* <img className="rounded-full w-[60px] h-[60px] object-contain border-2" src={profile ? `${BASE_URL}/uploads/${profile}` : '/profile.jpg'} alt="" /> */}
             <div className="mx-2 flex flex-col">
               <span style={{ fontSize: '18px', fontWeight: 'bold' }}>{name}</span>

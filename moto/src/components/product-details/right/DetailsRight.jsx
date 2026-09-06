@@ -40,7 +40,7 @@ export default function DetailsRight({ user, product, isLiked, toggleLike, share
 
         <div className="p-4">
           <div className="flex">
-            <Avatar alt="profile" src={profile ? `${BASE_URL}/uploads/${profile}` : '/profile.jpg'} sx={{ width: 56, height: 56 }} />
+            <Avatar alt="profile" src={profile ? `${profile}` : '/profile.jpg'} sx={{ width: 56, height: 56 }} />
             {/* <img
               src={profile ? `${BASE_URL}/uploads/${profile}` : '/profile.jpg'}
               alt="profile"

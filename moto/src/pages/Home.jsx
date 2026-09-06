@@ -94,7 +94,7 @@ export default function Home(){
               className="w-full h-full cursor-pointer"
             >
               <img
-                src={`${BASE_URL}/uploads/${deskopRightAdsense[0]?.image}`}
+                src={`${deskopRightAdsense[0]?.image}`}
                 className="w-full h-full object-cover object-right"
                 alt=""
               />
@@ -114,7 +114,7 @@ export default function Home(){
               <div 
                 onClick={() => handleAdsClick(mobileAdsense[0]?._id, mobileAdsense[0]?.link)}
                 className="lg:hidden w-full h-25 rounded-lg my-2 border max-w-125 mx-auto">
-                <img src={`${BASE_URL}/uploads/${mobileAdsense[0]?.image}`} className="w-full h-full object-contain" alt="" />
+                <img src={`${mobileAdsense[0]?.image}`} className="w-full h-full object-contain" alt="" />
               </div>
             }
             
@@ -164,7 +164,7 @@ export default function Home(){
               className="w-full h-full cursor-pointer"
             >
               <img
-                src={`${BASE_URL}/uploads/${deskopLeftAdsense[0]?.image}`}
+                src={`${deskopLeftAdsense[0]?.image}`}
                 className="w-full h-full object-cover object-left"
                 alt=""
               />
