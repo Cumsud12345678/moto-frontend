@@ -242,6 +242,7 @@ export const useProduct = () => {
 
     const compressedImages = await Promise.all(
       files.map(async (file) => {
+        if(file.size === 0) return
         const compressedBlob = await imageCompression(file, options)
 
         // ✅ orijinal adı və tipi qoruyaraq real File obyekti yarat
